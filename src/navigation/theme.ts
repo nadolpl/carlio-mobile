@@ -8,7 +8,7 @@ export const AppTheme: Theme = {
     ...DarkTheme.colors,
     primary: colors.primary,
     background: colors.background900,
-    card: colors.background800,
+    container: colors.background800,
     text: colors.textPrimary,
     border: colors.divider,
     notification: colors.error,

@@ -3,6 +3,7 @@ import { VehicleListedResponse } from "models/response/VehicleListedResponse";
 import { colors } from "constants/colors";
 import Text from "components/atoms/text";
 import { commonStyles } from "utils/styles";
+import Badge from "components/atoms/badge";
 
 interface VehicleCardProps {
   vehicle: VehicleListedResponse;
@@ -13,7 +14,7 @@ const VehicleCard = ({ vehicle, onPress }: VehicleCardProps) => {
   return (
     <Pressable
       onPress={() => onPress(vehicle.id)}
-      style={({ pressed }) => [styles.card, pressed && commonStyles.pressed]}
+      style={({ pressed }) => [styles.container, pressed && commonStyles.pressed]}
     >
       <View style={styles.placeholderContainer}>
         <View style={styles.placeholder}>
@@ -23,19 +24,14 @@ const VehicleCard = ({ vehicle, onPress }: VehicleCardProps) => {
 
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{vehicle.name}</Text>
-
-        <View style={styles.plateContainer}>
-          <Text style={styles.plateValue}>
-            {vehicle.brand} {vehicle.model}
-          </Text>
-        </View>
+        <Badge label={`${vehicle.brand} ${vehicle.model}`} />
       </View>
     </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
+  container: {
     backgroundColor: colors.background800,
     borderRadius: 16,
     padding: 12,
@@ -66,23 +62,6 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: "bold",
     marginBottom: 4,
-  },
-  plateContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  plateLabel: {
-    fontSize: 12,
-    marginRight: 4,
-    fontWeight: "600",
-  },
-  plateValue: {
-    backgroundColor: colors.background700,
-    fontSize: 12,
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    borderRadius: 4,
-    overflow: "hidden",
   },
 });
 

@@ -3,7 +3,7 @@ import VehicleListScreen from "screens/vehicles/list";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import CustomDrawerContent from "navigation/drawerNavigation/CustomDrawerContent";
 import MaintenanceListScreen from "screens/MaintenanceListScreen";
-import PartListScreen from "screens/parts/PartListScreen";
+import PartListScreen from "screens/parts/list";
 import { ICONS } from "constants/icons";
 import Icon from "components/atoms/icon";
 

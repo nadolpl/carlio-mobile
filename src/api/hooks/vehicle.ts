@@ -1,5 +1,5 @@
 import { VehicleSearchParams } from "models/response/VehicleListedResponse";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { VEHICLE_KEYS } from "api/hooks/keys";
 import {
   requestCreateVehicle,
@@ -12,15 +12,21 @@ import {
 import { VehicleRequest } from "models/requests/VehicleRequest";
 
 export const useSearchVehicles = (params?: VehicleSearchParams) => {
-  return useQuery({
-    queryKey: VEHICLE_KEYS.search(params),
-    queryFn: () => requestSearchVehicles(params),
+  return useInfiniteQuery({
+    queryKey: VEHICLE_KEYS.search(),
+    queryFn: ({ pageParam }) => requestSearchVehicles({ page: pageParam, ...params }),
+    getNextPageParam: (lastPage) => {
+      const currentPage = lastPage.page?.number ?? 0;
+      const totalPages = lastPage.page?.totalPages ?? 0;
+      return currentPage + 1 < totalPages ? currentPage + 1 : undefined;
+    },
+    initialPageParam: 0,
   });
 };
 
 export const useVehicle = (id: string) => {
   return useQuery({
-    queryKey: VEHICLE_KEYS.detail(id),
+    queryKey: VEHICLE_KEYS.details(id),
     queryFn: () => requestGetVehicle(id),
     enabled: !!id,
   });
