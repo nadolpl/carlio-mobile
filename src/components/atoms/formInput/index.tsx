@@ -1,64 +1,53 @@
-import { StyleSheet, TextInput, TextInputProps, View } from "react-native";
+import { StyleSheet, TextInput, TextInputProps } from "react-native";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import { colors } from "constants/colors";
-import Text from "components/atoms/text";
+import FormItemWrapper from "components/atoms/formItemWrapper";
 
-interface FormInputProps<
-  TFormValues extends FieldValues,
-> extends TextInputProps {
+interface FormInputProps<TFormValues extends FieldValues> extends TextInputProps {
   name: Path<TFormValues>;
   control: Control<TFormValues>;
   label?: string;
+  flex?: boolean;
+  required?: boolean;
 }
 
-export const FormInput = <TFormValues extends FieldValues>({
+const FormInput = <TFormValues extends FieldValues>({
   name,
   control,
   label,
+  flex,
+  required,
   ...props
-}: FormInputProps<TFormValues>) => {
-  return (
-    <Controller
-      control={control}
-      name={name}
-      render={({ field: { onChange, onBlur, value } }) => (
-        <View style={styles.container}>
-          {label && <Text style={styles.label}>{label}</Text>}
-
-          <TextInput
-            style={styles.input}
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-            placeholderTextColor={colors.textDisabled}
-            autoCapitalize="none"
-            autoCorrect={false}
-            {...props}
-          />
-        </View>
-      )}
-    />
-  );
-};
+}: FormInputProps<TFormValues>) => (
+  <Controller
+    control={control}
+    name={name}
+    render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
+      <FormItemWrapper label={label} required={required} flex={flex} error={error?.message}>
+        <TextInput
+          style={styles.input}
+          onBlur={onBlur}
+          onChangeText={onChange}
+          value={value != null ? value.toString() : null}
+          placeholderTextColor={colors.textDisabled}
+          {...props}
+        />
+      </FormItemWrapper>
+    )}
+  />
+);
 
 const styles = StyleSheet.create({
-  container: {
-    marginBottom: 20,
-    width: "100%",
-  },
-  label: {
-    marginBottom: 5,
-    fontWeight: "600",
-    color: colors.textPrimary,
-  },
   input: {
+    height: 50,
     borderWidth: 1,
     borderColor: colors.divider,
     borderRadius: 12,
     paddingHorizontal: 16,
-    paddingVertical: 12,
-    fontSize: 16,
     backgroundColor: colors.background800,
     color: colors.textPrimary,
+    fontSize: 16,
   },
 });
+
+export default FormInput;

@@ -25,7 +25,9 @@ const VehicleCard = ({ vehicle, onPress }: VehicleCardProps) => {
         <Text style={styles.title}>{vehicle.name}</Text>
 
         <View style={styles.plateContainer}>
-          <Text style={styles.plateValue}>{vehicle.registrationNumber}</Text>
+          <Text style={styles.plateValue}>
+            {vehicle.brand} {vehicle.model}
+          </Text>
         </View>
       </View>
     </Pressable>

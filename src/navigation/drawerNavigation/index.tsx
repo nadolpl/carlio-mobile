@@ -1,9 +1,9 @@
 import { DrawerParamList } from "navigation/types";
-import VehicleListScreen from "screens/VehicleList";
+import VehicleListScreen from "screens/vehicles/list";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import CustomDrawerContent from "navigation/drawerNavigation/CustomDrawerContent";
 import MaintenanceListScreen from "screens/MaintenanceListScreen";
-import PartListScreen from "screens/PartListScreen";
+import PartListScreen from "screens/parts/PartListScreen";
 import { ICONS } from "constants/icons";
 import Icon from "components/atoms/icon";
 
@@ -13,15 +13,18 @@ const DrawerNavigation = () => {
   return (
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawerContent {...props} />}
+      screenOptions={{
+        headerRightContainerStyle: {
+          paddingRight: 16,
+        },
+      }}
     >
       <Drawer.Screen
         name="VehicleList"
         component={VehicleListScreen}
         options={{
           title: "Vehicles",
-          drawerIcon: ({ color, size }) => (
-            <Icon name={ICONS.VEHICLE} color={color} size={size} />
-          ),
+          drawerIcon: ({ color, size }) => <Icon name={ICONS.VEHICLE} color={color} size={size} />,
         }}
       />
       <Drawer.Screen
@@ -39,9 +42,7 @@ const DrawerNavigation = () => {
         component={PartListScreen}
         options={{
           title: "Parts",
-          drawerIcon: ({ color, size }) => (
-            <Icon name={ICONS.PART} color={color} size={size} />
-          ),
+          drawerIcon: ({ color, size }) => <Icon name={ICONS.PART} color={color} size={size} />,
         }}
       />
     </Drawer.Navigator>

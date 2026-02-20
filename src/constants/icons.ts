@@ -6,5 +6,6 @@ export const ICONS = {
   ADD: "add-circle-outline",
   GOOGLE: "logo-google",
   IMAGE: "image-outline",
-  EDIT: 'pencil'
+  EDIT: "pencil",
+  DELETE: "trash",
 } as const;

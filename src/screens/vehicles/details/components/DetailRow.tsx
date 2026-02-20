@@ -8,12 +8,13 @@ interface DetailRowProps {
 }
 
 const DetailRow = ({ label, value }: DetailRowProps) => {
-  if (value === null) return null;
   return (
-    <View style={styles.row}>
-      <Text>{label}</Text>
-      <Text style={styles.value}>{value}</Text>
-    </View>
+    value != null && (
+      <View style={styles.row}>
+        <Text>{label}</Text>
+        <Text style={styles.value}>{value}</Text>
+      </View>
+    )
   );
 };
 

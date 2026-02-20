@@ -1,8 +1,7 @@
 export const formattedCapacity = (capacity: number | null) =>
-  capacity === null ? "" : `${capacity / 1000} l`;
+  capacity != null ? `${capacity / 1000} l` : null;
 
-export const formattedPower = (power: number | null) =>
-  power === null ? "" : `${power} KM`;
+export const formattedPower = (power: number | null) => (power != null ? `${power} KM` : null);
 
 export const formattedMileage = (mileage: number) => `${mileage} km`;
 

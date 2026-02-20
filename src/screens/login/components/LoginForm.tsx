@@ -3,19 +3,19 @@ import Button from "components/atoms/button";
 import { useForm } from "react-hook-form";
 import { useLogin } from "api/hooks/auth";
 import { LoginRequest } from "models/requests/LoginRequest";
-import { FormInput } from "components/atoms/formInput";
+import FormInput from "components/atoms/formInput";
 
 const LoginForm = () => {
   const { mutate: login, isPending } = useLogin();
   const { control, handleSubmit } = useForm<LoginRequest>({
     defaultValues: {
-      email: "a@as.a",
+      email: "a@a.a",
       password: "aaaaaa",
     },
   });
 
-  const onSubmit = (values: LoginRequest) => {
-    login(values);
+  const onSubmit = (req: LoginRequest) => {
+    login(req);
   };
 
   return (

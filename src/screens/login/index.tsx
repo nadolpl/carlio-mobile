@@ -1,10 +1,4 @@
-import {
-  Image,
-  KeyboardAvoidingView,
-  ScrollView,
-  StyleSheet,
-  View,
-} from "react-native";
+import { Image, KeyboardAvoidingView, ScrollView, StyleSheet, View } from "react-native";
 import { colors } from "constants/colors";
 import LoginForm from "screens/login/components/LoginForm";
 import SignInWithGoogleButton from "screens/login/components/SignInWithGoogleButton";
@@ -13,14 +7,12 @@ import Text from "components/atoms/text";
 const LoginScreen = () => {
   return (
     <KeyboardAvoidingView behavior="height" style={styles.container}>
-      <ScrollView
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <Image
           source={require("../../../assets/images/login-screen-logo.png")}
           style={styles.image}
         />
+
         <LoginForm />
 
         <View style={styles.separatorContainer}>
