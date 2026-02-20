@@ -1,8 +1,8 @@
-export const formattedCapacity = (capacity: number | null) =>
+export const formatCapacity = (capacity: number | null) =>
   capacity != null ? `${capacity / 1000} l` : null;
 
-export const formattedPower = (power: number | null) => (power != null ? `${power} KM` : null);
+export const formatPower = (power: number | null) => (power != null ? `${power} KM` : null);
 
-export const formattedMileage = (mileage: number) => `${mileage} km`;
+export const formatMileage = (mileage: number) => `${mileage.toLocaleString()} km`;
 
-export const formattedPrice = (price: number) => `${price} PLN`;
+export const formatPrice = (price: number) => `${price} PLN`;

@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import { VehicleResponse } from "models/response/VehicleResponse";
-import { formattedCapacity, formattedMileage, formattedPower } from "utils/number";
+import { formatCapacity, formatMileage, formatPower } from "utils/number";
 import DetailRow from "screens/vehicles/details/components/DetailRow";
 import Text from "components/atoms/text";
 import { colors } from "constants/colors";
@@ -16,10 +16,10 @@ const DetailsDataRows = ({ vehicle }: DetailsDataRowsProps) => {
     <>
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Technical data</Text>
-        <DetailRow label="Mileage" value={formattedMileage(vehicle.mileage)} />
+        <DetailRow label="Mileage" value={formatMileage(vehicle.mileage)} />
         <DetailRow label="Fuel" value={getEnumValueByKey(FuelType, vehicle.fuelType)} />
-        <DetailRow label="Power" value={formattedPower(vehicle.power)} />
-        <DetailRow label="Capacity" value={formattedCapacity(vehicle.capacity)} />
+        <DetailRow label="Power" value={formatPower(vehicle.power)} />
+        <DetailRow label="Capacity" value={formatCapacity(vehicle.capacity)} />
       </View>
 
       {(vehicle.registrationNumber || vehicle.vin) && (

@@ -22,7 +22,7 @@ const VehicleCard = ({ vehicle, onPress }: VehicleCardProps) => {
         </View>
       </View>
 
-      <View style={styles.infoContainer}>
+      <View>
         <Text style={styles.title}>{vehicle.name}</Text>
         <Badge label={`${vehicle.brand} ${vehicle.model}`} />
       </View>
@@ -33,9 +33,8 @@ const VehicleCard = ({ vehicle, onPress }: VehicleCardProps) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.background800,
-    borderRadius: 16,
+    borderRadius: 12,
     padding: 12,
-    marginVertical: 8,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -52,16 +51,12 @@ const styles = StyleSheet.create({
   },
   placeholderText: {
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: "800",
     color: colors.textSecondary,
   },
-  infoContainer: {
-    flex: 1,
-    justifyContent: "center",
-  },
   title: {
-    fontWeight: "bold",
-    marginBottom: 4,
+    fontWeight: "800",
+    marginBottom: 6,
   },
 });
 

@@ -5,7 +5,7 @@ export const colors = {
   warning: "#B87700",
 
   background900: "#1c1c1c",
-  background800: "#292929",
+  background800: "#252525",
   background700: "#333333",
   background600: "#3c3c3c",
 

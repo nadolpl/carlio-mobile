@@ -18,7 +18,7 @@ const PartCard = ({ part, onPress }: PartCardProps) => {
       onPress={() => onPress(part.id)}
       style={({ pressed }) => [styles.container, pressed && commonStyles.pressed]}
     >
-      <View style={styles.infoContainer}>
+      <View>
         <Text style={styles.name} numberOfLines={1}>
           {part.name}
         </Text>
@@ -36,18 +36,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
     backgroundColor: colors.background800,
     borderRadius: 12,
     padding: 16,
-    marginVertical: 8,
-  },
-  infoContainer: {
-    flex: 1,
-    paddingRight: 16,
   },
   name: {
-    fontWeight: "700",
+    fontWeight: "800",
     marginBottom: 4,
   },
   manufacturer: {
