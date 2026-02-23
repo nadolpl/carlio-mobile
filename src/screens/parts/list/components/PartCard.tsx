@@ -9,17 +9,17 @@ import { commonStyles } from "utils/styles";
 
 interface PartCardProps {
   part: PartResponse;
-  onPress: (id: string) => void;
+  onPress: (part: PartResponse) => void;
 }
 
 const PartCard = ({ part, onPress }: PartCardProps) => {
   return (
     <Pressable
-      onPress={() => onPress(part.id)}
+      onPress={() => onPress(part)}
       style={({ pressed }) => [styles.container, pressed && commonStyles.pressed]}
     >
       <View>
-        <Text style={styles.name} numberOfLines={1}>
+        <Text style={[styles.name, part.source === "USER" && styles.userSource]} numberOfLines={1}>
           {part.name}
         </Text>
         <Text style={styles.manufacturer} numberOfLines={1}>
@@ -43,6 +43,9 @@ const styles = StyleSheet.create({
   name: {
     fontWeight: "800",
     marginBottom: 4,
+  },
+  userSource: {
+    color: colors.warning,
   },
   manufacturer: {
     fontSize: 14,

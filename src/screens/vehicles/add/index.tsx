@@ -16,9 +16,6 @@ const AddVehicleScreen = () => {
   } = useForm<VehicleFormInput, any, VehicleFormOutput>({
     resolver: zodResolver(vehicleSchema),
     mode: "onChange",
-    defaultValues: {
-      fuelType: "PETROL",
-    },
   });
 
   const onSubmit = (req: VehicleFormOutput) => {

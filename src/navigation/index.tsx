@@ -8,6 +8,9 @@ import { useAuth } from "contexts/AuthContext";
 import LoginScreen from "screens/login";
 import AddVehicleScreen from "screens/vehicles/add";
 import EditVehicleScreen from "screens/vehicles/edit";
+import AddPartScreen from "screens/parts/add";
+import PartDetailsScreen from "screens/parts/details";
+import EditPartScreen from "screens/parts/edit";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -20,9 +23,24 @@ const Navigator = () => {
           <>
             <Stack.Screen name="MainTabs" component={DrawerNavigation} />
             <Stack.Screen
+              name="AddPart"
+              component={AddPartScreen}
+              options={{ headerShown: true, title: "Add new part" }}
+            />
+            <Stack.Screen
+              name="PartDetails"
+              component={PartDetailsScreen}
+              options={{ headerShown: true, title: "Part Details" }}
+            />
+            <Stack.Screen
+              name="EditPart"
+              component={EditPartScreen}
+              options={{ headerShown: true, title: "Edit part" }}
+            />
+            <Stack.Screen
               name="AddVehicle"
               component={AddVehicleScreen}
-              options={{ headerShown: true, title: "Create new vehicle" }}
+              options={{ headerShown: true, title: "Add new vehicle" }}
             />
             <Stack.Screen
               name="VehicleDetails"

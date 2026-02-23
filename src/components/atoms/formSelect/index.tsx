@@ -34,6 +34,7 @@ const FormSelect = <TFormValues extends FieldValues>({
             style={styles.picker}
             dropdownIconColor={colors.textPrimary}
           >
+            <Picker.Item label="Select..." value={null} enabled={false} />
             {options.map((opt) => (
               <Picker.Item key={opt.value} label={opt.label} value={opt.value} />
             ))}

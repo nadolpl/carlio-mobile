@@ -1,17 +1,10 @@
 import { z } from "zod";
 import { FuelType } from "models/enums/FuelType";
 import { getEnumKeys } from "utils/enum";
+import { numOrNull, strOrNull } from "utils/validation";
 
 const CURRENT_YEAR = new Date().getFullYear();
 const VIN_ALLOWED_CHARS = /^[A-HJ-NPR-Z0-9]+$/i;
-
-const numOrNull = z
-  .union([z.string(), z.number(), z.null(), z.undefined()])
-  .transform((val) => (val === "" || val === null || val === undefined ? null : Number(val)));
-
-const strOrNull = z
-  .union([z.string(), z.null(), z.undefined()])
-  .transform((val) => (!val || String(val).trim() === "" ? null : String(val).trim()));
 
 export const vehicleSchema = z.object({
   name: z.string({ error: "Name is required" }).min(1, "Name is required"),
