@@ -12,16 +12,10 @@ import HeaderSection from "components/templates/DetailsScreenWrapper/components/
 import SectionCard from "components/templates/DetailsScreenWrapper/components/SectionCard";
 
 const MaintenanceDetailsScreen = () => {
-  const {
-    navigation,
-    maintenance,
-    handleEditMaintenance,
-    handleDeleteMaintenance,
-    confirmationModalProps,
-  } = useMaintenanceDetails();
+  const { maintenance, handleEditMaintenance, handleDeleteMaintenance, confirmationModalProps } =
+    useMaintenanceDetails();
 
   useDetailsNavigation({
-    navigation,
     onEdit: handleEditMaintenance,
     onDelete: handleDeleteMaintenance,
   });

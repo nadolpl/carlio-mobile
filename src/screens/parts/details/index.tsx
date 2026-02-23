@@ -11,11 +11,9 @@ import HeaderSection from "components/templates/DetailsScreenWrapper/components/
 import SectionCard from "components/templates/DetailsScreenWrapper/components/SectionCard";
 
 const PartDetailsScreen = () => {
-  const { part, handleDeletePart, handleEditPart, navigation, confirmationModalProps } =
-    usePartDetails();
+  const { part, handleDeletePart, handleEditPart, confirmationModalProps } = usePartDetails();
 
   useDetailsNavigation({
-    navigation,
     onEdit: handleEditPart,
     onDelete: handleDeletePart,
     showActions: part?.source === "USER",

@@ -26,7 +26,6 @@ export const usePartDetails = () => {
 
   return {
     part,
-    navigation,
     handleDeletePart,
     handleEditPart,
     confirmationModalProps: props,

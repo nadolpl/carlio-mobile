@@ -1,39 +1,33 @@
-import { useLayoutEffect } from "react";
+import { useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import IconButton from "components/atoms/iconButton";
 import { ICONS } from "constants/icons";
 import { colors } from "constants/colors";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "navigation/types";
+import { useNavigationHeader } from "hooks/useNavigationHeader";
 
-interface DetailsNavigationProps {
-  navigation: NativeStackNavigationProp<RootStackParamList>;
+interface UseDetailsNavigationProps {
   onEdit?: () => void;
   onDelete?: () => void;
   showActions?: boolean;
 }
 
 export const useDetailsNavigation = ({
-  navigation,
   onEdit,
   onDelete,
   showActions = true,
-}: DetailsNavigationProps) => {
-  useLayoutEffect(() => {
-    if (!showActions || (!onEdit && !onDelete)) {
-      navigation.setOptions({ headerRight: () => null });
-      return;
-    }
+}: UseDetailsNavigationProps) => {
+  const renderHeaderRight = useCallback(() => {
+    if (!showActions || (!onEdit && !onDelete)) return null;
 
-    navigation.setOptions({
-      headerRight: () => (
-        <View style={styles.headerRight}>
-          {onEdit && <IconButton onPress={onEdit} icon={ICONS.EDIT} />}
-          {onDelete && <IconButton onPress={onDelete} icon={ICONS.DELETE} color={colors.error} />}
-        </View>
-      ),
-    });
-  }, [navigation, onEdit, onDelete, showActions]);
+    return (
+      <View style={styles.headerRight}>
+        {onEdit && <IconButton onPress={onEdit} icon={ICONS.EDIT} />}
+        {onDelete && <IconButton onPress={onDelete} icon={ICONS.DELETE} color={colors.error} />}
+      </View>
+    );
+  }, [onEdit, onDelete, showActions]);
+
+  useNavigationHeader({ renderHeaderRight });
 };
 
 const styles = StyleSheet.create({

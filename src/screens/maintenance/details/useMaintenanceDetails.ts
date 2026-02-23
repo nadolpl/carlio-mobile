@@ -29,7 +29,6 @@ export const useMaintenanceDetails = () => {
 
   return {
     maintenance,
-    navigation,
     handleDeleteMaintenance,
     handleEditMaintenance,
     confirmationModalProps: props,
