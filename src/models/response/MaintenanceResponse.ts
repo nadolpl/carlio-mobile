@@ -1,4 +1,4 @@
-import type { MaintenancePart } from "./MaintenancePart.ts";
+import type { MaintenancePartResponse } from "./MaintenancePartResponse.ts";
 import type { MaintenanceTypeKey } from "../enums/MaintenanceType.ts";
 
 export interface MaintenanceResponse {
@@ -12,5 +12,5 @@ export interface MaintenanceResponse {
   laborCost: number;
   partsCost: number;
   totalCost: number;
-  parts: MaintenancePart[];
+  parts: MaintenancePartResponse[];
 }

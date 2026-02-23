@@ -22,17 +22,11 @@ const VehicleForm = ({ control, handleSubmit, submitLabel, submitDisabled }: Veh
       submitLabel={submitLabel}
       submitDisabled={submitDisabled}
     >
-      <FormInput
-        name="name"
-        label="Vehicle name"
-        control={control}
-        placeholder="My Daily Car"
-        required
-      />
+      <FormInput name="name" label="Vehicle name" control={control} required />
 
       <View style={commonStyles.inputRow}>
-        <FormInput name="brand" label="Brand" control={control} placeholder="Brand" required flex />
-        <FormInput name="model" label="Model" control={control} placeholder="Model" required flex />
+        <FormInput name="brand" label="Brand" control={control} required flex />
+        <FormInput name="model" label="Model" control={control} required flex />
       </View>
 
       <View style={commonStyles.inputRow}>
@@ -48,7 +42,6 @@ const VehicleForm = ({ control, handleSubmit, submitLabel, submitDisabled }: Veh
           name="mileage"
           label="Mileage"
           control={control}
-          placeholder="10000"
           keyboardType="number-pad"
           required
           flex
@@ -56,18 +49,11 @@ const VehicleForm = ({ control, handleSubmit, submitLabel, submitDisabled }: Veh
       </View>
 
       <View style={commonStyles.inputRow}>
-        <FormInput
-          name="registrationNumber"
-          label="Registration Number"
-          control={control}
-          placeholder="WPL01010"
-          flex
-        />
+        <FormInput name="registrationNumber" label="Registration Number" control={control} flex />
         <FormInput
           name="productionYear"
           label="Production Year"
           control={control}
-          placeholder="2015"
           keyboardType="number-pad"
           flex
         />
@@ -78,21 +64,13 @@ const VehicleForm = ({ control, handleSubmit, submitLabel, submitDisabled }: Veh
           name="capacity"
           label="Capacity"
           control={control}
-          placeholder="1400"
           keyboardType="number-pad"
           flex
         />
-        <FormInput
-          name="power"
-          label="Power"
-          control={control}
-          placeholder="100"
-          keyboardType="number-pad"
-          flex
-        />
+        <FormInput name="power" label="Power" control={control} keyboardType="number-pad" flex />
       </View>
 
-      <FormInput name="vin" label="VIN" control={control} placeholder="WVWZZZ1JZXW000001" />
+      <FormInput name="vin" label="VIN" control={control} />
     </FormScreen>
   );
 };

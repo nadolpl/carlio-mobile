@@ -26,7 +26,6 @@ const AddPartScreen = () => {
 
   return (
     <PartForm
-      submitLabel="Add Part"
       control={control}
       handleSubmit={handleSubmit(onSubmit)}
       submitDisabled={!isValid || !isDirty}

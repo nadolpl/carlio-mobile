@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, View } from "react-native";
 import { MaintenanceListedResponse } from "models/response/MaintenanceListedResponse";
 import { commonStyles } from "utils/styles";
-import { formatDate } from "utils/date";
+import { formatDateArray } from "utils/date";
 import { colors } from "constants/colors";
 import Text from "components/atoms/text";
 import Badge from "components/atoms/badge";
@@ -24,7 +24,7 @@ const MaintenanceCard = ({ maintenance, onPress }: MaintenanceCardProps) => {
         <Text style={styles.title} numberOfLines={1}>
           {maintenance.title}
         </Text>
-        <Text style={styles.date}>{formatDate(maintenance.performedDate)}</Text>
+        <Text style={styles.date}>{formatDateArray(maintenance.performedDate)}</Text>
       </View>
 
       {maintenance.description && (

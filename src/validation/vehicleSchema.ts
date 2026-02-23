@@ -11,14 +11,12 @@ export const vehicleSchema = z.object({
   brand: z.string({ error: "Brand is required" }).min(1, "Brand is required"),
   model: z.string({ error: "Model is required" }).min(1, "Model is required"),
   fuelType: z.enum(getEnumKeys(FuelType), "Fuel type is required"),
-
   mileage: numOrNull.pipe(
     z
-      .number({ error: "Mileage is required" })
+      .number({ error: "Mileage must be a number" })
       .min(0, "Mileage must be a positive number")
       .max(9_999_999, "Mileage is too large"),
   ),
-
   registrationNumber: strOrNull.pipe(
     z
       .string()
@@ -26,35 +24,31 @@ export const vehicleSchema = z.object({
       .transform((val) => (val ? val.toUpperCase() : null))
       .nullable(),
   ),
-
   productionYear: numOrNull.pipe(
     z
-      .number({ error: "Production year must be a valid number" })
+      .number({ error: "Production year must be a number" })
       .min(1900, "Production year must be after 1900")
       .max(CURRENT_YEAR + 1, `Production year must be before ${CURRENT_YEAR + 1}`)
       .nullable(),
   ),
-
   capacity: numOrNull.pipe(
     z
-      .number({ error: "Capacity must be a valid number" })
+      .number({ error: "Capacity must be a number" })
       .min(1, "Capacity cannot be less than 1")
       .nullable(),
   ),
-
   power: numOrNull.pipe(
     z
-      .number({ error: "Power must be a valid number" })
+      .number({ error: "Power must be a number" })
       .min(1, "Power cannot be less than 1")
       .max(20_000, "Power is too large")
       .nullable(),
   ),
-
   vin: strOrNull
     .transform((val) => (val ? val.toUpperCase() : null))
     .pipe(
       z
-        .string({ error: "VIN is required" })
+        .string()
         .length(17, "VIN must be 17 characters long")
         .regex(VIN_ALLOWED_CHARS, "VIN contains invalid characters")
         .nullable(),

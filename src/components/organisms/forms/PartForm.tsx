@@ -22,22 +22,10 @@ const PartForm = ({ control, handleSubmit, submitLabel, submitDisabled }: PartFo
       submitLabel={submitLabel}
       submitDisabled={submitDisabled}
     >
-      <FormInput
-        name="name"
-        label="Part name"
-        control={control}
-        placeholder="Brake pads"
-        required
-      />
+      <FormInput name="name" label="Part name" control={control} required />
 
       <View style={commonStyles.inputRow}>
-        <FormInput
-          name="manufacturer"
-          label="Manufacturer"
-          control={control}
-          placeholder="Bosch"
-          flex
-        />
+        <FormInput name="manufacturer" label="Manufacturer" control={control} flex />
 
         <FormSelect
           name="category"
@@ -49,12 +37,7 @@ const PartForm = ({ control, handleSubmit, submitLabel, submitDisabled }: PartFo
         />
       </View>
 
-      <FormInput
-        name="description"
-        label="Description"
-        control={control}
-        placeholder="Description"
-      />
+      <FormInput name="description" label="Description" control={control} />
     </FormScreen>
   );
 };

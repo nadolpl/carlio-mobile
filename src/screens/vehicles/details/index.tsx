@@ -1,62 +1,48 @@
-import { ScrollView, StyleSheet, View } from "react-native";
-import DetailsHeader from "screens/vehicles/details/components/DetailsHeader";
-import VehiclePhoto from "screens/vehicles/details/components/VehiclePhoto";
-import DetailsDataRows from "screens/vehicles/details/components/DetailsDataRows";
-import { useLayoutEffect } from "react";
-import IconButton from "components/atoms/iconButton";
-import { ICONS } from "constants/icons";
-import ConfirmationModal from "components/molecules/confirmationModal";
-import { colors } from "constants/colors";
 import { useVehicleDetails } from "screens/vehicles/details/useVehicleDetails";
+import { DetailsScreenWrapper } from "components/templates/DetailsScreenWrapper";
+import { useDetailsNavigation } from "hooks/useDetailsNavigation";
+import DetailRow from "components/molecules/detailRow";
+import VehiclePhoto from "screens/vehicles/details/components/VehiclePhoto";
+import { getEnumValueByKey } from "utils/enum";
+import { FuelType } from "models/enums/FuelType";
+import { formatCapacity, formatMileage, formatPower } from "utils/number";
+import HeaderSection from "components/templates/DetailsScreenWrapper/components/HeaderSection";
+import SectionCard from "components/templates/DetailsScreenWrapper/components/SectionCard";
 
 const VehicleDetailsScreen = () => {
   const { navigation, vehicle, handleEditVehicle, handleDeleteVehicle, confirmationModalProps } =
     useVehicleDetails();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <View style={styles.headerRight}>
-          <IconButton onPress={handleEditVehicle} icon={ICONS.EDIT} />
-          <IconButton onPress={handleDeleteVehicle} icon={ICONS.DELETE} color={colors.error} />
-        </View>
-      ),
-    });
-  }, [navigation, handleEditVehicle, handleDeleteVehicle]);
+  useDetailsNavigation({
+    navigation,
+    onEdit: handleEditVehicle,
+    onDelete: handleDeleteVehicle,
+  });
 
   if (!vehicle) return null;
 
   return (
-    <>
-      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        <VehiclePhoto vehicle={vehicle} />
-        <DetailsHeader vehicle={vehicle} />
-        <DetailsDataRows vehicle={vehicle} />
-      </ScrollView>
-      <ConfirmationModal {...confirmationModalProps} />
-    </>
+    <DetailsScreenWrapper confirmationModalProps={confirmationModalProps}>
+      <VehiclePhoto vehicle={vehicle} />
+
+      <HeaderSection title={vehicle.name} subtitle={`${vehicle.brand} ${vehicle.model}`} />
+
+      <SectionCard title="Technical Data">
+        <DetailRow label="Mileage" value={formatMileage(vehicle.mileage)} isFirst />
+        <DetailRow label="Fuel Type" value={getEnumValueByKey(FuelType, vehicle.fuelType)} />
+        <DetailRow label="Power" value={formatPower(vehicle.power)} />
+        <DetailRow label="Capacity" value={formatCapacity(vehicle.capacity)} />
+        <DetailRow label="Production Year" value={vehicle.productionYear} isLast />
+      </SectionCard>
+
+      {(vehicle.registrationNumber || vehicle.vin) && (
+        <SectionCard title="Identification">
+          <DetailRow label="Registration Number" value={vehicle.registrationNumber} isFirst />
+          <DetailRow label="VIN" value={vehicle.vin} isLast />
+        </SectionCard>
+      )}
+    </DetailsScreenWrapper>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  contentContainer: {
-    paddingBottom: 40,
-  },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  loadingText: {
-    marginTop: 10,
-  },
-  headerRight: {
-    flexDirection: "row",
-    gap: 16,
-  },
-});
 
 export default VehicleDetailsScreen;

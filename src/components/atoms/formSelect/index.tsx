@@ -5,23 +5,23 @@ import { colors } from "constants/colors";
 import { EnumOptions } from "utils/enum";
 import FormItemWrapper from "components/atoms/formItemWrapper";
 
-interface FormSelectProps<TFormValues extends FieldValues> {
-  name: Path<TFormValues>;
-  control: Control<TFormValues>;
+export interface FormSelectProps<T extends FieldValues> {
+  name: Path<T>;
+  control: Control<T>;
   options: EnumOptions[];
   label?: string;
   flex?: boolean;
   required?: boolean;
 }
 
-const FormSelect = <TFormValues extends FieldValues>({
+const FormSelect = <T extends FieldValues>({
   name,
   control,
   label,
   flex,
   required,
   options,
-}: FormSelectProps<TFormValues>) => (
+}: FormSelectProps<T>) => (
   <Controller
     control={control}
     name={name}
@@ -31,7 +31,7 @@ const FormSelect = <TFormValues extends FieldValues>({
           <Picker
             selectedValue={value}
             onValueChange={onChange}
-            style={styles.picker}
+            style={value ? styles.picker : styles.placeholder}
             dropdownIconColor={colors.textPrimary}
           >
             <Picker.Item label="Select..." value={null} enabled={false} />
@@ -54,6 +54,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background800,
     justifyContent: "center",
     paddingLeft: 8,
+  },
+  placeholder: {
+    color: colors.textDisabled,
   },
   picker: {
     color: colors.textPrimary,

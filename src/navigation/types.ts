@@ -1,15 +1,22 @@
 import { VehicleResponse } from "models/response/VehicleResponse";
 import { PartResponse } from "models/response/PartResponse";
+import { MaintenanceResponse } from "models/response/MaintenanceResponse";
 
 export type RootStackParamList = {
   MainTabs: undefined;
-  VehicleDetails: { vehicleId: string };
+  Login: undefined;
+
   PartDetails: { part: PartResponse };
   EditPart: { part: PartResponse };
-  AddVehicle: undefined;
   AddPart: undefined;
+
+  MaintenanceDetails: { maintenanceId: string };
+  AddMaintenance: undefined;
+  EditMaintenance: { maintenance: MaintenanceResponse };
+
+  VehicleDetails: { vehicleId: string };
+  AddVehicle: undefined;
   EditVehicle: { vehicle: VehicleResponse };
-  Login: undefined;
 };
 
 export type DrawerParamList = {

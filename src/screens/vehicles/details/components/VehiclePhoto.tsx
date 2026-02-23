@@ -9,7 +9,7 @@ interface VehiclePhotoProps {
 }
 
 const VehiclePhoto = ({ vehicle }: VehiclePhotoProps) => {
-  const image = requestGetVehiclePhotoUrl(vehicle.id, vehicle.photoId);
+  const image = vehicle.photoId ? requestGetVehiclePhotoUrl(vehicle.id, vehicle.photoId) : null;
 
   return (
     <View style={styles.container}>
@@ -26,12 +26,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     overflow: "hidden",
+    marginBottom: 12,
   },
-  placeholder: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
+  placeholder: { flex: 1, justifyContent: "center", alignItems: "center" },
   placeholderText: {
     fontSize: 80,
     fontWeight: "bold",

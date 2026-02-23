@@ -1,5 +1,5 @@
-import type { MaintenancePart } from "../responses/MaintenancePart.ts";
 import type { MaintenanceTypeKey } from "../enums/MaintenanceType.ts";
+import { MaintenancePartRequest } from "models/requests/MaintenancePartRequest";
 
 export interface MaintenanceRequest {
   vehicleId: string;
@@ -9,6 +9,5 @@ export interface MaintenanceRequest {
   mileage: number;
   laborCost: number;
   type: MaintenanceTypeKey;
-  parts: MaintenancePart[];
-  scheduleId: string | null;
+  parts: MaintenancePartRequest[];
 }

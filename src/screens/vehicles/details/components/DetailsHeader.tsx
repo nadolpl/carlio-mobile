@@ -4,7 +4,7 @@ import { VehicleResponse } from "models/response/VehicleResponse";
 import { colors } from "constants/colors";
 
 interface DetailsHeaderProps {
-  vehicle: VehicleResponse;
+  vehicle?: VehicleResponse;
 }
 
 const DetailsHeader = ({ vehicle }: DetailsHeaderProps) => {
@@ -13,9 +13,7 @@ const DetailsHeader = ({ vehicle }: DetailsHeaderProps) => {
       <Text style={styles.title}>
         {vehicle.brand} {vehicle.model}
       </Text>
-      {vehicle.productionYear && (
-        <Text style={styles.subtitle}>{vehicle.productionYear}</Text>
-      )}
+      {vehicle.productionYear && <Text style={styles.subtitle}>{vehicle.productionYear}</Text>}
       <Text style={styles.customName}>"{vehicle.name}"</Text>
     </View>
   );

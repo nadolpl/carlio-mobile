@@ -3,22 +3,23 @@ import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import { colors } from "constants/colors";
 import FormItemWrapper from "components/atoms/formItemWrapper";
 
-interface FormInputProps<TFormValues extends FieldValues> extends TextInputProps {
-  name: Path<TFormValues>;
-  control: Control<TFormValues>;
+interface FormInputProps<T extends FieldValues> extends TextInputProps {
+  name: Path<T>;
+  control: Control<T>;
   label?: string;
   flex?: boolean;
   required?: boolean;
 }
 
-const FormInput = <TFormValues extends FieldValues>({
+const FormInput = <T extends FieldValues>({
   name,
   control,
   label,
   flex,
   required,
+  placeholder,
   ...props
-}: FormInputProps<TFormValues>) => (
+}: FormInputProps<T>) => (
   <Controller
     control={control}
     name={name}
@@ -30,6 +31,7 @@ const FormInput = <TFormValues extends FieldValues>({
           onChangeText={onChange}
           value={value != null ? value.toString() : null}
           placeholderTextColor={colors.textDisabled}
+          placeholder={placeholder ?? label}
           {...props}
         />
       </FormItemWrapper>

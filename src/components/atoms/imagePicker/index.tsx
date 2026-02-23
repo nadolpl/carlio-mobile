@@ -42,11 +42,7 @@ const ImagePicker = ({ vehicleId, preimage }: ImagePickerProps) => {
   return (
     <View style={styles.container}>
       <Pressable onPress={pickImage} style={styles.imageContainer}>
-        {displayUri ? (
-          <SecuredImage uri={displayUri} />
-        ) : (
-          <Icon name={ICONS.IMAGE} size={50} />
-        )}
+        {displayUri ? <SecuredImage uri={displayUri} /> : <Icon name={ICONS.IMAGE} size={50} />}
       </Pressable>
     </View>
   );

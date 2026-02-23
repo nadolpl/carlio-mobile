@@ -26,7 +26,6 @@ const AddVehicleScreen = () => {
 
   return (
     <VehicleForm
-      submitLabel="Add Vehicle"
       control={control}
       handleSubmit={handleSubmit(onSubmit)}
       submitDisabled={!isValid || !isDirty}

@@ -18,7 +18,7 @@ export const requestDeleteVehicle = (id: string) => api.delete<void>(`${VEHICLES
 export const requestUpdateVehicle = (id: string, req: Partial<VehicleRequest>) =>
   api.patch<void>(`${VEHICLES}/${id}`, req);
 
-export const requestGetVehiclePhotoUrl = (vehicleId: string, photoId?: string | null) => {
+export const requestGetVehiclePhotoUrl = (vehicleId: string, photoId: string) => {
   const baseUrl = `${client.defaults.baseURL}${VEHICLES}/${vehicleId}/photo`;
   return photoId ? `${baseUrl}?v=${photoId}` : baseUrl;
 };

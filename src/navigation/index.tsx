@@ -11,6 +11,9 @@ import EditVehicleScreen from "screens/vehicles/edit";
 import AddPartScreen from "screens/parts/add";
 import PartDetailsScreen from "screens/parts/details";
 import EditPartScreen from "screens/parts/edit";
+import AddMaintenanceScreen from "screens/maintenance/add";
+import MaintenanceDetailsScreen from "screens/maintenance/details";
+import EditMaintenanceScreen from "screens/maintenance/edit";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -22,6 +25,7 @@ const Navigator = () => {
         {isAuthenticated ? (
           <>
             <Stack.Screen name="MainTabs" component={DrawerNavigation} />
+
             <Stack.Screen
               name="AddPart"
               component={AddPartScreen}
@@ -37,6 +41,7 @@ const Navigator = () => {
               component={EditPartScreen}
               options={{ headerShown: true, title: "Edit part" }}
             />
+
             <Stack.Screen
               name="AddVehicle"
               component={AddVehicleScreen}
@@ -51,6 +56,22 @@ const Navigator = () => {
               name="EditVehicle"
               component={EditVehicleScreen}
               options={{ headerShown: true, title: "Edit vehicle" }}
+            />
+
+            <Stack.Screen
+              name="AddMaintenance"
+              component={AddMaintenanceScreen}
+              options={{ headerShown: true, title: "Add new maintenance" }}
+            />
+            <Stack.Screen
+              name="MaintenanceDetails"
+              component={MaintenanceDetailsScreen}
+              options={{ headerShown: true, title: "Maintenance Details" }}
+            />
+            <Stack.Screen
+              name="EditMaintenance"
+              component={EditMaintenanceScreen}
+              options={{ headerShown: true, title: "Edit maintenance" }}
             />
           </>
         ) : (

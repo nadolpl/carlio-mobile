@@ -1,11 +1,11 @@
 import { StyleSheet, View } from "react-native";
 import { VehicleResponse } from "models/response/VehicleResponse";
 import { formatCapacity, formatMileage, formatPower } from "utils/number";
-import DetailRow from "screens/vehicles/details/components/DetailRow";
 import Text from "components/atoms/text";
 import { colors } from "constants/colors";
 import { getEnumValueByKey } from "utils/enum";
 import { FuelType } from "models/enums/FuelType";
+import DetailRow from "components/molecules/detailRow";
 
 interface DetailsDataRowsProps {
   vehicle: VehicleResponse;

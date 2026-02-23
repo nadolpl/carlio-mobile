@@ -12,6 +12,7 @@ export const useVehicleDetails = () => {
   const { data: vehicle } = useVehicle(params.vehicleId);
   const { mutate: deleteVehicle } = useDeleteVehicle();
   const { showConfirmation, props } = useConfirmationModal();
+
   const handleDeleteVehicle = () => {
     showConfirmation({
       title: "Delete Vehicle",
