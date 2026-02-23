@@ -7,5 +7,4 @@ import { LoginRequest } from "models/requests/LoginRequest";
 export const requestGoogleLogin = (req: MobileLoginRequest) =>
   api.post<AuthResponse>(`${AUTH}/google/mobile`, req);
 
-export const requestLogin = (req: LoginRequest) =>
-  api.post<AuthResponse>(`${AUTH}/login`, req);
+export const requestLogin = (req: LoginRequest) => api.post<AuthResponse>(`${AUTH}/login`, req);

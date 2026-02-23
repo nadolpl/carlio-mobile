@@ -20,13 +20,9 @@ const SecuredImage = ({ uri }: SecuredImageProps) => {
     return <View style={styles.image} />;
   }
 
-  const source = isRemote
-    ? { uri, headers: { Authorization: `Bearer ${token}` } }
-    : { uri };
+  const source = isRemote ? { uri, headers: { Authorization: `Bearer ${token}` } } : { uri };
 
-  return (
-    <ExpoImage source={[source]} style={styles.image} contentFit="cover" />
-  );
+  return <ExpoImage source={[source]} style={styles.image} contentFit="cover" />;
 };
 
 const styles = StyleSheet.create({

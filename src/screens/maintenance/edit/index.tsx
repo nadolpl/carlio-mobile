@@ -35,7 +35,7 @@ const EditMaintenanceScreen = () => {
       description: maintenance.description,
       type: maintenance.type,
       vehicleId: maintenance.vehicleId,
-      parts: maintenance.parts,
+      parts: [],
     },
   });
 

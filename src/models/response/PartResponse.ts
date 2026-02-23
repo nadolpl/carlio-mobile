@@ -1,6 +1,6 @@
-import type {PartCategoryKey} from "../enums/PartCategory.ts";
-import type {PartSourceKey} from "../enums/PartSource.ts";
-import type {PageableParams} from "../Pageable.ts";
+import type { PartCategoryKey } from "../enums/PartCategory.ts";
+import type { PartSourceKey } from "../enums/PartSource.ts";
+import type { PageableParams } from "../Pageable.ts";
 
 export interface PartResponse {
   id: string;

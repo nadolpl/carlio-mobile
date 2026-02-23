@@ -1,10 +1,4 @@
-import {
-  createContext,
-  PropsWithChildren,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, PropsWithChildren, useContext, useEffect, useState } from "react";
 import * as authStorage from "api/services/authStorage";
 import { initApiClient } from "api/config/client";
 import { AuthResponse } from "models/response/AuthResponse";
@@ -49,9 +43,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   }, []);
 
   return (
-    <AuthContext.Provider
-      value={{ isAuthenticated, isLoading, authorize, logout }}
-    >
+    <AuthContext.Provider value={{ isAuthenticated, isLoading, authorize, logout }}>
       {children}
     </AuthContext.Provider>
   );

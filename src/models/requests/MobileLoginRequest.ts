@@ -1,3 +1,3 @@
 export interface MobileLoginRequest {
-  idToken: string
+  idToken: string;
 }

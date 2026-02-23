@@ -4,10 +4,7 @@ import { requestRefreshAccessToken } from "api/services/tokenService";
 import { ApiError } from "models/ApiError";
 import Toast from "react-native-toast-message";
 
-export const setupInterceptors = (
-  instance: AxiosInstance,
-  onLogout: () => void,
-) => {
+export const setupInterceptors = (instance: AxiosInstance, onLogout: () => void) => {
   instance.interceptors.request.use(async (config) => {
     const token = await authStorage.getAccessToken();
     if (token) config.headers.Authorization = `Bearer ${token}`;
@@ -19,20 +16,14 @@ export const setupInterceptors = (
     async (error) => {
       const originalRequest = error.config;
 
-      if (
-        error.response?.status === 401 &&
-        originalRequest &&
-        !originalRequest._retry
-      ) {
+      if (error.response?.status === 401 && originalRequest && !originalRequest._retry) {
         const isAuthRequest =
-          originalRequest.url?.includes("/login") ||
-          originalRequest.url?.includes("/refresh");
+          originalRequest.url?.includes("/login") || originalRequest.url?.includes("/refresh");
 
         if (!isAuthRequest) {
           originalRequest._retry = true;
           try {
-            const { accessToken, refreshToken } =
-              await requestRefreshAccessToken();
+            const { accessToken, refreshToken } = await requestRefreshAccessToken();
             await authStorage.setAccessToken(accessToken);
             if (refreshToken) await authStorage.setRefreshToken(refreshToken);
 

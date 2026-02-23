@@ -1,7 +1,4 @@
-export const getChangedData = <T extends Record<string, any>>(
-  dirtyFields: Record<string, any>,
-  req: T,
-): Partial<T> => {
+export const getChangedData = <T>(dirtyFields: Record<string, any>, req: T): Partial<T> => {
   return Object.keys(dirtyFields).reduce((acc, key) => {
     const fieldKey = key as keyof T;
     const dirtyState = dirtyFields[key];

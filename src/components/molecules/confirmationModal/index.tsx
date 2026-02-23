@@ -23,23 +23,14 @@ const ConfirmationModal = ({
   confirmText = "Confirm",
 }: ConfirmationModalProps) => {
   return (
-    <Modal
-      transparent
-      visible={visible}
-      animationType="fade"
-      onRequestClose={onCancel}
-    >
+    <Modal transparent visible={visible} animationType="fade" onRequestClose={onCancel}>
       <View style={styles.overlay}>
         <View style={styles.modalContainer}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.message}>{message}</Text>
 
           <View style={styles.buttonContainer}>
-            <Button
-              variant="transparent"
-              title={cancelText}
-              onPress={onCancel}
-            />
+            <Button variant="transparent" title={cancelText} onPress={onCancel} />
             <Button color="error" title={confirmText} onPress={onConfirm} />
           </View>
         </View>

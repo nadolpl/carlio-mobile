@@ -1,8 +1,4 @@
-import RNToast, {
-  BaseToast,
-  ErrorToast,
-  ToastConfig,
-} from "react-native-toast-message";
+import RNToast, { BaseToast, ErrorToast, ToastConfig } from "react-native-toast-message";
 import { colors } from "constants/colors";
 
 const toastConfig: ToastConfig = {

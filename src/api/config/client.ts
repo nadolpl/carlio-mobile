@@ -6,7 +6,6 @@ const client = axios.create({
   headers: { "Content-Type": "application/json", Accept: "application/json" },
 });
 
-export const initApiClient = (onLogout: () => void) =>
-  setupInterceptors(client, onLogout);
+export const initApiClient = (onLogout: () => void) => setupInterceptors(client, onLogout);
 
 export default client;

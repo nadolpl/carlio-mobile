@@ -13,9 +13,7 @@ const LogoutButton = () => {
     <>
       <DrawerItem
         label="Logout"
-        icon={({ size, color }) => (
-          <Icon name={ICONS.LOGOUT} color={color} size={size} />
-        )}
+        icon={({ size, color }) => <Icon name={ICONS.LOGOUT} color={color} size={size} />}
         onPress={() => setVisible(true)}
       />
 
