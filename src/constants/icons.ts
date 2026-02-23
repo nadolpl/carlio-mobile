@@ -8,4 +8,5 @@ export const ICONS = {
   IMAGE: "image-outline",
   EDIT: "pencil",
   DELETE: "trash",
+  CASH: "cash-outline",
 } as const;

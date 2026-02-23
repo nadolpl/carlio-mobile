@@ -17,10 +17,10 @@ export const useMaintenanceDetails = () => {
     showConfirmation({
       title: "Delete Maintenance",
       message: "Are you sure you want to delete this maintenance?",
-      onConfirm: () =>
-        deleteMaintenance(params.maintenanceId, {
-          onSuccess: () => navigation.goBack(),
-        }),
+      onConfirm: () => {
+        navigation.goBack();
+        deleteMaintenance(params.maintenanceId);
+      },
     });
   };
 

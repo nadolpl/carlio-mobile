@@ -10,11 +10,10 @@ import HeaderSection from "components/templates/DetailsScreenWrapper/components/
 import SectionCard from "components/templates/DetailsScreenWrapper/components/SectionCard";
 
 const VehicleDetailsScreen = () => {
-  const { navigation, vehicle, handleEditVehicle, handleDeleteVehicle, confirmationModalProps } =
+  const { vehicle, handleEditVehicle, handleDeleteVehicle, confirmationModalProps } =
     useVehicleDetails();
 
   useDetailsNavigation({
-    navigation,
     onEdit: handleEditVehicle,
     onDelete: handleDeleteVehicle,
   });

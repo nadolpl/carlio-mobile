@@ -1,6 +1,7 @@
 import { VehicleSearchParams } from "models/response/VehicleListedResponse";
 import { PartSearchParams } from "models/response/PartResponse";
 import { MaintenanceSearchParams } from "models/response/MaintenanceListedResponse";
+import { ExpenseSearchParams } from "models/response/ExpenseResponse";
 
 export const VEHICLE_KEYS = {
   all: ["vehicles"] as const,
@@ -15,8 +16,14 @@ export const PART_KEYS = {
 };
 
 export const MAINTENANCE_KEYS = {
-  all: ["Maintenances"] as const,
+  all: ["maintenances"] as const,
   details: (id: string) => [...MAINTENANCE_KEYS.all, "details", id] as const,
   search: (params?: MaintenanceSearchParams) =>
     [...MAINTENANCE_KEYS.all, "search", params] as const,
+};
+
+export const EXPENSE_KEYS = {
+  all: ["expenses"] as const,
+  details: (id: string) => [...EXPENSE_KEYS.all, "details", id] as const,
+  search: (params?: ExpenseSearchParams) => [...EXPENSE_KEYS.all, "search", params] as const,
 };

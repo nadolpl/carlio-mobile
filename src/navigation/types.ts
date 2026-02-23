@@ -1,6 +1,7 @@
 import { VehicleResponse } from "models/response/VehicleResponse";
 import { PartResponse } from "models/response/PartResponse";
 import { MaintenanceResponse } from "models/response/MaintenanceResponse";
+import { ExpenseResponse } from "models/response/ExpenseResponse";
 
 export type RootStackParamList = {
   MainTabs: undefined;
@@ -17,10 +18,15 @@ export type RootStackParamList = {
   VehicleDetails: { vehicleId: string };
   AddVehicle: undefined;
   EditVehicle: { vehicle: VehicleResponse };
+
+  ExpenseDetails: { expenseId: string };
+  AddExpense: undefined;
+  EditExpense: { expense: ExpenseResponse };
 };
 
 export type DrawerParamList = {
   VehicleList: undefined;
   MaintenanceList: undefined;
   PartList: undefined;
+  ExpenseList: undefined;
 };

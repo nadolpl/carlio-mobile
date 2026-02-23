@@ -15,10 +15,10 @@ export const usePartDetails = () => {
     showConfirmation({
       title: "Delete Part",
       message: "Are you sure you want to delete this part?",
-      onConfirm: () =>
-        deletePart(params.part.id, {
-          onSuccess: () => navigation.goBack(),
-        }),
+      onConfirm: () => {
+        deletePart(params.part.id);
+        navigation.goBack();
+      },
     });
   };
 

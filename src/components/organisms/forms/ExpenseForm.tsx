@@ -3,26 +3,21 @@ import FormInput from "components/atoms/formInput";
 import FormSelect from "components/atoms/formSelect";
 import { mapEnumToOptions } from "utils/enum";
 import { Control } from "react-hook-form";
-import { MaintenanceFormInput } from "validation/maintenanceSchema";
+import { ExpenseFormInput } from "validation/expenseSchema";
 import FormScreen from "components/organisms/forms/FormScreen";
 import { commonStyles } from "utils/styles";
-import { MaintenanceType } from "models/enums/MaintenanceType";
+import { ExpenseType } from "models/enums/ExpenseType";
 import FormSelectVehicle from "components/molecules/formSelectVehicle";
 import FormDate from "components/atoms/formDate";
 
-interface MaintenanceFormProps {
-  control: Control<MaintenanceFormInput>;
+interface ExpenseFormProps {
+  control: Control<ExpenseFormInput>;
   handleSubmit: () => void;
   submitLabel?: string;
   submitDisabled?: boolean;
 }
 
-const MaintenanceForm = ({
-  control,
-  handleSubmit,
-  submitLabel,
-  submitDisabled,
-}: MaintenanceFormProps) => {
+const ExpenseForm = ({ control, handleSubmit, submitLabel, submitDisabled }: ExpenseFormProps) => {
   return (
     <FormScreen
       handleSubmit={handleSubmit}
@@ -30,8 +25,6 @@ const MaintenanceForm = ({
       submitDisabled={submitDisabled}
     >
       <FormSelectVehicle name="vehicleId" control={control} required />
-
-      <FormInput name="title" label="Title" control={control} required />
 
       <View style={commonStyles.inputRow}>
         <FormInput
@@ -47,7 +40,7 @@ const MaintenanceForm = ({
           name="type"
           label="Type"
           control={control}
-          options={mapEnumToOptions(MaintenanceType)}
+          options={mapEnumToOptions(ExpenseType)}
           required
           flex
         />
@@ -55,8 +48,8 @@ const MaintenanceForm = ({
 
       <View style={commonStyles.inputRow}>
         <FormInput
-          name="laborCost"
-          label="Labor cost"
+          name="cost"
+          label="Cost"
           control={control}
           flex
           required
@@ -75,4 +68,4 @@ const MaintenanceForm = ({
   );
 };
 
-export default MaintenanceForm;
+export default ExpenseForm;

@@ -6,6 +6,7 @@ import MaintenanceListScreen from "screens/maintenance/list";
 import PartListScreen from "screens/parts/list";
 import { ICONS } from "constants/icons";
 import Icon from "components/atoms/icon";
+import ExpenseListScreen from "screens/expenses/list";
 
 const Drawer = createDrawerNavigator<DrawerParamList>();
 
@@ -43,6 +44,14 @@ const DrawerNavigation = () => {
         options={{
           title: "Parts",
           drawerIcon: ({ color, size }) => <Icon name={ICONS.PART} color={color} size={size} />,
+        }}
+      />
+      <Drawer.Screen
+        name="ExpenseList"
+        component={ExpenseListScreen}
+        options={{
+          title: "Expenses",
+          drawerIcon: ({ color, size }) => <Icon name={ICONS.CASH} color={color} size={size} />,
         }}
       />
     </Drawer.Navigator>

@@ -17,10 +17,10 @@ export const useVehicleDetails = () => {
     showConfirmation({
       title: "Delete Vehicle",
       message: "Are you sure you want to delete this vehicle?",
-      onConfirm: () =>
-        deleteVehicle(params.vehicleId, {
-          onSuccess: () => navigation.goBack(),
-        }),
+      onConfirm: () => {
+        deleteVehicle(params.vehicleId);
+        navigation.goBack();
+      },
     });
   };
 
@@ -28,7 +28,6 @@ export const useVehicleDetails = () => {
     vehicle && navigation.navigate("EditVehicle", { vehicle: vehicle });
 
   return {
-    navigation,
     vehicle,
     handleDeleteVehicle,
     handleEditVehicle,
