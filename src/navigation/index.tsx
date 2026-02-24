@@ -17,6 +17,8 @@ import EditMaintenanceScreen from "screens/maintenance/edit";
 import AddExpenseScreen from "screens/expenses/add";
 import ExpenseDetailsScreen from "screens/expenses/details";
 import EditExpenseScreen from "screens/expenses/edit";
+import AddDocumentScreen from "screens/documents/add";
+import DocumentDetailsScreen from "screens/documents/details";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -91,6 +93,17 @@ const Navigator = () => {
               name="EditExpense"
               component={EditExpenseScreen}
               options={{ headerShown: true, title: "Edit Expense" }}
+            />
+
+            <Stack.Screen
+              name="AddDocument"
+              component={AddDocumentScreen}
+              options={{ headerShown: true, title: "Add new Document" }}
+            />
+            <Stack.Screen
+              name="DocumentDetails"
+              component={DocumentDetailsScreen}
+              options={{ headerShown: true, title: "Document Details" }}
             />
           </>
         ) : (

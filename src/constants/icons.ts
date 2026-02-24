@@ -9,4 +9,7 @@ export const ICONS = {
   EDIT: "pencil",
   DELETE: "trash",
   CASH: "cash-outline",
+  DOCUMENT: "document-text-outline",
+  ARROW_RIGHT: "chevron-forward",
+  FILE: "document-outline",
 } as const;

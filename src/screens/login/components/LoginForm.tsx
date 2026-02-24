@@ -20,21 +20,9 @@ const LoginForm = () => {
 
   return (
     <View style={styles.container}>
-      <FormInput
-        control={control}
-        name="email"
-        label="Email"
-        placeholder="Enter your email"
-        keyboardType="email-address"
-      />
+      <FormInput control={control} name="email" label="Email" keyboardType="email-address" />
 
-      <FormInput
-        control={control}
-        name="password"
-        label="Password"
-        placeholder="Enter your password"
-        secureTextEntry
-      />
+      <FormInput control={control} name="password" label="Password" secureTextEntry />
 
       <Button
         variant="outlined"

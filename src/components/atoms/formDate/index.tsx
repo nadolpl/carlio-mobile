@@ -3,7 +3,7 @@ import { Pressable, StyleSheet } from "react-native";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import DatePicker from "react-native-date-picker";
 import { colors } from "constants/colors";
-import FormItemWrapper from "components/atoms/formItemWrapper";
+import FormItemWrapper from "components/molecules/formItemWrapper";
 import Text from "components/atoms/text";
 import { formatDate } from "utils/date";
 

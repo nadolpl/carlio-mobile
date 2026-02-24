@@ -58,12 +58,7 @@ const ExpenseForm = ({ control, handleSubmit, submitLabel, submitDisabled }: Exp
         <FormDate name="performedDate" label="Date" control={control} flex required />
       </View>
 
-      <FormInput
-        name="description"
-        label="Description"
-        control={control}
-        placeholder="Description"
-      />
+      <FormInput name="description" label="Description" control={control} />
     </FormScreen>
   );
 };

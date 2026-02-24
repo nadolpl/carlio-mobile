@@ -1,7 +1,7 @@
 export const colors = {
   primary: "#1a79cb",
   success: "#1B812B",
-  error: "#ba1919",
+  error: "#981515",
   warning: "#B87700",
 
   background900: "#1c1c1c",

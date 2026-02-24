@@ -42,7 +42,7 @@ const Button = ({
       onPress={onPress}
       disabled={disabled || loading}
     >
-      {loading ? <ActivityIndicator /> : icon && <Icon name={icon} />}
+      {loading ? <ActivityIndicator /> : icon && <Icon name={icon} size={20} />}
       <Text style={[styles.text]}>{loading ? loadingText : title}</Text>
     </Pressable>
   );

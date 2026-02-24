@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import { VehicleResponse } from "models/response/VehicleResponse";
 import { colors } from "constants/colors";
-import ImagePicker from "components/atoms/imagePicker";
+import ImagePicker from "components/molecules/imagePicker";
 import { requestGetVehiclePhotoUrl } from "api/requests/vehicle";
 
 interface VehiclePhotoProps {

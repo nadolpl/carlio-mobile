@@ -3,7 +3,7 @@ import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import { Picker } from "@react-native-picker/picker";
 import { colors } from "constants/colors";
 import { EnumOptions } from "utils/enum";
-import FormItemWrapper from "components/atoms/formItemWrapper";
+import FormItemWrapper from "components/molecules/formItemWrapper";
 
 export interface FormSelectProps<T extends FieldValues> {
   name: Path<T>;

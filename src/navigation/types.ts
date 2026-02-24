@@ -22,6 +22,9 @@ export type RootStackParamList = {
   ExpenseDetails: { expenseId: string };
   AddExpense: undefined;
   EditExpense: { expense: ExpenseResponse };
+
+  DocumentDetails: { documentId: string };
+  AddDocument: undefined;
 };
 
 export type DrawerParamList = {
@@ -29,4 +32,5 @@ export type DrawerParamList = {
   MaintenanceList: undefined;
   PartList: undefined;
   ExpenseList: undefined;
+  DocumentList: undefined;
 };

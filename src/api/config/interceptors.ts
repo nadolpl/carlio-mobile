@@ -49,7 +49,7 @@ export const setupInterceptors = (instance: AxiosInstance, onLogout: () => void)
           type: "error",
           text1: apiError.message,
           text2: apiError.error,
-          visibilityTime: 4000,
+          visibilityTime: 5000,
         });
       }
 

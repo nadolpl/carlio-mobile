@@ -4,7 +4,7 @@ import { Alert, Pressable, StyleSheet, View } from "react-native";
 import { ICONS } from "constants/icons";
 import Icon from "components/atoms/icon";
 import { useUploadVehiclePhoto } from "api/hooks/vehicle";
-import SecuredImage from "components/atoms/securedImage";
+import SecuredImage from "components/molecules/securedImage";
 
 interface ImagePickerProps {
   vehicleId: string;
