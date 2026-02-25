@@ -14,7 +14,7 @@ const PartListScreen = () => {
   useListNavigation({ onPressAdd: () => navigation.navigate("AddPart") });
 
   const handlePress = (part: PartResponse) => {
-    navigation.navigate("PartDetails", { part });
+    navigation.navigate("PartDetails", { partId: part.id });
   };
 
   return (

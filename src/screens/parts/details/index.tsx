@@ -23,7 +23,7 @@ const PartDetailsScreen = () => {
 
   return (
     <DetailsScreenWrapper confirmationModalProps={confirmationModalProps}>
-      <HeaderSection title={part.name} subtitle={part.manufacturer} />
+      <HeaderSection title={part.name} subtitle={part?.manufacturer} />
 
       <SectionCard title="System Information">
         <DetailRow
@@ -34,11 +34,11 @@ const PartDetailsScreen = () => {
         <DetailRow label="Source" value={getEnumValueByKey(PartSource, part.source)} isLast />
       </SectionCard>
 
-      <SectionCard title="Description">
-        <Text style={styles.descriptionText}>
-          {part.description || "No description provided for this part."}
-        </Text>
-      </SectionCard>
+      {part.description && (
+        <SectionCard title="Description">
+          <Text style={styles.descriptionText}>{part.description}</Text>
+        </SectionCard>
+      )}
     </DetailsScreenWrapper>
   );
 };

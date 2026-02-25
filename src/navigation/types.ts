@@ -7,7 +7,7 @@ export type RootStackParamList = {
   MainTabs: undefined;
   Login: undefined;
 
-  PartDetails: { part: PartResponse };
+  PartDetails: { partId: string };
   EditPart: { part: PartResponse };
   AddPart: undefined;
 

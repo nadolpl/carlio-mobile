@@ -36,6 +36,7 @@ const FormSelectVehicle = <T extends FieldValues>({
       label={label}
       required={required}
       flex={flex}
+      placeholder="Select vehicle..."
     />
   );
 };

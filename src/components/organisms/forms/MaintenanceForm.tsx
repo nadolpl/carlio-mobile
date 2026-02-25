@@ -9,6 +9,7 @@ import { commonStyles } from "utils/styles";
 import { MaintenanceType } from "models/enums/MaintenanceType";
 import FormSelectVehicle from "components/molecules/formSelectVehicle";
 import FormDate from "components/atoms/formDate";
+import MaintenancePartForm from "components/organisms/forms/MaintenancePartForm";
 
 interface MaintenanceFormProps {
   control: Control<MaintenanceFormInput>;
@@ -49,6 +50,7 @@ const MaintenanceForm = ({
           control={control}
           options={mapEnumToOptions(MaintenanceType)}
           required
+          placeholder="Select type..."
           flex
         />
       </View>
@@ -66,6 +68,8 @@ const MaintenanceForm = ({
       </View>
 
       <FormInput name="description" label="Description" control={control} />
+
+      <MaintenancePartForm control={control} />
     </FormScreen>
   );
 };

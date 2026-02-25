@@ -8,7 +8,7 @@ export const usePartDetails = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, "PartDetails">>();
   const { params } = useRoute<RouteProp<RootStackParamList, "PartDetails">>();
 
-  const { data: part } = usePart(params.part.id);
+  const { data: part } = usePart(params.partId);
   const { mutate: deletePart } = useDeletePart();
   const { showConfirmation, props } = useConfirmationModal();
   const handleDeletePart = () => {
@@ -16,7 +16,7 @@ export const usePartDetails = () => {
       title: "Delete Part",
       message: "Are you sure you want to delete this part?",
       onConfirm: () => {
-        deletePart(params.part.id);
+        deletePart(params.partId);
         navigation.goBack();
       },
     });

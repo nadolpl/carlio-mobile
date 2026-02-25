@@ -4,14 +4,14 @@ import { colors } from "constants/colors";
 
 interface HeaderSectionProps {
   title: string;
-  subtitle?: string;
+  subtitle: string | null;
 }
 
 const HeaderSection = ({ title, subtitle }: HeaderSectionProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.subtitle}>{subtitle}</Text>
+      {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
     </View>
   );
 };

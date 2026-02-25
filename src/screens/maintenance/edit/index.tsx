@@ -35,12 +35,13 @@ const EditMaintenanceScreen = () => {
       description: maintenance.description,
       type: maintenance.type,
       vehicleId: maintenance.vehicleId,
-      parts: [],
+      parts: maintenance.parts || [],
     },
   });
 
   const onSubmit = (req: MaintenanceFormOutput) => {
-    update(getChangedData(dirtyFields, req) as Partial<MaintenanceRequest>, {
+    const payload = getChangedData(dirtyFields, req) as Partial<MaintenanceRequest>;
+    update(payload, {
       onSuccess: () => navigation.goBack(),
     });
   };

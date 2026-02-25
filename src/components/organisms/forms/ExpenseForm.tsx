@@ -43,6 +43,7 @@ const ExpenseForm = ({ control, handleSubmit, submitLabel, submitDisabled }: Exp
           options={mapEnumToOptions(ExpenseType)}
           required
           flex
+          placeholder="Select type..."
         />
       </View>
 

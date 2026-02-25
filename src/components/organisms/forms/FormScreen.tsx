@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
+    marginBottom: 40,
   },
   scrollContent: {
     flexGrow: 1,

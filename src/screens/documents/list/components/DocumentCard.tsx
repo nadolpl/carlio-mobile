@@ -38,7 +38,7 @@ const DocumentCard = ({ document, onPress }: DocumentCardProps) => {
         </Text>
       </View>
 
-      <View style={styles.chevronContainer}>
+      <View style={styles.arrowContainer}>
         <Icon name={ICONS.ARROW_RIGHT} color={colors.textSecondary} />
       </View>
     </Pressable>
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: colors.textSecondary,
   },
-  chevronContainer: {
+  arrowContainer: {
     marginLeft: 8,
     justifyContent: "center",
   },

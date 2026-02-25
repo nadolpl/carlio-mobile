@@ -5,8 +5,8 @@ import type { PageableParams } from "../Pageable.ts";
 export interface PartResponse {
   id: string;
   name: string;
-  description: string;
-  manufacturer: string;
+  description: string | null;
+  manufacturer: string | null;
   category: PartCategoryKey;
   source: PartSourceKey;
 }
