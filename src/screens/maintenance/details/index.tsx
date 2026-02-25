@@ -51,6 +51,18 @@ const MaintenanceDetailsScreen = () => {
         <DetailRow label="Mileage" value={formatMileage(maintenance.mileage)} isLast />
       </SectionCard>
 
+      <SectionCard title="Costs">
+        <DetailRow label="Labor Cost" value={formatPrice(maintenance.laborCost)} isFirst />
+        <DetailRow label="Parts Cost" value={formatPrice(maintenance.partsCost)} />
+        <DetailRow label="Total Cost" value={formatPrice(maintenance.totalCost)} isLast />
+      </SectionCard>
+
+      {maintenance.description && (
+        <SectionCard title="Description">
+          <Text style={styles.descriptionText}>{maintenance.description}</Text>
+        </SectionCard>
+      )}
+
       {maintenance.parts && maintenance.parts.length > 0 && (
         <SectionCard title="Parts">
           {maintenance.parts.map((part, index) => (
@@ -81,18 +93,6 @@ const MaintenanceDetailsScreen = () => {
         </SectionCard>
       )}
 
-      <SectionCard title="Costs">
-        <DetailRow label="Labor Cost" value={formatPrice(maintenance.laborCost)} isFirst />
-        <DetailRow label="Parts Cost" value={formatPrice(maintenance.partsCost)} />
-        <DetailRow label="Total Cost" value={formatPrice(maintenance.totalCost)} isLast />
-      </SectionCard>
-
-      {maintenance.description && (
-        <SectionCard title="Description">
-          <Text style={styles.descriptionText}>{maintenance.description}</Text>
-        </SectionCard>
-      )}
-
       <AttachmentsSection sourceId={maintenance.id} vehicleId={maintenance.vehicleId} />
     </DetailsScreenWrapper>
   );
@@ -101,7 +101,7 @@ const MaintenanceDetailsScreen = () => {
 const styles = StyleSheet.create({
   descriptionText: {
     lineHeight: 24,
-    color: colors.textSecondary,
+    color: colors.textPrimary,
   },
   partRow: {
     flexDirection: "row",
@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
   arrowContainer: {
     gap: 16,
     marginLeft: 8,
+    alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
   },

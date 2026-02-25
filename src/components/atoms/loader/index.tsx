@@ -1,7 +1,7 @@
 import { ActivityIndicator } from "react-native";
 
 interface LoaderProps {
-  active: boolean;
+  active?: boolean;
 }
 
 const Loader = ({ active }: LoaderProps) => {

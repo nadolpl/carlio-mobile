@@ -5,7 +5,7 @@ import { mapEnumToOptions } from "utils/enum";
 import { Control } from "react-hook-form";
 import { PartFormInput } from "validation/partSchema";
 import { PartCategory } from "models/enums/PartCategory";
-import FormScreen from "components/organisms/forms/FormScreen";
+import FormScreen from "components/organisms/formScreen";
 import { commonStyles } from "utils/styles";
 
 interface PartFormProps {
@@ -13,14 +13,22 @@ interface PartFormProps {
   handleSubmit: () => void;
   submitLabel?: string;
   submitDisabled?: boolean;
+  loading?: boolean;
 }
 
-const PartForm = ({ control, handleSubmit, submitLabel, submitDisabled }: PartFormProps) => {
+const PartForm = ({
+  control,
+  handleSubmit,
+  submitLabel,
+  submitDisabled,
+  loading,
+}: PartFormProps) => {
   return (
     <FormScreen
       handleSubmit={handleSubmit}
       submitLabel={submitLabel}
       submitDisabled={submitDisabled}
+      loading={loading}
     >
       <FormInput name="name" label="Part name" control={control} required />
 

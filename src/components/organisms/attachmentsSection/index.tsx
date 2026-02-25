@@ -28,12 +28,18 @@ const AttachmentsSection = ({ sourceId, vehicleId }: AttachmentsSectionProps) =>
   return (
     <>
       {attachments.length > 0 && (
-        <View style={styles.attachments}>
+        <>
           <Text style={styles.sectionTitle}>Attachments</Text>
-          {attachments.map((attachment) => (
-            <DocumentCard key={attachment.id} document={attachment} onPress={handleDocumentPress} />
-          ))}
-        </View>
+          <View style={styles.attachments}>
+            {attachments.map((attachment) => (
+              <DocumentCard
+                key={attachment.id}
+                document={attachment}
+                onPress={handleDocumentPress}
+              />
+            ))}
+          </View>
+        </>
       )}
       <DocumentFormModal
         visible={isOpen}
@@ -56,6 +62,7 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     letterSpacing: 1,
     marginLeft: 4,
+    marginBottom: 8,
   },
 });
 

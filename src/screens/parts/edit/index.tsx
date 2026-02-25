@@ -15,7 +15,7 @@ const EditPartScreen = ({}: EditPartScreenProps) => {
   const {
     params: { part },
   } = useRoute<RouteProp<RootStackParamList, "EditPart">>();
-  const { mutate: update } = useUpdatePart(part.id);
+  const { mutate: update, isPending } = useUpdatePart(part.id);
 
   const {
     control,
@@ -25,10 +25,7 @@ const EditPartScreen = ({}: EditPartScreenProps) => {
     resolver: zodResolver(partSchema),
     mode: "onChange",
     defaultValues: {
-      name: part.name,
-      description: part.description,
-      category: part.category,
-      manufacturer: part.manufacturer,
+      ...part,
     },
   });
 
@@ -44,6 +41,7 @@ const EditPartScreen = ({}: EditPartScreenProps) => {
       handleSubmit={handleSubmit(onSubmit)}
       submitLabel="Save Changes"
       submitDisabled={!isValid || !isDirty}
+      loading={isPending}
     />
   );
 };

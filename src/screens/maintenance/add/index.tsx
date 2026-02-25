@@ -38,7 +38,8 @@ const AddMaintenanceScreen = () => {
     <MaintenanceForm
       control={control}
       handleSubmit={handleSubmit(onSubmit)}
-      submitDisabled={!isValid || !isDirty || isCreating}
+      submitDisabled={!isValid || !isDirty}
+      loading={isCreating}
     />
   );
 };

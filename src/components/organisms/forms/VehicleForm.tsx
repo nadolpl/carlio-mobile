@@ -5,7 +5,7 @@ import { mapEnumToOptions } from "utils/enum";
 import { FuelType } from "models/enums/FuelType";
 import { Control } from "react-hook-form";
 import { VehicleFormInput } from "validation/vehicleSchema";
-import FormScreen from "components/organisms/forms/FormScreen";
+import FormScreen from "components/organisms/formScreen";
 import { commonStyles } from "utils/styles";
 
 interface VehicleFormProps {
@@ -13,14 +13,22 @@ interface VehicleFormProps {
   handleSubmit: () => void;
   submitLabel?: string;
   submitDisabled?: boolean;
+  loading?: boolean;
 }
 
-const VehicleForm = ({ control, handleSubmit, submitLabel, submitDisabled }: VehicleFormProps) => {
+const VehicleForm = ({
+  control,
+  handleSubmit,
+  submitLabel,
+  submitDisabled,
+  loading,
+}: VehicleFormProps) => {
   return (
     <FormScreen
       handleSubmit={handleSubmit}
       submitLabel={submitLabel}
       submitDisabled={submitDisabled}
+      loading={loading}
     >
       <FormInput name="name" label="Vehicle name" control={control} required />
 

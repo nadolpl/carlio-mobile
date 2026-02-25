@@ -8,7 +8,7 @@ import VehicleForm from "components/organisms/forms/VehicleForm";
 
 const AddVehicleScreen = () => {
   const navigation = useNavigation();
-  const { mutate: create } = useCreateVehicle();
+  const { mutate: create, isPending } = useCreateVehicle();
   const {
     control,
     handleSubmit,
@@ -29,6 +29,7 @@ const AddVehicleScreen = () => {
       control={control}
       handleSubmit={handleSubmit(onSubmit)}
       submitDisabled={!isValid || !isDirty}
+      loading={isPending}
     />
   );
 };

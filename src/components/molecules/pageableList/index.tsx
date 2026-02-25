@@ -10,6 +10,7 @@ interface InfiniteQueryState<T> {
   isFetchingNextPage: boolean;
   refetch: () => void;
   isRefetching: boolean;
+  isLoading: boolean;
 }
 
 interface PageableListProps<T> {
@@ -18,7 +19,8 @@ interface PageableListProps<T> {
 }
 
 const PageableList = <T extends { id: string }>({ renderItem, query }: PageableListProps<T>) => {
-  const { fetchNextPage, hasNextPage, isFetchingNextPage, refetch, isRefetching, data } = query;
+  const { fetchNextPage, hasNextPage, isFetchingNextPage, refetch, isRefetching, data, isLoading } =
+    query;
   const content = data?.pages.flatMap((page) => page.content) || [];
 
   return (
@@ -28,15 +30,11 @@ const PageableList = <T extends { id: string }>({ renderItem, query }: PageableL
       data={content}
       keyExtractor={(item) => item.id}
       renderItem={renderItem}
-      onEndReached={() => {
-        if (hasNextPage) {
-          fetchNextPage();
-        }
-      }}
+      onEndReached={() => hasNextPage && fetchNextPage()}
       onEndReachedThreshold={0.5}
       ListFooterComponent={
         <View style={styles.footer}>
-          <Loader active={isFetchingNextPage} />
+          <Loader active={isFetchingNextPage || isLoading} />
         </View>
       }
       refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} />}

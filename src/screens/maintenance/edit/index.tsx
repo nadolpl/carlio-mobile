@@ -18,7 +18,7 @@ const EditMaintenanceScreen = () => {
   const {
     params: { maintenance },
   } = useRoute<RouteProp<RootStackParamList, "EditMaintenance">>();
-  const { mutate: update } = useUpdateMaintenance(maintenance.id);
+  const { mutate: update, isPending } = useUpdateMaintenance(maintenance.id);
 
   const {
     control,
@@ -28,13 +28,8 @@ const EditMaintenanceScreen = () => {
     resolver: zodResolver(maintenanceSchema),
     mode: "onChange",
     defaultValues: {
-      title: maintenance.title,
-      mileage: maintenance.mileage,
+      ...maintenance,
       performedDate: formatDateArrayToISO(maintenance.performedDate),
-      laborCost: maintenance.laborCost,
-      description: maintenance.description,
-      type: maintenance.type,
-      vehicleId: maintenance.vehicleId,
       parts: maintenance.parts || [],
     },
   });
@@ -52,6 +47,7 @@ const EditMaintenanceScreen = () => {
       handleSubmit={handleSubmit(onSubmit)}
       submitLabel="Save Changes"
       submitDisabled={!isValid || !isDirty}
+      loading={isPending}
     />
   );
 };

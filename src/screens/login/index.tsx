@@ -1,8 +1,8 @@
 import { Image, KeyboardAvoidingView, ScrollView, StyleSheet, View } from "react-native";
 import { colors } from "constants/colors";
-import LoginForm from "screens/login/components/LoginForm";
 import SignInWithGoogleButton from "screens/login/components/SignInWithGoogleButton";
 import Text from "components/atoms/text";
+import LoginForm from "components/organisms/forms/LoginForm";
 
 const LoginScreen = () => {
   return (

@@ -8,7 +8,7 @@ import PartForm from "components/organisms/forms/PartForm";
 
 const AddPartScreen = () => {
   const navigation = useNavigation();
-  const { mutate: create } = useCreatePart();
+  const { mutate: create, isPending } = useCreatePart();
   const {
     control,
     handleSubmit,
@@ -29,6 +29,7 @@ const AddPartScreen = () => {
       control={control}
       handleSubmit={handleSubmit(onSubmit)}
       submitDisabled={!isValid || !isDirty}
+      loading={isPending}
     />
   );
 };

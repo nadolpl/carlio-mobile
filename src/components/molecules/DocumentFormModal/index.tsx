@@ -10,7 +10,7 @@ interface DocumentFormModalProps {
 }
 
 const DocumentFormModal = ({ visible, onClose, vehicleId, sourceId }: DocumentFormModalProps) => {
-  const { control, handleSubmit, submitDisabled } = useDocumentForm({
+  const { control, handleSubmit, submitDisabled, isPending } = useDocumentForm({
     initialVehicleId: vehicleId,
     sourceId,
     onSuccess: onClose,
@@ -24,6 +24,7 @@ const DocumentFormModal = ({ visible, onClose, vehicleId, sourceId }: DocumentFo
         submitDisabled={submitDisabled}
         hideVehicleSelect={!!vehicleId}
         isModal
+        loading={isPending}
       />
     </Modal>
   );

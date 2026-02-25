@@ -6,6 +6,7 @@ interface FormScreenProps {
   handleSubmit: () => void;
   submitLabel?: string;
   submitDisabled?: boolean;
+  loading?: boolean;
   isModal?: boolean;
 }
 
@@ -15,6 +16,7 @@ const FormScreen = ({
   submitDisabled = false,
   isModal = false,
   children,
+  loading = false,
 }: FormScreenProps & PropsWithChildren) => (
   <KeyboardAvoidingView
     style={[styles.keyboardContainer, isModal && styles.modalKeyboardContainer]}
@@ -27,7 +29,12 @@ const FormScreen = ({
       showsVerticalScrollIndicator={false}
     >
       {children}
-      <Button title={submitLabel} onPress={handleSubmit} disabled={submitDisabled} />
+      <Button
+        title={submitLabel}
+        onPress={handleSubmit}
+        disabled={submitDisabled}
+        loading={loading}
+      />
     </ScrollView>
   </KeyboardAvoidingView>
 );
@@ -38,7 +45,6 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
-    marginBottom: 40,
   },
   scrollContent: {
     flexGrow: 1,

@@ -30,11 +30,11 @@ const MaintenancePartForm = ({ control }: MaintenancePartFormProps) => {
             <IconButton onPress={() => remove(index)} icon={ICONS.CLOSE_CIRCLE} />
           </View>
 
-          <FormSelectPart name={`parts.${index}.partId` as const} control={control} required />
+          <FormSelectPart name={`parts.${index}.partId`} control={control} required />
 
           <View style={commonStyles.inputRow}>
             <FormInput
-              name={`parts.${index}.quantity` as const}
+              name={`parts.${index}.quantity`}
               label="Quantity"
               control={control}
               keyboardType="number-pad"
@@ -42,7 +42,7 @@ const MaintenancePartForm = ({ control }: MaintenancePartFormProps) => {
               required
             />
             <FormInput
-              name={`parts.${index}.cost` as const}
+              name={`parts.${index}.cost`}
               label="Cost per piece"
               control={control}
               keyboardType="number-pad"
@@ -58,7 +58,6 @@ const MaintenancePartForm = ({ control }: MaintenancePartFormProps) => {
         variant="outlined"
         onPress={() => append({ partId: "", quantity: 1, cost: 0 })}
         icon={ICONS.ADD}
-        style={styles.addButton}
       />
     </FormItemWrapper>
   );
@@ -70,7 +69,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 10,
     borderRadius: 12,
-    marginBottom: 10,
+    marginBottom: 15,
     position: "relative",
   },
   partHeader: {
@@ -83,9 +82,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
     color: colors.textSecondary,
-  },
-  addButton: {
-    marginTop: 16,
   },
 });
 

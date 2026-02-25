@@ -1,6 +1,6 @@
 import { Control } from "react-hook-form";
 import { DocumentFormInput } from "validation/documentSchema";
-import FormScreen from "components/organisms/forms/FormScreen";
+import FormScreen from "components/organisms/formScreen";
 import FormSelectVehicle from "components/molecules/formSelectVehicle";
 import FormSelect from "components/atoms/formSelect";
 import { mapEnumToOptions } from "utils/enum";
@@ -14,6 +14,7 @@ interface DocumentFormProps {
   submitDisabled?: boolean;
   hideVehicleSelect?: boolean;
   isModal?: boolean;
+  loading?: boolean;
 }
 
 const DocumentForm = ({
@@ -23,6 +24,7 @@ const DocumentForm = ({
   submitDisabled,
   hideVehicleSelect = false,
   isModal = false,
+  loading,
 }: DocumentFormProps) => {
   return (
     <FormScreen
@@ -30,6 +32,7 @@ const DocumentForm = ({
       submitLabel={submitLabel}
       submitDisabled={submitDisabled}
       isModal={isModal}
+      loading={loading}
     >
       {!hideVehicleSelect && <FormSelectVehicle name="vehicleId" control={control} required />}
 

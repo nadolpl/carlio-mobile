@@ -13,7 +13,7 @@ const EditVehicleScreen = () => {
   const {
     params: { vehicle },
   } = useRoute<RouteProp<RootStackParamList, "EditVehicle">>();
-  const { mutate: update } = useUpdateVehicle(vehicle.id);
+  const { mutate: update, isPending } = useUpdateVehicle(vehicle.id);
 
   const {
     control,
@@ -23,16 +23,7 @@ const EditVehicleScreen = () => {
     resolver: zodResolver(vehicleSchema),
     mode: "onChange",
     defaultValues: {
-      name: vehicle.name,
-      brand: vehicle.brand,
-      model: vehicle.model,
-      fuelType: vehicle.fuelType,
-      mileage: vehicle.mileage,
-      registrationNumber: vehicle.registrationNumber,
-      productionYear: vehicle.productionYear,
-      capacity: vehicle.capacity,
-      power: vehicle.power,
-      vin: vehicle.vin,
+      ...vehicle,
     },
   });
 
@@ -48,6 +39,7 @@ const EditVehicleScreen = () => {
       handleSubmit={handleSubmit(onSubmit)}
       submitLabel="Save Changes"
       submitDisabled={!isValid || !isDirty}
+      loading={isPending}
     />
   );
 };

@@ -16,7 +16,7 @@ export const useDocumentForm = ({
   sourceId,
   onSuccess,
 }: DocumentFormProps = {}) => {
-  const { mutate: upload } = useUploadDocument();
+  const { mutate: upload, isPending } = useUploadDocument();
   const {
     control,
     handleSubmit,
@@ -46,5 +46,6 @@ export const useDocumentForm = ({
     control,
     handleSubmit: handleSubmit(onSubmit),
     submitDisabled: !isValid || !isDirty,
+    isPending,
   };
 };

@@ -14,7 +14,7 @@ const EditExpenseScreen = () => {
   const {
     params: { expense },
   } = useRoute<RouteProp<RootStackParamList, "EditExpense">>();
-  const { mutate: update } = useUpdateExpense(expense.id);
+  const { mutate: update, isPending } = useUpdateExpense(expense.id);
 
   const {
     control,
@@ -23,13 +23,9 @@ const EditExpenseScreen = () => {
   } = useForm<ExpenseFormInput, any, ExpenseFormOutput>({
     resolver: zodResolver(expenseSchema),
     mode: "onChange",
-    values: {
-      mileage: expense.mileage,
+    defaultValues: {
+      ...expense,
       performedDate: formatDateArrayToISO(expense.performedDate),
-      cost: expense.cost,
-      description: expense.description,
-      type: expense.type,
-      vehicleId: expense.vehicleId,
     },
   });
 
@@ -45,6 +41,7 @@ const EditExpenseScreen = () => {
       handleSubmit={handleSubmit(onSubmit)}
       submitLabel="Save Changes"
       submitDisabled={!isValid || !isDirty}
+      loading={isPending}
     />
   );
 };

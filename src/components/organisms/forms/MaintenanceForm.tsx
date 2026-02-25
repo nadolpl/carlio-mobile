@@ -4,7 +4,7 @@ import FormSelect from "components/atoms/formSelect";
 import { mapEnumToOptions } from "utils/enum";
 import { Control } from "react-hook-form";
 import { MaintenanceFormInput } from "validation/maintenanceSchema";
-import FormScreen from "components/organisms/forms/FormScreen";
+import FormScreen from "components/organisms/formScreen";
 import { commonStyles } from "utils/styles";
 import { MaintenanceType } from "models/enums/MaintenanceType";
 import FormSelectVehicle from "components/molecules/formSelectVehicle";
@@ -16,6 +16,7 @@ interface MaintenanceFormProps {
   handleSubmit: () => void;
   submitLabel?: string;
   submitDisabled?: boolean;
+  loading?: boolean;
 }
 
 const MaintenanceForm = ({
@@ -23,12 +24,14 @@ const MaintenanceForm = ({
   handleSubmit,
   submitLabel,
   submitDisabled,
+  loading,
 }: MaintenanceFormProps) => {
   return (
     <FormScreen
       handleSubmit={handleSubmit}
       submitLabel={submitLabel}
       submitDisabled={submitDisabled}
+      loading={loading}
     >
       <FormSelectVehicle name="vehicleId" control={control} required />
 

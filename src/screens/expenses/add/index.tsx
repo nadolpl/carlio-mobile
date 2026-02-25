@@ -10,7 +10,7 @@ import { RootStackParamList } from "navigation/types";
 
 const AddExpenseScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const { mutate: create, isPending: isCreating } = useCreateExpense();
+  const { mutate: create, isPending } = useCreateExpense();
 
   const {
     control,
@@ -31,7 +31,8 @@ const AddExpenseScreen = () => {
     <ExpenseForm
       control={control}
       handleSubmit={handleSubmit(onSubmit)}
-      submitDisabled={!isValid || !isDirty || isCreating}
+      submitDisabled={!isValid || !isDirty}
+      loading={isPending}
     />
   );
 };

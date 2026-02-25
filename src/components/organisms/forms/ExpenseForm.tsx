@@ -4,7 +4,7 @@ import FormSelect from "components/atoms/formSelect";
 import { mapEnumToOptions } from "utils/enum";
 import { Control } from "react-hook-form";
 import { ExpenseFormInput } from "validation/expenseSchema";
-import FormScreen from "components/organisms/forms/FormScreen";
+import FormScreen from "components/organisms/formScreen";
 import { commonStyles } from "utils/styles";
 import { ExpenseType } from "models/enums/ExpenseType";
 import FormSelectVehicle from "components/molecules/formSelectVehicle";
@@ -15,14 +15,22 @@ interface ExpenseFormProps {
   handleSubmit: () => void;
   submitLabel?: string;
   submitDisabled?: boolean;
+  loading?: boolean;
 }
 
-const ExpenseForm = ({ control, handleSubmit, submitLabel, submitDisabled }: ExpenseFormProps) => {
+const ExpenseForm = ({
+  control,
+  handleSubmit,
+  submitLabel,
+  submitDisabled,
+  loading,
+}: ExpenseFormProps) => {
   return (
     <FormScreen
       handleSubmit={handleSubmit}
       submitLabel={submitLabel}
       submitDisabled={submitDisabled}
+      loading={loading}
     >
       <FormSelectVehicle name="vehicleId" control={control} required />
 

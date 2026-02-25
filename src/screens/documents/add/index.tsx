@@ -6,12 +6,17 @@ import { RootStackParamList } from "navigation/types";
 
 const AddDocumentScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const { control, handleSubmit, submitDisabled } = useDocumentForm({
+  const { control, handleSubmit, submitDisabled, isPending } = useDocumentForm({
     onSuccess: (res) => navigation.replace("DocumentDetails", { documentId: res }),
   });
 
   return (
-    <DocumentForm control={control} handleSubmit={handleSubmit} submitDisabled={submitDisabled} />
+    <DocumentForm
+      control={control}
+      handleSubmit={handleSubmit}
+      submitDisabled={submitDisabled}
+      loading={isPending}
+    />
   );
 };
 
