@@ -8,7 +8,7 @@ import { DocumentTypeKey } from "models/enums/DocumentType";
 interface DocumentFormProps {
   initialVehicleId?: string;
   sourceId?: string;
-  onSuccess?: () => void;
+  onSuccess?: (res: string) => void;
 }
 
 export const useDocumentForm = ({
@@ -38,7 +38,7 @@ export const useDocumentForm = ({
     };
 
     upload(payload, {
-      onSuccess: () => onSuccess && onSuccess(),
+      onSuccess: (res) => onSuccess && onSuccess(res),
     });
   };
 

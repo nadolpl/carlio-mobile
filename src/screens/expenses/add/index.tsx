@@ -5,9 +5,11 @@ import { ExpenseFormInput, ExpenseFormOutput, expenseSchema } from "validation/e
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ExpenseRequest } from "models/requests/ExpenseRequest";
 import ExpenseForm from "components/organisms/forms/ExpenseForm";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "navigation/types";
 
 const AddExpenseScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { mutate: create, isPending: isCreating } = useCreateExpense();
 
   const {
@@ -20,8 +22,9 @@ const AddExpenseScreen = () => {
   });
 
   const onSubmit = (req: ExpenseFormOutput) => {
-    create(req as ExpenseRequest);
-    navigation.goBack();
+    create(req as ExpenseRequest, {
+      onSuccess: (res) => navigation.replace("ExpenseDetails", { expenseId: res }),
+    });
   };
 
   return (

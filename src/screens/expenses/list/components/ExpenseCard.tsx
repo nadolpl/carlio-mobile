@@ -27,7 +27,13 @@ const ExpenseCard = ({ expense, onPress }: ExpenseCardProps) => {
       </View>
 
       <View style={styles.footer}>
-        <Text style={styles.subtitle}>{expense.description}</Text>
+        {expense.description ? (
+          <Text style={styles.subtitle} numberOfLines={2}>
+            {expense.description}
+          </Text>
+        ) : (
+          <View style={styles.spacer} />
+        )}
         <Text style={styles.costText}>{formatPrice(expense.cost)}</Text>
       </View>
     </Pressable>
@@ -43,15 +49,15 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
     marginBottom: 8,
+    gap: 12,
   },
   title: {
     flex: 1,
     fontSize: 18,
     fontWeight: "700",
-  },
-  subtitle: {
-    fontSize: 14,
+    color: colors.textPrimary,
   },
   date: {
     fontSize: 14,
@@ -60,10 +66,20 @@ const styles = StyleSheet.create({
   footer: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
+  },
+  subtitle: {
+    flex: 1,
+    fontSize: 14,
+    color: colors.textSecondary,
+    marginRight: 12,
+  },
+  spacer: {
+    flex: 1,
   },
   costText: {
-    fontSize: 14,
     fontWeight: "800",
+    color: colors.textPrimary,
   },
 });
 

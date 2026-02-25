@@ -21,17 +21,17 @@ const ExpenseDetailsScreen = () => {
 
   if (!expense) return null;
 
+  const fallbackTitle = getEnumValueByKey(ExpenseType, expense.type);
+  const displayTitle = expense.description ? expense.description : fallbackTitle;
+
   return (
     <DetailsScreenWrapper confirmationModalProps={confirmationModalProps}>
-      <HeaderSection
-        title={expense.description}
-        subtitle={formatDateArray(expense.performedDate)}
-      />
+      <HeaderSection title={displayTitle} subtitle={formatDateArray(expense.performedDate)} />
 
       <SectionCard title="General Info">
         <DetailRow label="Type" value={getEnumValueByKey(ExpenseType, expense.type)} isFirst />
         <DetailRow label="Mileage" value={formatMileage(expense.mileage)} />
-        <DetailRow label="Cost" value={formatPrice(expense.cost)} isFirst />
+        <DetailRow label="Cost" value={formatPrice(expense.cost)} />
       </SectionCard>
 
       <AttachmentsSection sourceId={expense.id} vehicleId={expense.vehicleId} />

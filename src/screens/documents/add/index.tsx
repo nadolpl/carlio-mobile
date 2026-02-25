@@ -1,11 +1,13 @@
 import DocumentForm from "components/organisms/forms/DocumentForm";
 import { useDocumentForm } from "hooks/useDocumentForm";
 import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "navigation/types";
 
 const AddDocumentScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { control, handleSubmit, submitDisabled } = useDocumentForm({
-    onSuccess: () => navigation.goBack(),
+    onSuccess: (res) => navigation.replace("DocumentDetails", { documentId: res }),
   });
 
   return (

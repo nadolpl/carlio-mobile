@@ -6,7 +6,7 @@ export interface MaintenanceListedResponse {
   vehicleId: string;
   performedDate: number[];
   title: string;
-  description: string;
+  description: string | null;
   mileage: number;
   totalCost: number;
   type: MaintenanceTypeKey;

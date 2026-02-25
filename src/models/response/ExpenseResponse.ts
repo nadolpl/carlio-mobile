@@ -8,7 +8,7 @@ export interface ExpenseResponse {
   cost: number;
   performedDate: number[];
   mileage: number;
-  description: string;
+  description: string | null;
 }
 
 export interface ExpenseSearchParams extends PageableParams {

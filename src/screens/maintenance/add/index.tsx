@@ -9,9 +9,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { MaintenanceRequest } from "models/requests/MaintenanceRequest";
 import { useCreateMaintenance } from "api/hooks/maintenance";
 import MaintenanceForm from "components/organisms/forms/MaintenanceForm";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "navigation/types";
 
 const AddMaintenanceScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { mutate: create, isPending: isCreating } = useCreateMaintenance();
 
   const {
@@ -27,8 +29,9 @@ const AddMaintenanceScreen = () => {
   });
 
   const onSubmit = (req: MaintenanceFormOutput) => {
-    create(req as MaintenanceRequest);
-    navigation.goBack();
+    create(req as MaintenanceRequest, {
+      onSuccess: (res) => navigation.replace("MaintenanceDetails", { maintenanceId: res }),
+    });
   };
 
   return (
