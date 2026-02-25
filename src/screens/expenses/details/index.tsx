@@ -34,7 +34,7 @@ const ExpenseDetailsScreen = () => {
         <DetailRow label="Cost" value={formatPrice(expense.cost)} isFirst />
       </SectionCard>
 
-      <AttachmentsSection sourceId={expense.id} />
+      <AttachmentsSection sourceId={expense.id} vehicleId={expense.vehicleId} />
     </DetailsScreenWrapper>
   );
 };

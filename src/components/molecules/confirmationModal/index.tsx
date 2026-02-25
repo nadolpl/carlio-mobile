@@ -1,7 +1,8 @@
-import { Modal, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { colors } from "constants/colors";
 import Button from "components/atoms/button";
 import Text from "components/atoms/text";
+import Modal from "components/atoms/modal";
 
 interface ConfirmationModalProps {
   title: string;
@@ -23,45 +24,30 @@ const ConfirmationModal = ({
   confirmText = "Confirm",
 }: ConfirmationModalProps) => {
   return (
-    <Modal transparent visible={visible} animationType="fade" onRequestClose={onCancel}>
-      <View style={styles.overlay}>
-        <View style={styles.modalContainer}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.message}>{message}</Text>
+    <Modal visible={visible} onClose={onCancel}>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.message}>{message}</Text>
 
-          <View style={styles.buttonContainer}>
-            <Button variant="transparent" title={cancelText} onPress={onCancel} />
-            <Button color="error" title={confirmText} onPress={onConfirm} />
-          </View>
-        </View>
+      <View style={styles.buttonContainer}>
+        <Button title={cancelText} onPress={onCancel} />
+        <Button color="error" title={confirmText} onPress={onConfirm} />
       </View>
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
-  overlay: {
-    flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-  },
-  modalContainer: {
-    backgroundColor: colors.background800,
-    borderRadius: 16,
-    padding: 24,
-    alignItems: "center",
-  },
   title: {
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 12,
     color: colors.textPrimary,
+    textAlign: "center",
   },
   message: {
     color: colors.textSecondary,
     marginBottom: 24,
+    textAlign: "center",
   },
   buttonContainer: {
     flexDirection: "row",

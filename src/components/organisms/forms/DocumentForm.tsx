@@ -12,21 +12,26 @@ interface DocumentFormProps {
   handleSubmit: () => void;
   submitLabel?: string;
   submitDisabled?: boolean;
+  hideVehicleSelect?: boolean;
+  isModal?: boolean;
 }
 
 const DocumentForm = ({
   control,
   handleSubmit,
-  submitLabel,
+  submitLabel = "Upload",
   submitDisabled,
+  hideVehicleSelect = false,
+  isModal = false,
 }: DocumentFormProps) => {
   return (
     <FormScreen
       handleSubmit={handleSubmit}
       submitLabel={submitLabel}
       submitDisabled={submitDisabled}
+      isModal={isModal}
     >
-      <FormSelectVehicle name="vehicleId" control={control} required />
+      {!hideVehicleSelect && <FormSelectVehicle name="vehicleId" control={control} required />}
 
       <FormSelect
         name="type"

@@ -3,6 +3,8 @@ import Icon, { IoniconsName } from "components/atoms/icon";
 import { colors } from "constants/colors";
 import Text from "components/atoms/text";
 import { commonStyles } from "utils/styles";
+import { StyleProp } from "react-native/Libraries/StyleSheet/StyleSheet";
+import { ViewStyle } from "react-native/Libraries/StyleSheet/StyleSheetTypes";
 
 type ButtonVariant = "standard" | "outlined" | "transparent";
 type ButtonColor = "primary" | "error";
@@ -17,6 +19,7 @@ interface ButtonProps {
   loadingText?: string;
   icon?: IoniconsName;
   type?: "submit" | "button";
+  style?: StyleProp<ViewStyle>;
 }
 
 const Button = ({
@@ -28,6 +31,7 @@ const Button = ({
   loading,
   loadingText,
   icon,
+  style,
 }: ButtonProps) => {
   return (
     <Pressable
@@ -38,6 +42,7 @@ const Button = ({
         variant === "outlined" && { borderColor: colors[color] },
         pressed && commonStyles.pressed,
         (disabled || loading) && styles.disabled,
+        style,
       ]}
       onPress={onPress}
       disabled={disabled || loading}

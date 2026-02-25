@@ -6,18 +6,23 @@ interface FormScreenProps {
   handleSubmit: () => void;
   submitLabel?: string;
   submitDisabled?: boolean;
+  isModal?: boolean;
 }
 
 const FormScreen = ({
   handleSubmit,
   submitLabel = "Submit",
   submitDisabled = false,
+  isModal = false,
   children,
 }: FormScreenProps & PropsWithChildren) => (
-  <KeyboardAvoidingView style={styles.keyboardContainer} behavior="height">
+  <KeyboardAvoidingView
+    style={[styles.keyboardContainer, isModal && styles.modalKeyboardContainer]}
+    behavior={isModal ? "padding" : "height"}
+  >
     <ScrollView
-      style={styles.scrollView}
-      contentContainerStyle={styles.scrollContent}
+      style={[styles.scrollView, isModal && styles.modalScrollView]}
+      contentContainerStyle={[styles.scrollContent, isModal && styles.modalScrollContent]}
       keyboardShouldPersistTaps="handled"
       showsVerticalScrollIndicator={false}
     >
@@ -39,6 +44,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 20,
     paddingBottom: 40,
+  },
+  modalKeyboardContainer: {
+    flex: undefined,
+    width: "100%",
+  },
+  modalScrollView: {
+    flex: undefined,
+  },
+  modalScrollContent: {
+    paddingHorizontal: 0,
+    paddingTop: 0,
+    paddingBottom: 0,
   },
 });
 

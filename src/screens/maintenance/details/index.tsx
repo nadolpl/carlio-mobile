@@ -51,7 +51,7 @@ const MaintenanceDetailsScreen = () => {
         </Text>
       </SectionCard>
 
-      <AttachmentsSection sourceId={maintenance.id} />
+      <AttachmentsSection sourceId={maintenance.id} vehicleId={maintenance.vehicleId} />
     </DetailsScreenWrapper>
   );
 };

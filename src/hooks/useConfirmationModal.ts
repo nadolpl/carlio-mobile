@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { useModal } from "./useModal";
 
-interface ConfirmationModalOptions {
+export interface ConfirmationModalOptions {
   title: string;
   message: string;
   onConfirm: () => void;
@@ -9,27 +10,30 @@ interface ConfirmationModalOptions {
 }
 
 export const useConfirmationModal = () => {
-  const [visible, setVisible] = useState(false);
+  const { isOpen, open, close } = useModal();
+
   const [options, setOptions] = useState<ConfirmationModalOptions | null>(null);
 
-  const showConfirmation = (config: ConfirmationModalOptions) => {
-    setOptions(config);
-    setVisible(true);
-  };
+  const showConfirmation = useCallback(
+    (config: ConfirmationModalOptions) => {
+      setOptions(config);
+      open();
+    },
+    [open],
+  );
 
-  const onCancel = () => setVisible(false);
-
-  const onConfirm = () => {
-    options?.onConfirm();
-    onCancel();
-  };
+  const handleConfirm = useCallback(() => {
+    if (options?.onConfirm) options.onConfirm();
+    close();
+  }, [options, close]);
 
   return {
     showConfirmation,
+    hideConfirmation: close,
     props: {
-      visible,
-      onCancel,
-      onConfirm,
+      visible: isOpen,
+      onCancel: close,
+      onConfirm: handleConfirm,
       title: options?.title || "",
       message: options?.message || "",
       cancelText: options?.cancelText,
