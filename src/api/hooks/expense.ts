@@ -12,7 +12,7 @@ import { ExpenseRequest } from "models/requests/ExpenseRequest";
 
 export const useSearchExpenses = (params?: ExpenseSearchParams) => {
   return useInfiniteQuery({
-    queryKey: EXPENSE_KEYS.search(),
+    queryKey: EXPENSE_KEYS.search(params),
     queryFn: ({ pageParam }) => requestSearchExpenses({ page: pageParam, ...params }),
     getNextPageParam: (lastPage) => {
       const currentPage = lastPage.page?.number ?? 0;

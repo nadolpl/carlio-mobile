@@ -12,7 +12,7 @@ import { PartRequest } from "models/requests/PartRequest";
 
 export const useSearchParts = (params?: PartSearchParams) => {
   return useInfiniteQuery({
-    queryKey: PART_KEYS.search(),
+    queryKey: PART_KEYS.search(params),
     queryFn: ({ pageParam }) => requestSearchParts({ page: pageParam, ...params }),
     getNextPageParam: (lastPage) => {
       const currentPage = lastPage.page?.number ?? 0;

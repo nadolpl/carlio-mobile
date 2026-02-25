@@ -13,7 +13,7 @@ import { VehicleRequest } from "models/requests/VehicleRequest";
 
 export const useSearchVehicles = (params?: VehicleSearchParams) => {
   return useInfiniteQuery({
-    queryKey: VEHICLE_KEYS.search(),
+    queryKey: VEHICLE_KEYS.search(params),
     queryFn: ({ pageParam }) => requestSearchVehicles({ page: pageParam, ...params }),
     getNextPageParam: (lastPage) => {
       const currentPage = lastPage.page?.number ?? 0;

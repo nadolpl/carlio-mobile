@@ -6,6 +6,7 @@ export const useFilePicker = () => {
       const result = await DocumentPicker.getDocumentAsync({
         multiple,
         copyToCacheDirectory: true,
+        type: "*/*",
       });
 
       if (!result.canceled && result.assets) {

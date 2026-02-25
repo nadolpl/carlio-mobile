@@ -12,7 +12,7 @@ import { MaintenanceRequest } from "models/requests/MaintenanceRequest";
 
 export const useSearchMaintenances = (params?: MaintenanceSearchParams) => {
   return useInfiniteQuery({
-    queryKey: MAINTENANCE_KEYS.search(),
+    queryKey: MAINTENANCE_KEYS.search(params),
     queryFn: ({ pageParam }) => requestSearchMaintenances({ page: pageParam, ...params }),
     getNextPageParam: (lastPage) => {
       const currentPage = lastPage.page?.number ?? 0;

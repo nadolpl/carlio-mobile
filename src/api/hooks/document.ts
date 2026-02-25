@@ -13,7 +13,7 @@ import { DownloadRequest } from "models/requests/DownloadRequest";
 
 export const useSearchDocuments = (params?: DocumentSearchParams) => {
   return useInfiniteQuery({
-    queryKey: DOCUMENT_KEYS.search(),
+    queryKey: DOCUMENT_KEYS.search(params),
     queryFn: ({ pageParam }) => requestSearchDocuments({ page: pageParam, ...params }),
     getNextPageParam: (lastPage) => {
       const currentPage = lastPage.page?.number ?? 0;
