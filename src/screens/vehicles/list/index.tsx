@@ -5,6 +5,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import PageableList from "components/molecules/pageableList";
 import VehicleCard from "screens/vehicles/list/components/VehicleCard";
 import { useListNavigation } from "hooks/useListNavigation";
+import { VehicleListedResponse } from "models/response/VehicleListedResponse";
 
 const VehicleListScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
@@ -16,12 +17,11 @@ const VehicleListScreen = () => {
     navigation.navigate("VehicleDetails", { vehicleId: id });
   };
 
-  return (
-    <PageableList
-      query={query}
-      renderItem={({ item }) => <VehicleCard vehicle={item} onPress={handlePress} />}
-    />
+  const renderItem = ({ item }: { item: VehicleListedResponse }) => (
+    <VehicleCard vehicle={item} onPress={handlePress} />
   );
+
+  return <PageableList query={query} renderItem={renderItem} />;
 };
 
 export default VehicleListScreen;

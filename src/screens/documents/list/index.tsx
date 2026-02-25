@@ -5,6 +5,7 @@ import { RootStackParamList } from "navigation/types";
 import { useSearchDocuments } from "api/hooks/document";
 import PageableList from "components/molecules/pageableList";
 import DocumentCard from "screens/documents/list/components/DocumentCard";
+import { DocumentResponse } from "models/response/DocumentResponse";
 
 const DocumentListScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
@@ -16,12 +17,11 @@ const DocumentListScreen = () => {
     navigation.navigate("DocumentDetails", { documentId: id });
   };
 
-  return (
-    <PageableList
-      renderItem={({ item }) => <DocumentCard document={item} onPress={handlePress} />}
-      query={query}
-    />
+  const renderItem = ({ item }: { item: DocumentResponse }) => (
+    <DocumentCard document={item} onPress={handlePress} />
   );
+
+  return <PageableList renderItem={renderItem} query={query} />;
 };
 
 export default DocumentListScreen;

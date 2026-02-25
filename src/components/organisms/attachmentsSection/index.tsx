@@ -9,6 +9,7 @@ import DocumentFormModal from "components/molecules/DocumentFormModal";
 import Button from "components/atoms/button";
 import { colors } from "constants/colors";
 import { useModal } from "hooks/useModal";
+import { useMemo } from "react";
 
 interface AttachmentsSectionProps {
   sourceId: string;
@@ -18,8 +19,9 @@ interface AttachmentsSectionProps {
 const AttachmentsSection = ({ sourceId, vehicleId }: AttachmentsSectionProps) => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { data } = useSearchDocuments({ sourceId });
-  const attachments = data?.pages.flatMap((page) => page.content) || [];
   const { isOpen, close, open } = useModal();
+  const attachments =
+    useMemo(() => data?.pages.flatMap((page) => page.content), [data?.pages]) || [];
 
   const handleDocumentPress = (id: string) => {
     navigation.navigate("DocumentDetails", { documentId: id });

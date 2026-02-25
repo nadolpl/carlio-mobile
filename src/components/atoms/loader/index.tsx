@@ -1,11 +1,7 @@
 import { ActivityIndicator } from "react-native";
 
-interface LoaderProps {
-  active?: boolean;
-}
-
-const Loader = ({ active }: LoaderProps) => {
-  return active && <ActivityIndicator />;
+const Loader = () => {
+  return <ActivityIndicator />;
 };
 
 export default Loader;

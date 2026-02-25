@@ -1,10 +1,11 @@
-import { ActivityIndicator, Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import Icon, { IoniconsName } from "components/atoms/icon";
 import { colors } from "constants/colors";
 import Text from "components/atoms/text";
 import { commonStyles } from "utils/styles";
 import { StyleProp } from "react-native/Libraries/StyleSheet/StyleSheet";
 import { ViewStyle } from "react-native/Libraries/StyleSheet/StyleSheetTypes";
+import Loader from "components/atoms/loader";
 
 type ButtonVariant = "standard" | "outlined" | "transparent";
 type ButtonColor = "primary" | "error";
@@ -47,7 +48,7 @@ const Button = ({
       onPress={onPress}
       disabled={disabled || loading}
     >
-      {loading ? <ActivityIndicator /> : icon && <Icon name={icon} size={20} />}
+      {loading ? <Loader /> : icon && <Icon name={icon} size={20} />}
       <Text style={[styles.text]}>{loading ? loadingText : title}</Text>
     </Pressable>
   );

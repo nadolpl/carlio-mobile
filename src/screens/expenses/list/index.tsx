@@ -5,6 +5,7 @@ import { RootStackParamList } from "navigation/types";
 import { useSearchExpenses } from "api/hooks/expense";
 import PageableList from "components/molecules/pageableList";
 import ExpenseCard from "screens/expenses/list/components/ExpenseCard";
+import { ExpenseResponse } from "models/response/ExpenseResponse";
 
 const ExpenseListScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
@@ -16,12 +17,11 @@ const ExpenseListScreen = () => {
     navigation.navigate("ExpenseDetails", { expenseId: id });
   };
 
-  return (
-    <PageableList
-      query={query}
-      renderItem={({ item }) => <ExpenseCard expense={item} onPress={handlePress} />}
-    />
+  const renderItem = ({ item }: { item: ExpenseResponse }) => (
+    <ExpenseCard expense={item} onPress={handlePress} />
   );
+
+  return <PageableList query={query} renderItem={renderItem} />;
 };
 
 export default ExpenseListScreen;

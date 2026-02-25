@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/types";
 import { useListNavigation } from "hooks/useListNavigation";
+import { MaintenanceListedResponse } from "models/response/MaintenanceListedResponse";
 
 const MaintenanceListScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
@@ -16,12 +17,11 @@ const MaintenanceListScreen = () => {
     navigation.navigate("MaintenanceDetails", { maintenanceId: id });
   };
 
-  return (
-    <PageableList
-      query={query}
-      renderItem={({ item }) => <MaintenanceCard maintenance={item} onPress={handlePress} />}
-    />
+  const renderItem = ({ item }: { item: MaintenanceListedResponse }) => (
+    <MaintenanceCard maintenance={item} onPress={handlePress} />
   );
+
+  return <PageableList query={query} renderItem={renderItem} />;
 };
 
 export default MaintenanceListScreen;

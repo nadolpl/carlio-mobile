@@ -17,12 +17,11 @@ const PartListScreen = () => {
     navigation.navigate("PartDetails", { partId: part.id });
   };
 
-  return (
-    <PageableList
-      query={query}
-      renderItem={({ item }) => <PartCard part={item} onPress={handlePress} />}
-    />
+  const renderItem = ({ item }: { item: PartResponse }) => (
+    <PartCard part={item} onPress={handlePress} />
   );
+
+  return <PageableList query={query} renderItem={renderItem} />;
 };
 
 export default PartListScreen;
