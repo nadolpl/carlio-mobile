@@ -12,7 +12,7 @@ export const requestSearchMaintenances = (params?: MaintenanceSearchParams) =>
   api.get<Pageable<MaintenanceListedResponse>>(MAINTENANCES, { params });
 
 export const requestCreateMaintenance = (req: MaintenanceRequest) =>
-  api.post<void>(MAINTENANCES, req);
+  api.post<string>(MAINTENANCES, req);
 
 export const requestDeleteMaintenance = (id: string) => api.delete<void>(`${MAINTENANCES}/${id}`);
 

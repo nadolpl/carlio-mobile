@@ -29,14 +29,14 @@ const DocumentForm = ({
       <FormSelectVehicle name="vehicleId" control={control} required />
 
       <FormSelect
-        name="type"
+        name="attachment.type"
         label="Type"
         control={control}
         options={mapEnumToOptions(DocumentType)}
         required
       />
 
-      <FormFile control={control} name="file" />
+      <FormFile control={control} name="attachment.file" label="Attachment" required />
     </FormScreen>
   );
 };

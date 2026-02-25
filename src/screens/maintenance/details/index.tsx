@@ -10,6 +10,7 @@ import { MaintenanceType } from "models/enums/MaintenanceType";
 import { formatMileage, formatPrice } from "utils/number";
 import HeaderSection from "components/templates/DetailsScreenWrapper/components/HeaderSection";
 import SectionCard from "components/templates/DetailsScreenWrapper/components/SectionCard";
+import AttachmentsSection from "components/organisms/attachmentsSection";
 
 const MaintenanceDetailsScreen = () => {
   const { maintenance, handleEditMaintenance, handleDeleteMaintenance, confirmationModalProps } =
@@ -49,6 +50,8 @@ const MaintenanceDetailsScreen = () => {
           {maintenance.description || "No description provided for this maintenance."}
         </Text>
       </SectionCard>
+
+      <AttachmentsSection sourceId={maintenance.id} />
     </DetailsScreenWrapper>
   );
 };

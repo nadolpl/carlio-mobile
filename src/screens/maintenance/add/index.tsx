@@ -9,10 +9,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { MaintenanceRequest } from "models/requests/MaintenanceRequest";
 import { useCreateMaintenance } from "api/hooks/maintenance";
 import MaintenanceForm from "components/organisms/forms/MaintenanceForm";
+import { useUploadAttachments } from "hooks/useUploadAttachments";
 
 const AddMaintenanceScreen = () => {
   const navigation = useNavigation();
-  const { mutate: create } = useCreateMaintenance();
+  const { mutateAsync: create, isPending: isCreating } = useCreateMaintenance();
+  const { uploadAttachments, isUploading } = useUploadAttachments();
+
   const {
     control,
     handleSubmit,
@@ -25,17 +28,19 @@ const AddMaintenanceScreen = () => {
     },
   });
 
-  const onSubmit = (req: MaintenanceFormOutput) => {
-    create(req as MaintenanceRequest, {
-      onSuccess: () => navigation.goBack(),
-    });
+  const onSubmit = async (req: MaintenanceFormOutput) => {
+    try {
+      const maintenanceId = await create(req as MaintenanceRequest);
+      await uploadAttachments(req, maintenanceId);
+      navigation.goBack();
+    } catch {}
   };
 
   return (
     <MaintenanceForm
       control={control}
       handleSubmit={handleSubmit(onSubmit)}
-      submitDisabled={!isValid || !isDirty}
+      submitDisabled={!isValid || !isDirty || isCreating || isUploading}
     />
   );
 };

@@ -12,6 +12,8 @@ export interface FormSelectProps<T extends FieldValues> {
   label?: string;
   flex?: boolean;
   required?: boolean;
+  placeholder?: string;
+  wrapper?: boolean;
 }
 
 const FormSelect = <T extends FieldValues>({
@@ -21,6 +23,7 @@ const FormSelect = <T extends FieldValues>({
   flex,
   required,
   options,
+  placeholder = "Select...",
 }: FormSelectProps<T>) => (
   <Controller
     control={control}
@@ -34,7 +37,7 @@ const FormSelect = <T extends FieldValues>({
             style={value ? styles.picker : styles.placeholder}
             dropdownIconColor={colors.textPrimary}
           >
-            <Picker.Item label="Select..." value={null} enabled={false} />
+            <Picker.Item label={placeholder} value={null} enabled={false} />
             {options.map((opt) => (
               <Picker.Item key={opt.value} label={opt.label} value={opt.value} />
             ))}

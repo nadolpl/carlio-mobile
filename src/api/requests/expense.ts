@@ -7,7 +7,7 @@ import { ExpenseResponse, ExpenseSearchParams } from "models/response/ExpenseRes
 export const requestSearchExpenses = (params?: ExpenseSearchParams) =>
   api.get<Pageable<ExpenseResponse>>(EXPENSES, { params });
 
-export const requestCreateExpense = (req: ExpenseRequest) => api.post<void>(EXPENSES, req);
+export const requestCreateExpense = (req: ExpenseRequest) => api.post<string>(EXPENSES, req);
 
 export const requestDeleteExpense = (id: string) => api.delete<void>(`${EXPENSES}/${id}`);
 

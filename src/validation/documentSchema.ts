@@ -1,21 +1,25 @@
 import { z } from "zod";
 import { getEnumKeys } from "utils/enum";
 import { DocumentType } from "models/enums/DocumentType";
-import { CustomFile } from "models/CustomFile";
 
 export const fileSchema = z.object({
-  uri: z.string(),
-  name: z.string(),
-  type: z.string(),
+  uri: z.string({ error: "File URI is required" }),
+  name: z.string({ error: "File name is required" }),
+  type: z.string({ error: "File type is required" }),
+});
+
+export const documentAttachmentSchema = z.object({
+  file: fileSchema.refine((f) => f.type === "application/pdf" || f.type.startsWith("image/"), {
+    error: "Only images and PDFs are allowed",
+  }),
+  type: z.enum(getEnumKeys(DocumentType), {
+    error: "Document type is required",
+  }),
 });
 
 export const documentSchema = z.object({
-  vehicleId: z.uuid({ error: "Vehicle is required" }),
-  type: z.enum(getEnumKeys(DocumentType), "Document type is required"),
-  file: fileSchema.refine(
-    (file: CustomFile) => file.type === "application/pdf" || file.type.startsWith("image/"),
-    { error: "Only images and PDFs are allowed" },
-  ),
+  vehicleId: z.uuid({ message: "Vehicle is required" }),
+  attachment: documentAttachmentSchema,
 });
 
 export type DocumentFormInput = z.input<typeof documentSchema>;

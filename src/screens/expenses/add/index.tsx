@@ -5,10 +5,13 @@ import { ExpenseFormInput, ExpenseFormOutput, expenseSchema } from "validation/e
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ExpenseRequest } from "models/requests/ExpenseRequest";
 import ExpenseForm from "components/organisms/forms/ExpenseForm";
+import { useUploadAttachments } from "hooks/useUploadAttachments";
 
 const AddExpenseScreen = () => {
   const navigation = useNavigation();
-  const { mutate: create } = useCreateExpense();
+  const { mutateAsync: create, isPending: isCreating } = useCreateExpense();
+  const { uploadAttachments, isUploading } = useUploadAttachments();
+
   const {
     control,
     handleSubmit,
@@ -18,17 +21,19 @@ const AddExpenseScreen = () => {
     mode: "onChange",
   });
 
-  const onSubmit = (req: ExpenseFormOutput) => {
-    create(req as ExpenseRequest, {
-      onSuccess: () => navigation.goBack(),
-    });
+  const onSubmit = async (req: ExpenseFormOutput) => {
+    try {
+      const expenseId = await create(req as ExpenseRequest);
+      await uploadAttachments(req, expenseId);
+      navigation.goBack();
+    } catch {}
   };
 
   return (
     <ExpenseForm
       control={control}
       handleSubmit={handleSubmit(onSubmit)}
-      submitDisabled={!isValid || !isDirty}
+      submitDisabled={!isValid || !isDirty || isCreating || isUploading}
     />
   );
 };

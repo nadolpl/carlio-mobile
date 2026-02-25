@@ -8,6 +8,7 @@ import DetailRow from "components/molecules/detailRow";
 import { getEnumValueByKey } from "utils/enum";
 import { ExpenseType } from "models/enums/ExpenseType";
 import { formatMileage, formatPrice } from "utils/number";
+import AttachmentsSection from "components/organisms/attachmentsSection";
 
 const ExpenseDetailsScreen = () => {
   const { expense, handleEditExpense, handleDeleteExpense, confirmationModalProps } =
@@ -32,6 +33,8 @@ const ExpenseDetailsScreen = () => {
         <DetailRow label="Mileage" value={formatMileage(expense.mileage)} />
         <DetailRow label="Cost" value={formatPrice(expense.cost)} isFirst />
       </SectionCard>
+
+      <AttachmentsSection sourceId={expense.id} />
     </DetailsScreenWrapper>
   );
 };

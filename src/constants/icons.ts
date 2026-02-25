@@ -12,4 +12,5 @@ export const ICONS = {
   DOCUMENT: "document-text-outline",
   ARROW_RIGHT: "chevron-forward",
   FILE: "document-outline",
+  CLOSE_CIRCLE: "close-circle",
 } as const;

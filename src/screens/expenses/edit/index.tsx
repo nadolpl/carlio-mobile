@@ -8,6 +8,7 @@ import { formatDateArrayToISO } from "utils/date";
 import { getChangedData } from "utils/form";
 import { ExpenseRequest } from "models/requests/ExpenseRequest";
 import ExpenseForm from "components/organisms/forms/ExpenseForm";
+import { useFormattedAttachments } from "hooks/useFormattedAttachments";
 
 const EditExpenseScreen = () => {
   const navigation = useNavigation();
@@ -15,6 +16,7 @@ const EditExpenseScreen = () => {
     params: { expense },
   } = useRoute<RouteProp<RootStackParamList, "EditExpense">>();
   const { mutate: update } = useUpdateExpense(expense.id);
+  const attachments = useFormattedAttachments(expense.id);
 
   const {
     control,
@@ -23,13 +25,14 @@ const EditExpenseScreen = () => {
   } = useForm<ExpenseFormInput, any, ExpenseFormOutput>({
     resolver: zodResolver(expenseSchema),
     mode: "onChange",
-    defaultValues: {
+    values: {
       mileage: expense.mileage,
       performedDate: formatDateArrayToISO(expense.performedDate),
       cost: expense.cost,
       description: expense.description,
       type: expense.type,
       vehicleId: expense.vehicleId,
+      attachments: attachments,
     },
   });
 
