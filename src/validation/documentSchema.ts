@@ -8,18 +8,14 @@ export const fileSchema = z.object({
   type: z.string({ error: "File type is required" }),
 });
 
-export const documentAttachmentSchema = z.object({
+export const documentSchema = z.object({
+  vehicleId: z.uuid({ message: "Vehicle is required" }),
   file: fileSchema.refine((f) => f.type === "application/pdf" || f.type.startsWith("image/"), {
     error: "Only images and PDFs are allowed",
   }),
   type: z.enum(getEnumKeys(DocumentType), {
     error: "Document type is required",
   }),
-});
-
-export const documentSchema = z.object({
-  vehicleId: z.uuid({ message: "Vehicle is required" }),
-  attachment: documentAttachmentSchema,
 });
 
 export type DocumentFormInput = z.input<typeof documentSchema>;

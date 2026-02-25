@@ -9,7 +9,6 @@ import { commonStyles } from "utils/styles";
 import { ExpenseType } from "models/enums/ExpenseType";
 import FormSelectVehicle from "components/molecules/formSelectVehicle";
 import FormDate from "components/atoms/formDate";
-import FormMultiFile from "components/atoms/formMultiFile";
 
 interface ExpenseFormProps {
   control: Control<ExpenseFormInput>;
@@ -60,8 +59,6 @@ const ExpenseForm = ({ control, handleSubmit, submitLabel, submitDisabled }: Exp
       </View>
 
       <FormInput name="description" label="Description" control={control} />
-
-      <FormMultiFile name="attachments" control={control} label="Attachments" />
     </FormScreen>
   );
 };

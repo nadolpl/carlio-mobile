@@ -9,7 +9,6 @@ import { commonStyles } from "utils/styles";
 import { MaintenanceType } from "models/enums/MaintenanceType";
 import FormSelectVehicle from "components/molecules/formSelectVehicle";
 import FormDate from "components/atoms/formDate";
-import FormMultiFile from "components/atoms/formMultiFile";
 
 interface MaintenanceFormProps {
   control: Control<MaintenanceFormInput>;
@@ -67,8 +66,6 @@ const MaintenanceForm = ({
       </View>
 
       <FormInput name="description" label="Description" control={control} />
-
-      <FormMultiFile name="attachments" control={control} label="Attachments" />
     </FormScreen>
   );
 };

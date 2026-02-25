@@ -1,7 +1,7 @@
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import FormItemWrapper from "components/molecules/formItemWrapper";
 import { useFilePicker } from "hooks/useFilePicker";
-import FilePicker from "components/molecules/filePicker";
+import FilePicker from "components/atoms/filePicker";
 
 interface FormFileProps<T extends FieldValues> {
   name: Path<T>;

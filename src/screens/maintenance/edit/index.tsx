@@ -12,7 +12,6 @@ import { MaintenanceRequest } from "models/requests/MaintenanceRequest";
 import MaintenanceForm from "components/organisms/forms/MaintenanceForm";
 import { useUpdateMaintenance } from "api/hooks/maintenance";
 import { formatDateArrayToISO } from "utils/date";
-import { useFormattedAttachments } from "hooks/useFormattedAttachments";
 
 const EditMaintenanceScreen = () => {
   const navigation = useNavigation();
@@ -20,7 +19,6 @@ const EditMaintenanceScreen = () => {
     params: { maintenance },
   } = useRoute<RouteProp<RootStackParamList, "EditMaintenance">>();
   const { mutate: update } = useUpdateMaintenance(maintenance.id);
-  const attachments = useFormattedAttachments(maintenance.id);
 
   const {
     control,
@@ -38,7 +36,6 @@ const EditMaintenanceScreen = () => {
       type: maintenance.type,
       vehicleId: maintenance.vehicleId,
       parts: [],
-      attachments: attachments,
     },
   });
 

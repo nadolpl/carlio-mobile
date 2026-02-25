@@ -5,7 +5,7 @@ import FormSelectVehicle from "components/molecules/formSelectVehicle";
 import FormSelect from "components/atoms/formSelect";
 import { mapEnumToOptions } from "utils/enum";
 import { DocumentType } from "models/enums/DocumentType";
-import FormFile from "components/atoms/formFile";
+import FormFile from "components/molecules/formFile";
 
 interface DocumentFormProps {
   control: Control<DocumentFormInput>;
@@ -29,14 +29,14 @@ const DocumentForm = ({
       <FormSelectVehicle name="vehicleId" control={control} required />
 
       <FormSelect
-        name="attachment.type"
+        name="type"
         label="Type"
         control={control}
         options={mapEnumToOptions(DocumentType)}
         required
       />
 
-      <FormFile control={control} name="attachment.file" label="Attachment" required />
+      <FormFile control={control} name="file" label="Attachment" required />
     </FormScreen>
   );
 };

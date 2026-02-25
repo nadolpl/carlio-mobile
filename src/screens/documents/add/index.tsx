@@ -22,8 +22,8 @@ const AddDocumentScreen = () => {
   const onSubmit = (req: DocumentFormOutput) => {
     const payload: DocumentRequest = {
       vehicleId: req.vehicleId,
-      file: req.attachment.file,
-      type: req.attachment.type as DocumentTypeKey,
+      file: req.file,
+      type: req.type as DocumentTypeKey,
       sourceId: req.vehicleId,
     };
 

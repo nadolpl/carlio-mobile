@@ -3,7 +3,6 @@ import { MaintenanceType } from "models/enums/MaintenanceType";
 import { getEnumKeys } from "utils/enum";
 import { numOrNull, strOrNull } from "utils/validation";
 import { maintenancePartSchema } from "validation/maintenancePartSchema";
-import { documentAttachmentSchema } from "validation/documentSchema";
 
 export const maintenanceSchema = z.object({
   title: z
@@ -29,7 +28,6 @@ export const maintenanceSchema = z.object({
     z.string().max(1000, "Description cannot be longer than 1000 characters").nullable(),
   ),
   parts: maintenancePartSchema.array(),
-  attachments: z.array(documentAttachmentSchema).optional().default([]),
 });
 
 export type MaintenanceFormInput = z.input<typeof maintenanceSchema>;

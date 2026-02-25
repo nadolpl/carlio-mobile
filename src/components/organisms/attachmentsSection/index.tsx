@@ -21,14 +21,16 @@ const AttachmentsSection = ({ sourceId }: AttachmentsSectionProps) => {
   };
 
   return (
-    attachments.length > 0 && (
-      <View style={styles.attachments}>
-        <Text style={styles.sectionTitle}>Attachments</Text>
-        {attachments.map((attachment) => (
-          <DocumentCard key={attachment.id} document={attachment} onPress={handleDocumentPress} />
-        ))}
-      </View>
-    )
+    <>
+      {attachments.length > 0 && (
+        <View style={styles.attachments}>
+          <Text style={styles.sectionTitle}>Attachments</Text>
+          {attachments.map((attachment) => (
+            <DocumentCard key={attachment.id} document={attachment} onPress={handleDocumentPress} />
+          ))}
+        </View>
+      )}
+    </>
   );
 };
 
