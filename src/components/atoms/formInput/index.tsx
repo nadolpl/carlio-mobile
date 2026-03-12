@@ -32,6 +32,8 @@ const FormInput = <T extends FieldValues>({
           value={value != null ? value.toString() : null}
           placeholderTextColor={colors.textDisabled}
           placeholder={placeholder ?? label}
+          autoCapitalize="none"
+          autoCorrect={false}
           {...props}
         />
       </FormItemWrapper>

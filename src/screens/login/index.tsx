@@ -1,15 +1,20 @@
-import { Image, KeyboardAvoidingView, ScrollView, StyleSheet, View } from "react-native";
+import { Image, KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { colors } from "constants/colors";
 import SignInWithGoogleButton from "screens/login/components/SignInWithGoogleButton";
 import Text from "components/atoms/text";
 import LoginForm from "components/organisms/forms/LoginForm";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "navigation/types";
 
 const LoginScreen = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   return (
     <KeyboardAvoidingView behavior="height" style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <Image
-          source={require("../../../assets/images/login-screen-logo.png")}
+          source={require("../../../assets/images/welcome-screen-logo.png")}
           style={styles.image}
         />
 
@@ -22,6 +27,13 @@ const LoginScreen = () => {
         </View>
 
         <SignInWithGoogleButton />
+
+        <View style={styles.registerContainer}>
+          <Text style={styles.registerText}>Don't have an account? </Text>
+          <Pressable onPress={() => navigation.navigate("Register")}>
+            <Text style={styles.registerLink}>Register</Text>
+          </Pressable>
+        </View>
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -54,9 +66,25 @@ const styles = StyleSheet.create({
     backgroundColor: colors.divider,
   },
   orText: {
-    marginHorizontal: 10,
+    marginHorizontal: 15,
     color: colors.textDisabled,
     fontSize: 12,
+    fontWeight: "600",
+  },
+  registerContainer: {
+    flexDirection: "row",
+    marginTop: 40,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  registerText: {
+    fontSize: 14,
+    color: colors.textSecondary,
+  },
+  registerLink: {
+    fontSize: 14,
+    fontWeight: "bold",
+    color: colors.primary,
   },
 });
 

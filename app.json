@@ -23,6 +23,12 @@
     },
     "android": {
       "package": "dev.nadol.carlio"
+    },
+    "ios": {
+      "bundleIdentifier": "dev.nadol.carlio",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     }
   }
 }

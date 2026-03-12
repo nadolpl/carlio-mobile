@@ -19,6 +19,7 @@ import ExpenseDetailsScreen from "screens/expenses/details";
 import EditExpenseScreen from "screens/expenses/edit";
 import AddDocumentScreen from "screens/documents/add";
 import DocumentDetailsScreen from "screens/documents/details";
+import RegisterScreen from "screens/register";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -107,7 +108,14 @@ const Navigator = () => {
             />
           </>
         ) : (
-          <Stack.Screen name="Login" component={LoginScreen} />
+          <>
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen
+              name="Register"
+              component={RegisterScreen}
+              options={{ headerShown: true, title: "Create an account" }}
+            />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>

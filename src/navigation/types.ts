@@ -25,6 +25,8 @@ export type RootStackParamList = {
 
   DocumentDetails: { documentId: string };
   AddDocument: undefined;
+
+  Register: undefined
 };
 
 export type DrawerParamList = {
