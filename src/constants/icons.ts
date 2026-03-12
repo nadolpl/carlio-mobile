@@ -11,6 +11,9 @@ export const ICONS = {
   CASH: "cash-outline",
   DOCUMENT: "document-text-outline",
   ARROW_RIGHT: "chevron-forward",
+  ARROW_DOWN: "chevron-down",
+  ARROW_UP: "chevron-up",
+  ARROW_BACK: "chevron-back",
   FILE: "document-outline",
   CLOSE_CIRCLE: "close-circle",
 } as const;

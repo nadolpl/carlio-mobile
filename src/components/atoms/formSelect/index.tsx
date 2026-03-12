@@ -1,9 +1,14 @@
-import { StyleSheet, View } from "react-native";
+import { FlatList, Pressable, StyleSheet, View } from "react-native";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
-import { Picker } from "@react-native-picker/picker";
 import { colors } from "constants/colors";
 import { EnumOptions } from "utils/enum";
-import FormItemWrapper from "components/molecules/formItemWrapper";
+import FormItemWrapper from "components/atoms/formItemWrapper";
+import { useModal } from "hooks/useModal";
+import Text from "components/atoms/text";
+import Icon from "components/atoms/icon";
+import { ICONS } from "constants/icons";
+import Modal from "components/atoms/modal";
+import { commonStyles } from "utils/styles";
 
 export interface FormSelectProps<T extends FieldValues> {
   name: Path<T>;
@@ -13,7 +18,6 @@ export interface FormSelectProps<T extends FieldValues> {
   flex?: boolean;
   required?: boolean;
   placeholder?: string;
-  wrapper?: boolean;
 }
 
 const FormSelect = <T extends FieldValues>({
@@ -24,29 +28,63 @@ const FormSelect = <T extends FieldValues>({
   required,
   options,
   placeholder = "Select...",
-}: FormSelectProps<T>) => (
-  <Controller
-    control={control}
-    name={name}
-    render={({ field: { onChange, value }, fieldState: { error } }) => (
-      <FormItemWrapper label={label} required={required} flex={flex} error={error?.message}>
-        <View style={styles.pickerWrapper}>
-          <Picker
-            selectedValue={value}
-            onValueChange={onChange}
-            style={value ? styles.picker : styles.placeholder}
-            dropdownIconColor={colors.textPrimary}
-          >
-            <Picker.Item label={placeholder} value={null} enabled={false} />
-            {options.map((opt) => (
-              <Picker.Item key={opt.value} label={opt.label} value={opt.value} />
-            ))}
-          </Picker>
-        </View>
-      </FormItemWrapper>
-    )}
-  />
-);
+}: FormSelectProps<T>) => {
+  const { isOpen, open, close } = useModal();
+
+  return (
+    <Controller
+      control={control}
+      name={name}
+      render={({ field: { onChange, value }, fieldState: { error } }) => {
+        const selectedOption = options.find((opt) => opt.value === value);
+
+        return (
+          <FormItemWrapper label={label} required={required} flex={flex} error={error?.message}>
+            <Pressable style={styles.pickerWrapper} onPress={open}>
+              <Text style={(value === undefined || value === null) && styles.placeholder}>
+                {selectedOption ? selectedOption.label : placeholder}
+              </Text>
+              <Icon name={isOpen ? ICONS.ARROW_UP : ICONS.ARROW_DOWN} size={18} />
+            </Pressable>
+
+            <Modal visible={isOpen} onClose={close}>
+              <View style={styles.modalContentWrapper}>
+                <Text style={styles.modalTitle}>
+                  {label ? `Select ${label}` : placeholder || "Select..."}
+                </Text>
+
+                <FlatList
+                  style={styles.list}
+                  data={options}
+                  showsVerticalScrollIndicator={false}
+                  keyExtractor={(item) => String(item.value)}
+                  renderItem={({ item }) => (
+                    <Pressable
+                      style={({ pressed }) => [styles.optionItem, pressed && commonStyles.pressed]}
+                      onPress={() => {
+                        onChange(item.value);
+                        close();
+                      }}
+                    >
+                      <Text
+                        style={[
+                          styles.optionText,
+                          value === item.value && styles.selectedOptionText,
+                        ]}
+                      >
+                        {item.label}
+                      </Text>
+                    </Pressable>
+                  )}
+                />
+              </View>
+            </Modal>
+          </FormItemWrapper>
+        );
+      }}
+    />
+  );
+};
 
 const styles = StyleSheet.create({
   pickerWrapper: {
@@ -55,14 +93,39 @@ const styles = StyleSheet.create({
     borderColor: colors.divider,
     borderRadius: 12,
     backgroundColor: colors.background800,
-    justifyContent: "center",
-    paddingLeft: 8,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 16,
   },
   placeholder: {
     color: colors.textDisabled,
   },
-  picker: {
-    color: colors.textPrimary,
+  modalContentWrapper: {
+    width: "100%",
+    flexShrink: 1,
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 16,
+    textAlign: "center",
+  },
+  list: {
+    width: "100%",
+  },
+  optionItem: {
+    paddingVertical: 14,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.divider,
+    width: "100%",
+  },
+  optionText: {
+    textAlign: "center",
+  },
+  selectedOptionText: {
+    fontWeight: "bold",
+    color: colors.primary,
   },
 });
 

@@ -1,7 +1,7 @@
 import { StyleSheet, TextInput, TextInputProps } from "react-native";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import { colors } from "constants/colors";
-import FormItemWrapper from "components/molecules/formItemWrapper";
+import FormItemWrapper from "components/atoms/formItemWrapper";
 
 interface FormInputProps<T extends FieldValues> extends TextInputProps {
   name: Path<T>;

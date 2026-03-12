@@ -7,7 +7,7 @@ import FormInput from "components/atoms/formInput";
 import FormSelectPart from "components/molecules/formSelectPart";
 import IconButton from "components/atoms/iconButton";
 import { ICONS } from "constants/icons";
-import FormItemWrapper from "components/molecules/formItemWrapper";
+import FormItemWrapper from "components/atoms/formItemWrapper";
 import { commonStyles } from "utils/styles";
 import Text from "components/atoms/text";
 

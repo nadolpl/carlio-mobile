@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   modalContainer: {
-    backgroundColor: colors.background800,
+    backgroundColor: colors.background900,
     borderRadius: 16,
     padding: 24,
     alignItems: "center",
     width: "100%",
-    maxHeight: "90%",
+    maxHeight: "70%",
   },
 });
 

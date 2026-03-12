@@ -1,5 +1,5 @@
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
-import FormItemWrapper from "components/molecules/formItemWrapper";
+import FormItemWrapper from "components/atoms/formItemWrapper";
 import { useFilePicker } from "hooks/useFilePicker";
 import FilePicker from "components/atoms/filePicker";
 
