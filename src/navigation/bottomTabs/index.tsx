@@ -1,70 +1,68 @@
-import { DrawerParamList } from "navigation/types";
+import { BottomTabParamList } from "navigation/types";
 import VehicleListScreen from "screens/vehicles/list";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import CustomDrawerContent from "navigation/drawerNavigation/CustomDrawerContent";
 import MaintenanceListScreen from "screens/maintenance/list";
 import PartListScreen from "screens/parts/list";
 import { ICONS } from "constants/icons";
 import Icon from "components/atoms/icon";
 import ExpenseListScreen from "screens/expenses/list";
 import DocumentListScreen from "screens/documents/list";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-const Drawer = createDrawerNavigator<DrawerParamList>();
+const Tab = createBottomTabNavigator<BottomTabParamList>();
 
-const DrawerNavigation = () => {
+const BottomTabsNavigation = () => {
   return (
-    <Drawer.Navigator
-      drawerContent={(props) => <CustomDrawerContent {...props} />}
+    <Tab.Navigator
       screenOptions={{
         headerRightContainerStyle: {
           paddingRight: 16,
         },
       }}
     >
-      <Drawer.Screen
+      <Tab.Screen
         name="VehicleList"
         component={VehicleListScreen}
         options={{
           title: "Vehicles",
-          drawerIcon: ({ color, size }) => <Icon name={ICONS.VEHICLE} color={color} size={size} />,
+          tabBarIcon: ({ color, size }) => <Icon name={ICONS.VEHICLE} color={color} size={size} />,
         }}
       />
-      <Drawer.Screen
+      <Tab.Screen
         name="MaintenanceList"
         component={MaintenanceListScreen}
         options={{
           title: "Maintenances",
-          drawerIcon: ({ color, size }) => (
+          tabBarIcon: ({ color, size }) => (
             <Icon name={ICONS.MAINTENANCE} color={color} size={size} />
           ),
         }}
       />
-      <Drawer.Screen
+      <Tab.Screen
         name="PartList"
         component={PartListScreen}
         options={{
           title: "Parts",
-          drawerIcon: ({ color, size }) => <Icon name={ICONS.PART} color={color} size={size} />,
+          tabBarIcon: ({ color, size }) => <Icon name={ICONS.PART} color={color} size={size} />,
         }}
       />
-      <Drawer.Screen
+      <Tab.Screen
         name="ExpenseList"
         component={ExpenseListScreen}
         options={{
           title: "Expenses",
-          drawerIcon: ({ color, size }) => <Icon name={ICONS.CASH} color={color} size={size} />,
+          tabBarIcon: ({ color, size }) => <Icon name={ICONS.CASH} color={color} size={size} />,
         }}
       />
-      <Drawer.Screen
+      <Tab.Screen
         name="DocumentList"
         component={DocumentListScreen}
         options={{
           title: "Documents",
-          drawerIcon: ({ color, size }) => <Icon name={ICONS.DOCUMENT} color={color} size={size} />,
+          tabBarIcon: ({ color, size }) => <Icon name={ICONS.DOCUMENT} color={color} size={size} />,
         }}
       />
-    </Drawer.Navigator>
+    </Tab.Navigator>
   );
 };
 
-export default DrawerNavigation;
+export default BottomTabsNavigation;

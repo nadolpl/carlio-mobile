@@ -26,10 +26,10 @@ export type RootStackParamList = {
   DocumentDetails: { documentId: string };
   AddDocument: undefined;
 
-  Register: undefined
+  Register: undefined;
 };
 
-export type DrawerParamList = {
+export type BottomTabParamList = {
   VehicleList: undefined;
   MaintenanceList: undefined;
   PartList: undefined;
