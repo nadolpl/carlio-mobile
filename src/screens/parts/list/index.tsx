@@ -5,23 +5,31 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/types";
 import { PartResponse } from "models/response/PartResponse";
-import { useListNavigation } from "hooks/useListNavigation";
+import FloatingActionButton from "components/atoms/floatingActionButton";
+import { ICONS } from "constants/icons";
 
 const PartListScreen = () => {
   const query = useSearchParts();
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
-  useListNavigation({ onPressAdd: () => navigation.navigate("AddPart") });
+  const handleActionPress = () => {
+    navigation.navigate("AddPart");
+  };
 
-  const handlePress = (part: PartResponse) => {
+  const handleCardPress = (part: PartResponse) => {
     navigation.navigate("PartDetails", { partId: part.id });
   };
 
   const renderItem = ({ item }: { item: PartResponse }) => (
-    <PartCard part={item} onPress={handlePress} />
+    <PartCard part={item} onPress={handleCardPress} />
   );
 
-  return <PageableList query={query} renderItem={renderItem} />;
+  return (
+    <>
+      <PageableList renderItem={renderItem} query={query} />
+      <FloatingActionButton onPress={handleActionPress} icon={ICONS.ADD} />
+    </>
+  );
 };
 
 export default PartListScreen;

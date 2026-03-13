@@ -4,24 +4,32 @@ import MaintenanceCard from "screens/maintenance/list/components/MaintenanceCard
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/types";
-import { useListNavigation } from "hooks/useListNavigation";
 import { MaintenanceListedResponse } from "models/response/MaintenanceListedResponse";
+import FloatingActionButton from "components/atoms/floatingActionButton";
+import { ICONS } from "constants/icons";
 
 const MaintenanceListScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const query = useSearchMaintenances();
 
-  useListNavigation({ onPressAdd: () => navigation.navigate("AddMaintenance") });
+  const handleActionPress = () => {
+    navigation.navigate("AddMaintenance");
+  };
 
-  const handlePress = (id: string) => {
+  const handleCardPress = (id: string) => {
     navigation.navigate("MaintenanceDetails", { maintenanceId: id });
   };
 
   const renderItem = ({ item }: { item: MaintenanceListedResponse }) => (
-    <MaintenanceCard maintenance={item} onPress={handlePress} />
+    <MaintenanceCard maintenance={item} onPress={handleCardPress} />
   );
 
-  return <PageableList query={query} renderItem={renderItem} />;
+  return (
+    <>
+      <PageableList renderItem={renderItem} query={query} />
+      <FloatingActionButton onPress={handleActionPress} icon={ICONS.ADD} />
+    </>
+  );
 };
 
 export default MaintenanceListScreen;
