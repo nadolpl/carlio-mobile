@@ -7,6 +7,7 @@ import Icon from "components/atoms/icon";
 import ExpenseListScreen from "screens/expenses/list";
 import DocumentListScreen from "screens/documents/list";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import ScheduleListScreen from "screens/schedules/list";
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -59,6 +60,14 @@ const BottomTabsNavigation = () => {
         options={{
           title: "Documents",
           tabBarIcon: ({ color, size }) => <Icon name={ICONS.DOCUMENT} color={color} size={size} />,
+        }}
+      />
+      <Tab.Screen
+        name="ScheduleList"
+        component={ScheduleListScreen}
+        options={{
+          title: "Schedules",
+          tabBarIcon: ({ color, size }) => <Icon name={ICONS.SCHEDULE} color={color} size={size} />,
         }}
       />
     </Tab.Navigator>

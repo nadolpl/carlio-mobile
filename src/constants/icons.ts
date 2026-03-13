@@ -16,5 +16,8 @@ export const ICONS = {
   ARROW_BACK: "chevron-back",
   FILE: "document-outline",
   CLOSE_CIRCLE: "close-circle",
-  DATE: "calendar-outline"
+  DATE: "calendar-outline",
+  SCHEDULE: "hourglass-outline",
+  NOTIFICATIONS: "notifications-outline",
+  MILEAGE: "speedometer-outline"
 } as const;

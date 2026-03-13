@@ -1,7 +1,7 @@
 export const colors = {
   primary: "#1a79cb",
   success: "#1B812B",
-  error: "#981515",
+  error: "#b51515",
   warning: "#B87700",
 
   background900: "#1c1c1c",
@@ -15,4 +15,11 @@ export const colors = {
 
   divider: "#333333",
   transparent: "transparent",
+};
+
+export const withAlpha = (hex: string, alpha: number) => {
+  const alphaHex = Math.round(alpha * 255)
+    .toString(16)
+    .padStart(2, "0");
+  return `${hex}${alphaHex}`;
 };

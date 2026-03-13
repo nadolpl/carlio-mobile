@@ -20,6 +20,9 @@ import EditMaintenanceScreen from "screens/maintenance/edit";
 import AddExpenseScreen from "screens/expenses/add";
 import ExpenseDetailsScreen from "screens/expenses/details";
 import EditExpenseScreen from "screens/expenses/edit";
+import ScheduleEditScreen from "screens/schedules/edit";
+import ScheduleDetailsScreen from "screens/schedules/details";
+import ScheduleAddScreen from "screens/schedules/add";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -96,6 +99,22 @@ const Navigator = () => {
                 name="EditExpense"
                 component={EditExpenseScreen}
                 options={{ title: "Edit Expense" }}
+              />
+
+              <Stack.Screen
+                name="AddSchedule"
+                component={ScheduleAddScreen}
+                options={{ title: "Add new Schedule" }}
+              />
+              <Stack.Screen
+                name="ScheduleDetails"
+                component={ScheduleDetailsScreen}
+                options={{ title: "Schedule Details" }}
+              />
+              <Stack.Screen
+                name="EditSchedule"
+                component={ScheduleEditScreen}
+                options={{ title: "Edit Schedule" }}
               />
 
               <Stack.Screen

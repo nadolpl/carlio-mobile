@@ -2,6 +2,7 @@ import { VehicleResponse } from "models/response/VehicleResponse";
 import { PartResponse } from "models/response/PartResponse";
 import { MaintenanceResponse } from "models/response/MaintenanceResponse";
 import { ExpenseResponse } from "models/response/ExpenseResponse";
+import { ScheduleResponse } from "models/response/ScheduleResponse";
 
 export type RootStackParamList = {
   MainTabs: undefined;
@@ -23,6 +24,10 @@ export type RootStackParamList = {
   AddExpense: undefined;
   EditExpense: { expense: ExpenseResponse };
 
+  ScheduleDetails: { scheduleId: string };
+  AddSchedule: undefined;
+  EditSchedule: { schedule: ScheduleResponse };
+
   DocumentDetails: { documentId: string };
   AddDocument: undefined;
 
@@ -35,4 +40,5 @@ export type BottomTabParamList = {
   PartList: undefined;
   ExpenseList: undefined;
   DocumentList: undefined;
+  ScheduleList: undefined;
 };

@@ -4,3 +4,4 @@ export const PARTS = "/parts";
 export const MAINTENANCES = "/maintenances";
 export const EXPENSES = "/expenses";
 export const DOCUMENTS = "/documents";
+export const SCHEDULES = "/schedules";
