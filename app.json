@@ -15,7 +15,15 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": ["@react-native-google-signin/google-signin"],
+    "plugins": [
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.676694630282-s9t776ju2da4l9bp9352srdhh2b9tb34"
+        }
+      ],
+      "@react-native-community/datetimepicker"
+    ],
     "extra": {
       "eas": {
         "projectId": "b7c86dda-d20a-4e25-8477-104e29497229"

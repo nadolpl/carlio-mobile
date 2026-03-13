@@ -1,11 +1,14 @@
-import { useState } from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { Button, Platform, Pressable, StyleSheet } from "react-native";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
-import DatePicker from "react-native-date-picker";
+import DateTimePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import { colors } from "constants/colors";
 import FormItemWrapper from "components/atoms/formItemWrapper";
 import Text from "components/atoms/text";
 import { formatDate } from "utils/date";
+import { useModal } from "hooks/useModal";
+import Modal from "components/atoms/modal";
+import { ICONS } from "constants/icons";
+import Icon from "components/atoms/icon";
 
 export interface FormDatePickerProps<T extends FieldValues> {
   name: Path<T>;
@@ -22,7 +25,7 @@ const FormDatePicker = <T extends FieldValues>({
   flex,
   required,
 }: FormDatePickerProps<T>) => {
-  const [open, setOpen] = useState(false);
+  const { isOpen, open, close } = useModal();
 
   return (
     <Controller
@@ -31,29 +34,32 @@ const FormDatePicker = <T extends FieldValues>({
       render={({ field: { onChange, value }, fieldState: { error } }) => {
         const dateValue = value ? new Date(value) : new Date();
 
+        const handleDateChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
+          if (Platform.OS === "android") close();
+          if (event.type === "set" && selectedDate) onChange(selectedDate.toISOString());
+          else if (event.type === "dismissed") close();
+        };
+
         return (
           <>
             <FormItemWrapper label={label} required={required} flex={flex} error={error?.message}>
-              <Pressable style={styles.inputWrapper} onPress={() => setOpen(true)}>
+              <Pressable style={styles.inputWrapper} onPress={open}>
                 <Text style={value != null ? styles.text : styles.placeholder}>
                   {value ? formatDate(value, "DD MMMM YYYY") : "Select date..."}
                 </Text>
+                <Icon name={ICONS.DATE} />
               </Pressable>
             </FormItemWrapper>
 
-            <DatePicker
-              modal
-              open={open}
-              date={dateValue}
-              mode="date"
-              confirmText="Confirm"
-              cancelText="Cancel"
-              onConfirm={(selectedDate) => {
-                setOpen(false);
-                onChange(selectedDate.toISOString());
-              }}
-              onCancel={() => setOpen(false)}
-            />
+            {isOpen &&
+              (Platform.OS === "ios" ? (
+                <Modal visible={isOpen} onClose={close}>
+                  <DateTimePicker value={dateValue} display="spinner" onChange={handleDateChange} />
+                  <Button title="Confirm" onPress={close} />
+                </Modal>
+              ) : (
+                <DateTimePicker value={dateValue} onChange={handleDateChange} />
+              ))}
           </>
         );
       }}
@@ -68,8 +74,10 @@ const styles = StyleSheet.create({
     borderColor: colors.divider,
     borderRadius: 12,
     backgroundColor: colors.background800,
-    justifyContent: "center",
-    paddingLeft: 16,
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+    flexDirection: "row",
+    alignItems: "center",
   },
   text: {
     color: colors.textPrimary,

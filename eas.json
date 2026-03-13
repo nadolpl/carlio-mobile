@@ -24,11 +24,6 @@
         "simulator": true
       },
       "environment": "development"
-    },
-    "ios-simulator": {
-      "ios": {
-        "simulator": true
-      }
     }
   },
   "submit": {
