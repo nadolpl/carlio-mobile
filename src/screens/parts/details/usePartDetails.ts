@@ -15,6 +15,7 @@ export const usePartDetails = () => {
     showConfirmation({
       title: "Delete Part",
       message: "Are you sure you want to delete this part?",
+      variant: "error",
       onConfirm: () => {
         deletePart(params.partId);
         navigation.goBack();

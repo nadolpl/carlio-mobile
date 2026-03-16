@@ -17,6 +17,7 @@ export const useVehicleDetails = () => {
     showConfirmation({
       title: "Delete Vehicle",
       message: "Are you sure you want to delete this vehicle?",
+      variant: "error",
       onConfirm: () => {
         deleteVehicle(params.vehicleId);
         navigation.goBack();

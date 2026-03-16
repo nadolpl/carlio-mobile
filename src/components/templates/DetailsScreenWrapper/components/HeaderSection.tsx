@@ -18,7 +18,7 @@ const HeaderSection = ({ title, subtitle }: HeaderSectionProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 24,
+    marginBottom: 12,
   },
   title: {
     fontSize: 28,

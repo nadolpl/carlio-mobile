@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { useModal } from "./useModal";
+import { ConfirmationModalVariant } from "components/molecules/confirmationModal";
 
 export interface ConfirmationModalOptions {
   title: string;
@@ -7,6 +8,7 @@ export interface ConfirmationModalOptions {
   onConfirm: () => void;
   cancelText?: string;
   confirmText?: string;
+  variant?: ConfirmationModalVariant;
 }
 
 export const useConfirmationModal = () => {
@@ -38,6 +40,7 @@ export const useConfirmationModal = () => {
       message: options?.message || "",
       cancelText: options?.cancelText,
       confirmText: options?.confirmText,
+      variant: options?.variant,
     },
   };
 };

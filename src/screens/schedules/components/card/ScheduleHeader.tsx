@@ -8,7 +8,7 @@ interface ScheduleCardHeaderProps {
   isOverdue: boolean;
 }
 
-const ScheduleCardHeader = ({ name, active, isOverdue }: ScheduleCardHeaderProps) => {
+const ScheduleHeader = ({ name, active, isOverdue }: ScheduleCardHeaderProps) => {
   return (
     <View style={styles.header}>
       <Text style={styles.title}>{name}</Text>
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ScheduleCardHeader;
+export default ScheduleHeader;

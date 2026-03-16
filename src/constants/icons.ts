@@ -19,5 +19,8 @@ export const ICONS = {
   DATE: "calendar-outline",
   SCHEDULE: "hourglass-outline",
   NOTIFICATIONS: "notifications-outline",
-  MILEAGE: "speedometer-outline"
+  MILEAGE: "speedometer-outline",
+  MORE_VERTICAL: "ellipsis-vertical",
+  RELOAD: "reload-outline",
+  POWER: "power-outline"
 } as const;

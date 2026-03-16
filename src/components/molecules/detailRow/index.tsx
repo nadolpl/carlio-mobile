@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleProp, StyleSheet, TextStyle, View } from "react-native";
 import { colors } from "constants/colors";
 import Text from "components/atoms/text";
 
@@ -7,15 +7,16 @@ interface DetailRowProps {
   value: string | number | null | undefined;
   isFirst?: boolean;
   isLast?: boolean;
+  valueStyle?: StyleProp<TextStyle>;
 }
 
-const DetailRow = ({ label, value, isFirst, isLast }: DetailRowProps) => {
+const DetailRow = ({ label, value, isFirst, isLast, valueStyle }: DetailRowProps) => {
   if (value == null || value === "") return null;
 
   return (
     <View style={[styles.row, isFirst && { borderTopWidth: 0 }, isLast && { marginBottom: 0 }]}>
       <Text style={styles.label}>{label}</Text>
-      <Text style={styles.value}>{value}</Text>
+      <Text style={[styles.value, valueStyle]}>{value}</Text>
     </View>
   );
 };

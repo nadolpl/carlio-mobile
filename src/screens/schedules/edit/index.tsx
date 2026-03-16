@@ -1,13 +1,53 @@
-import { StyleSheet, View } from "react-native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "navigation/types";
+import { useForm } from "react-hook-form";
+import { ScheduleFormInput, ScheduleFormOutput, scheduleSchema } from "validation/scheduleSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ScheduleRequest } from "models/requests/ScheduleRequest";
+import ScheduleForm from "components/organisms/forms/ScheduleForm";
+import { useUpdateSchedule } from "api/hooks/schedule";
+import { getChangedData } from "utils/form";
+import { formatDateArrayToISO } from "utils/date";
 
-interface ScheduleEditScreenProps {}
+const ScheduleEditScreen = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const {
+    params: { schedule },
+  } = useRoute<RouteProp<RootStackParamList, "EditSchedule">>();
+  const { mutate: update, isPending: isCreating } = useUpdateSchedule(schedule.id);
 
-const ScheduleEditScreen = ({}: ScheduleEditScreenProps) => {
-  return <View style={styles.container}></View>;
+  const {
+    control,
+    handleSubmit,
+    formState: { isValid, isDirty, dirtyFields },
+  } = useForm<ScheduleFormInput, any, ScheduleFormOutput>({
+    resolver: zodResolver(scheduleSchema),
+    mode: "onChange",
+    defaultValues: {
+      ...schedule,
+      lastPerformedDate: schedule.lastPerformedDate
+        ? formatDateArrayToISO(schedule.lastPerformedDate)
+        : null,
+    },
+  });
+
+  const onSubmit = (req: ScheduleFormOutput) => {
+    const payload = getChangedData(dirtyFields, req) as Partial<ScheduleRequest>;
+    update(payload, {
+      onSuccess: () => navigation.goBack(),
+    });
+  };
+
+  return (
+    <ScheduleForm
+      control={control}
+      handleSubmit={handleSubmit(onSubmit)}
+      submitLabel="Save Changes"
+      submitDisabled={!isValid || !isDirty}
+      loading={isCreating}
+    />
+  );
 };
-
-const styles = StyleSheet.create({
-  container: {},
-});
 
 export default ScheduleEditScreen;

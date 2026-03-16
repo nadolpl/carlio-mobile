@@ -31,7 +31,7 @@ const LoginScreen = () => {
         <View style={styles.registerContainer}>
           <Text style={styles.registerText}>Don't have an account? </Text>
           <Pressable onPress={() => navigation.navigate("Register")}>
-            <Text style={styles.registerLink}>Register</Text>
+            <Text style={styles.registerLink}>Sign up</Text>
           </Pressable>
         </View>
       </ScrollView>

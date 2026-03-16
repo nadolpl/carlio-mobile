@@ -17,6 +17,7 @@ export const useExpenseDetails = () => {
     showConfirmation({
       title: "Delete Expense",
       message: "Are you sure you want to delete this Expense?",
+      variant: "error",
       onConfirm: () => {
         navigation.goBack();
         deleteExpense(params.expenseId);

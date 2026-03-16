@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     letterSpacing: 1,
     marginBottom: 8,
+    marginTop: 16,
     marginLeft: 4,
   },
   detailsCard: {
@@ -30,7 +31,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 16,
     paddingVertical: 8,
-    marginBottom: 16,
     borderWidth: 1,
     borderColor: colors.background700,
   },

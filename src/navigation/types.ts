@@ -24,7 +24,7 @@ export type RootStackParamList = {
   AddExpense: undefined;
   EditExpense: { expense: ExpenseResponse };
 
-  ScheduleDetails: { scheduleId: string };
+  ScheduleDetails: { scheduleId: string};
   AddSchedule: undefined;
   EditSchedule: { schedule: ScheduleResponse };
 

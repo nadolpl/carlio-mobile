@@ -17,6 +17,7 @@ export const useDocumentDetails = () => {
     showConfirmation({
       title: "Delete Document",
       message: "Are you sure you want to delete this Document?",
+      variant: "error",
       onConfirm: () => {
         deleteDocument(params.documentId);
         navigation.goBack();

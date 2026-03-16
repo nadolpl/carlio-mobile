@@ -17,6 +17,7 @@ export const useMaintenanceDetails = () => {
     showConfirmation({
       title: "Delete Maintenance",
       message: "Are you sure you want to delete this maintenance?",
+      variant: "error",
       onConfirm: () => {
         navigation.goBack();
         deleteMaintenance(params.maintenanceId);

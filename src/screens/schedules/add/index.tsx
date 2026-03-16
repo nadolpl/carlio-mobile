@@ -23,7 +23,7 @@ const ScheduleAddScreen = () => {
 
   const onSubmit = (req: ScheduleFormOutput) => {
     create(req as ScheduleRequest, {
-      onSuccess: (id) => navigation.replace("ScheduleDetails", { scheduleId: id }),
+      onSuccess: (res) => navigation.replace("ScheduleDetails", { scheduleId: res }),
     });
   };
 

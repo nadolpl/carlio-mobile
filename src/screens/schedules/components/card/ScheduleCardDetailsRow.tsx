@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import { ICONS } from "constants/icons";
-import ScheduleCardDetailRowItem from "screens/schedules/list/components/card/ScheduleCardDetailRowItem";
+import ScheduleCardDetailRowItem from "screens/schedules/components/card/ScheduleCardDetailRowItem";
 
 interface ScheduleCardDetailsRowProps {
   kilometersLeft: number | null;

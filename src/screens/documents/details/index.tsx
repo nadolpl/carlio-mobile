@@ -10,6 +10,7 @@ import { formatFileSize } from "utils/file";
 import { formatDateArray } from "utils/date";
 import Button from "components/atoms/button";
 import { useDownloadDocument } from "api/hooks/document";
+import { StyleSheet } from "react-native";
 
 const DocumentDetailsScreen = () => {
   const { document, handleDeleteDocument, confirmationModalProps } = useDocumentDetails();
@@ -37,9 +38,21 @@ const DocumentDetailsScreen = () => {
         <DetailRow label="File Size" value={formatFileSize(document.fileSize)} />
         <DetailRow label="Created At" value={formatDateArray(document.createdDate)} isLast />
       </SectionCard>
-      <Button title="Download" variant="outlined" onPress={handleDownload} loading={isPending} />
+      <Button
+        title="Download"
+        variant="outlined"
+        onPress={handleDownload}
+        loading={isPending}
+        style={styles.downloadButton}
+      />
     </DetailsScreenWrapper>
   );
 };
+
+const styles = StyleSheet.create({
+  downloadButton: {
+    marginTop: 16,
+  },
+});
 
 export default DocumentDetailsScreen;

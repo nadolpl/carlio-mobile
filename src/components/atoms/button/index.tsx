@@ -1,14 +1,12 @@
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleProp, StyleSheet, ViewStyle } from "react-native";
 import Icon, { IoniconsName } from "components/atoms/icon";
 import { colors } from "constants/colors";
 import Text from "components/atoms/text";
 import { commonStyles } from "utils/styles";
-import { StyleProp } from "react-native/Libraries/StyleSheet/StyleSheet";
-import { ViewStyle } from "react-native/Libraries/StyleSheet/StyleSheetTypes";
 import Loader from "components/atoms/loader";
 
 type ButtonVariant = "standard" | "outlined" | "transparent";
-type ButtonColor = "primary" | "error";
+export type ButtonColor = "primary" | "error" | "success";
 
 interface ButtonProps {
   title: string;
@@ -38,8 +36,8 @@ const Button = ({
     <Pressable
       style={({ pressed }) => [
         styles.container,
-        styles[color],
         styles[variant],
+        variant === "standard" && { backgroundColor: colors[color] },
         variant === "outlined" && { borderColor: colors[color] },
         pressed && commonStyles.pressed,
         (disabled || loading) && styles.disabled,
@@ -49,7 +47,8 @@ const Button = ({
       disabled={disabled || loading}
     >
       {loading ? <Loader /> : icon && <Icon name={icon} size={20} />}
-      <Text style={[styles.text]}>{loading ? loadingText : title}</Text>
+
+      <Text style={[styles.text]}>{loading && loadingText ? loadingText : title}</Text>
     </Pressable>
   );
 };
@@ -57,35 +56,27 @@ const Button = ({
 const styles = StyleSheet.create({
   container: {
     borderRadius: 12,
-    paddingVertical: 10,
+    paddingVertical: 12,
     paddingHorizontal: 20,
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    gap: 10,
-    borderWidth: 3,
+    gap: 8,
+    borderWidth: 2,
     borderColor: colors.transparent,
-  },
-  primary: {
-    backgroundColor: colors.primary,
-  },
-  error: {
-    backgroundColor: colors.error,
+    minHeight: 48,
   },
   standard: {},
   transparent: {
     backgroundColor: colors.transparent,
   },
   outlined: {
-    backgroundColor: colors.background800,
-    borderWidth: 3,
+    backgroundColor: colors.transparent,
   },
   text: {
-    fontWeight: "bold",
+    fontWeight: "600",
   },
   disabled: {
-    backgroundColor: colors.background700,
-    borderColor: colors.transparent,
     opacity: 0.5,
   },
 });

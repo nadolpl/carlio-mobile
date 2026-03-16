@@ -6,7 +6,7 @@ import { ScheduleResponse } from "models/response/ScheduleResponse";
 import FloatingActionButton from "components/atoms/floatingActionButton";
 import { ICONS } from "constants/icons";
 import { useSearchSchedules } from "api/hooks/schedule";
-import ScheduleCard from "screens/schedules/list/components/card";
+import PressableScheduleCard from "screens/schedules/list/components/card";
 
 const ScheduleListScreen = () => {
   const query = useSearchSchedules();
@@ -21,7 +21,7 @@ const ScheduleListScreen = () => {
   };
 
   const renderItem = ({ item }: { item: ScheduleResponse }) => (
-    <ScheduleCard schedule={item} onPress={handleCardPress} />
+    <PressableScheduleCard schedule={item} onPress={handleCardPress} />
   );
 
   return (

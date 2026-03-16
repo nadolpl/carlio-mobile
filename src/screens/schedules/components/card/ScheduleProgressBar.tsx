@@ -13,7 +13,7 @@ const getStatusColor = (isOverdue: boolean, progressPercentage: number) => {
   return colors.success;
 };
 
-const ScheduleCardProgressBar = ({
+const ScheduleProgressBar = ({
   progressPercentage,
   isOverdue,
 }: ScheduleCardProgressBarProps) => {
@@ -42,4 +42,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ScheduleCardProgressBar;
+export default ScheduleProgressBar;
