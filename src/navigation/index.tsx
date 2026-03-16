@@ -25,6 +25,7 @@ import ScheduleDetailsScreen from "screens/schedules/details";
 import ScheduleAddScreen from "screens/schedules/add";
 import DocumentListScreen from "screens/documents/list";
 import PartListScreen from "screens/parts/list";
+import NotificationListScreen from "screens/notifications/list";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -143,6 +144,12 @@ const Navigator = () => {
               name="DocumentDetails"
               component={DocumentDetailsScreen}
               options={{ title: "Document Details" }}
+            />
+
+            <Stack.Screen
+              name="NotificationList"
+              component={NotificationListScreen}
+              options={{ title: "Notifications" }}
             />
           </>
         ) : (

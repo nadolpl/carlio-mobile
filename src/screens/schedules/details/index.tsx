@@ -10,7 +10,7 @@ import { useDetailsNavigation } from "hooks/useDetailsNavigation";
 import { useScheduleDetails } from "screens/schedules/details/useScheduleDetails";
 import IconButton from "components/atoms/iconButton";
 import { ICONS } from "constants/icons";
-import { MoreMenuModal } from "components/molecules/moreMenuModal";
+import { BottomMenuModal } from "components/molecules/moreMenuModal";
 
 const ScheduleDetailsScreen = () => {
   const {
@@ -37,7 +37,11 @@ const ScheduleDetailsScreen = () => {
           <DetailRow
             isFirst
             label="Distance interval"
-            value={schedule.intervalKilometers ? `Every ${schedule.intervalKilometers} km` : "None"}
+            value={
+              schedule.intervalKilometers
+                ? `Every ${formatMileage(schedule.intervalKilometers)}`
+                : "None"
+            }
           />
           <DetailRow
             isLast
@@ -75,7 +79,7 @@ const ScheduleDetailsScreen = () => {
           />
         </SectionCard>
       </DetailsScreenWrapper>
-      <MoreMenuModal {...moreMenuProps} />
+      <BottomMenuModal {...moreMenuProps} />
     </>
   );
 };

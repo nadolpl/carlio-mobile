@@ -1,4 +1,4 @@
-import PageableList from "components/molecules/pageableList";
+import PageableList from "components/organisms/pageableList";
 import { ScheduleResponse } from "models/response/ScheduleResponse";
 import PressableScheduleCard from "screens/schedules/list/components/card";
 import { useScheduleList } from "screens/schedules/list/useScheduleList";

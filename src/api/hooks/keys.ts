@@ -4,6 +4,7 @@ import { MaintenanceSearchParams } from "models/response/MaintenanceListedRespon
 import { ExpenseSearchParams } from "models/response/ExpenseResponse";
 import { DocumentSearchParams } from "models/response/DocumentResponse";
 import { ScheduleSearchParams } from "models/response/ScheduleResponse";
+import { NotificationSearchParams } from "models/response/NotificationResponse";
 
 const DETAILS = "details";
 const SEARCH = "search";
@@ -43,4 +44,12 @@ export const SCHEDULE_KEYS = {
   all: ["schedules"] as const,
   details: (id: string) => [...SCHEDULE_KEYS.all, DETAILS, id] as const,
   search: (params?: ScheduleSearchParams) => [...SCHEDULE_KEYS.all, SEARCH, params ?? {}] as const,
+};
+
+export const NOTIFICATION_KEYS = {
+  all: ["notifications"] as const,
+  unread: () => [...NOTIFICATION_KEYS.all, "unread"] as const,
+  details: (id: string) => [...NOTIFICATION_KEYS.all, DETAILS, id] as const,
+  search: (params?: NotificationSearchParams) =>
+    [...NOTIFICATION_KEYS.all, SEARCH, params ?? {}] as const,
 };

@@ -1,5 +1,5 @@
 import PartCard from "screens/parts/list/components/PartCard";
-import PageableList from "components/molecules/pageableList";
+import PageableList from "components/organisms/pageableList";
 import { PartResponse } from "models/response/PartResponse";
 import { usePartList } from "screens/parts/list/usePartList";
 

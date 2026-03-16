@@ -1,4 +1,4 @@
-import PageableList from "components/molecules/pageableList";
+import PageableList from "components/organisms/pageableList";
 import VehicleCard from "screens/vehicles/list/components/VehicleCard";
 import { VehicleListedResponse } from "models/response/VehicleListedResponse";
 import { useVehicleList } from "screens/vehicles/list/useVehicleList";

@@ -6,7 +6,7 @@ import Modal from "components/atoms/modal";
 
 export type ConfirmationModalVariant = "error" | "success" | "standard";
 
-interface ConfirmationModalProps {
+export interface ConfirmationModalProps {
   title: string;
   message: string;
   visible: boolean;

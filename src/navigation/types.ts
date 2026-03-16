@@ -33,6 +33,8 @@ export type RootStackParamList = {
   DocumentList: undefined;
   DocumentDetails: { documentId: string };
   AddDocument: undefined;
+
+  NotificationList: undefined;
 };
 
 export type BottomTabParamList = {

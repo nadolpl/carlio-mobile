@@ -1,18 +1,18 @@
 import { useCallback, useState } from "react";
-import { MenuAction } from "components/molecules/moreMenuModal";
 import { useModal } from "hooks/useModal";
+import { MenuAction } from "components/molecules/bottomMenuModal";
 
-export const useMoreMenuModal = () => {
+export const useBottomMenuModal = () => {
   const { isOpen, open, close } = useModal();
   const [actions, setActions] = useState<MenuAction[]>([]);
 
-  const show = useCallback((newActions: MenuAction[]) => {
+  const showMenu = useCallback((newActions: MenuAction[]) => {
     setActions(newActions);
     open();
   }, []);
 
   return {
-    show,
+    showMenu,
     props: {
       visible: isOpen,
       onClose: close,

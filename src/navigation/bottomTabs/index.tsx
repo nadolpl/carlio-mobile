@@ -1,13 +1,12 @@
 import { BottomTabParamList } from "navigation/types";
 import VehicleListScreen from "screens/vehicles/list";
 import MaintenanceListScreen from "screens/maintenance/list";
-import PartListScreen from "screens/parts/list";
 import { ICONS } from "constants/icons";
 import Icon from "components/atoms/icon";
 import ExpenseListScreen from "screens/expenses/list";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ScheduleListScreen from "screens/schedules/list";
-import { MoreMenuModal } from "components/molecules/moreMenuModal";
+import { BottomMenuModal } from "components/molecules/moreMenuModal";
 import { useMoreTabsMenu } from "navigation/bottomTabs/useMoreTabsMenu";
 import ConfirmationModal from "components/molecules/confirmationModal";
 
@@ -82,7 +81,7 @@ const BottomTabsNavigation = () => {
           }}
         />
       </Tab.Navigator>
-      <MoreMenuModal {...moreMenuProps} />
+      <BottomMenuModal {...moreMenuProps} />
       <ConfirmationModal {...confirmationModalProps} />
     </>
   );

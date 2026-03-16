@@ -1,4 +1,4 @@
-import PageableList from "components/molecules/pageableList";
+import PageableList from "components/organisms/pageableList";
 import MaintenanceCard from "screens/maintenance/list/components/MaintenanceCard";
 import { MaintenanceListedResponse } from "models/response/MaintenanceListedResponse";
 import { useMaintenanceList } from "screens/maintenance/list/useMaintenanceList";

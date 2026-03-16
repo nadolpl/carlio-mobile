@@ -8,7 +8,7 @@ import {
   useSchedule,
   useToggleActiveSchedule,
 } from "api/hooks/schedule";
-import { useMoreMenuModal } from "hooks/useMoreMenuModal";
+import { useBottomMenuModal } from "hooks/useBottomMenuModal";
 import { ICONS } from "constants/icons";
 
 export const useScheduleDetails = () => {
@@ -20,7 +20,7 @@ export const useScheduleDetails = () => {
   const { mutate: resetSchedule } = useResetSchedule();
   const { mutate: toggleActiveSchedule } = useToggleActiveSchedule();
   const { showConfirmation, props: confirmationModalProps } = useConfirmationModal();
-  const { show, props: moreMenuProps } = useMoreMenuModal();
+  const { showMenu, props: moreMenuProps } = useBottomMenuModal();
 
   const handleDeleteSchedule = () => {
     showConfirmation({
@@ -58,7 +58,7 @@ export const useScheduleDetails = () => {
   };
 
   const handleOpenMoreMenu = () => {
-    show([
+    showMenu([
       {
         label: "Reset Schedule",
         icon: ICONS.RELOAD,

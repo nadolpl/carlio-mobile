@@ -1,4 +1,4 @@
-import PageableList from "components/molecules/pageableList";
+import PageableList from "components/organisms/pageableList";
 import ExpenseCard from "screens/expenses/list/components/ExpenseCard";
 import { ExpenseResponse } from "models/response/ExpenseResponse";
 import { useExpenseList } from "screens/expenses/list/useExpenseList";

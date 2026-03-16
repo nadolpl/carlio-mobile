@@ -18,9 +18,10 @@ export const ICONS = {
   CLOSE_CIRCLE: "close-circle",
   DATE: "calendar-outline",
   SCHEDULE: "hourglass-outline",
-  NOTIFICATIONS: "notifications-outline",
+  NOTIFICATION: "notifications-outline",
   MILEAGE: "speedometer-outline",
   MORE_VERTICAL: "ellipsis-vertical",
   RELOAD: "reload-outline",
-  POWER: "power-outline"
+  POWER: "power-outline",
+  CHECK: "checkmark"
 } as const;

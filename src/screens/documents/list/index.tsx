@@ -1,4 +1,4 @@
-import PageableList from "components/molecules/pageableList";
+import PageableList from "components/organisms/pageableList";
 import DocumentCard from "screens/documents/list/components/DocumentCard";
 import { DocumentResponse } from "models/response/DocumentResponse";
 import { useDocumentList } from "screens/documents/list/useDocumentList";

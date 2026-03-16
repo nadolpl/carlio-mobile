@@ -11,13 +11,13 @@ export interface MenuAction {
   isDestructive?: boolean;
 }
 
-interface MoreMenuModalProps {
+export interface BottomMenuModalProps {
   visible: boolean;
   onClose: () => void;
   actions: MenuAction[];
 }
 
-export const MoreMenuModal = ({ visible, onClose, actions }: MoreMenuModalProps) => {
+export const BottomMenuModal = ({ visible, onClose, actions }: BottomMenuModalProps) => {
   return (
     <BottomSheet visible={visible} onClose={onClose}>
       <View style={styles.actionsContainer}>
