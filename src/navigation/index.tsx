@@ -23,6 +23,8 @@ import EditExpenseScreen from "screens/expenses/edit";
 import ScheduleEditScreen from "screens/schedules/edit";
 import ScheduleDetailsScreen from "screens/schedules/details";
 import ScheduleAddScreen from "screens/schedules/add";
+import DocumentListScreen from "screens/documents/list";
+import PartListScreen from "screens/parts/list";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -31,111 +33,125 @@ const Navigator = () => {
 
   return (
     <NavigationContainer theme={AppTheme}>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator>
         {isAuthenticated ? (
           <>
-            <Stack.Screen name="MainTabs" component={BottomTabsNavigation} />
+            <Stack.Screen
+              name="BottomTabs"
+              component={BottomTabsNavigation}
+              options={{ headerShown: false }}
+            />
 
-            <Stack.Group screenOptions={{ headerShown: true }}>
-              <Stack.Screen
-                name="AddPart"
-                component={AddPartScreen}
-                options={{ title: "Add new part" }}
-              />
-              <Stack.Screen
-                name="PartDetails"
-                component={PartDetailsScreen}
-                options={{ title: "Part Details" }}
-              />
-              <Stack.Screen
-                name="EditPart"
-                component={EditPartScreen}
-                options={{ title: "Edit part" }}
-              />
+            <Stack.Screen
+              name="PartList"
+              component={PartListScreen}
+              options={{
+                title: "Parts",
+              }}
+            />
+            <Stack.Screen
+              name="AddPart"
+              component={AddPartScreen}
+              options={{ title: "Add new part" }}
+            />
+            <Stack.Screen
+              name="PartDetails"
+              component={PartDetailsScreen}
+              options={{ title: "Part Details" }}
+            />
+            <Stack.Screen
+              name="EditPart"
+              component={EditPartScreen}
+              options={{ title: "Edit part" }}
+            />
 
-              <Stack.Screen
-                name="AddVehicle"
-                component={AddVehicleScreen}
-                options={{ title: "Add new vehicle" }}
-              />
-              <Stack.Screen
-                name="VehicleDetails"
-                component={VehicleDetailsScreen}
-                options={{ title: "Vehicle Details" }}
-              />
-              <Stack.Screen
-                name="EditVehicle"
-                component={EditVehicleScreen}
-                options={{ title: "Edit vehicle" }}
-              />
+            <Stack.Screen
+              name="AddVehicle"
+              component={AddVehicleScreen}
+              options={{ title: "Add new vehicle" }}
+            />
+            <Stack.Screen
+              name="VehicleDetails"
+              component={VehicleDetailsScreen}
+              options={{ title: "Vehicle Details" }}
+            />
+            <Stack.Screen
+              name="EditVehicle"
+              component={EditVehicleScreen}
+              options={{ title: "Edit vehicle" }}
+            />
 
-              <Stack.Screen
-                name="AddMaintenance"
-                component={AddMaintenanceScreen}
-                options={{ title: "Add new maintenance" }}
-              />
-              <Stack.Screen
-                name="MaintenanceDetails"
-                component={MaintenanceDetailsScreen}
-                options={{ title: "Maintenance Details" }}
-              />
-              <Stack.Screen
-                name="EditMaintenance"
-                component={EditMaintenanceScreen}
-                options={{ title: "Edit maintenance" }}
-              />
+            <Stack.Screen
+              name="AddMaintenance"
+              component={AddMaintenanceScreen}
+              options={{ title: "Add new maintenance" }}
+            />
+            <Stack.Screen
+              name="MaintenanceDetails"
+              component={MaintenanceDetailsScreen}
+              options={{ title: "Maintenance Details" }}
+            />
+            <Stack.Screen
+              name="EditMaintenance"
+              component={EditMaintenanceScreen}
+              options={{ title: "Edit maintenance" }}
+            />
 
-              <Stack.Screen
-                name="AddExpense"
-                component={AddExpenseScreen}
-                options={{ title: "Add new Expense" }}
-              />
-              <Stack.Screen
-                name="ExpenseDetails"
-                component={ExpenseDetailsScreen}
-                options={{ title: "Expense Details" }}
-              />
-              <Stack.Screen
-                name="EditExpense"
-                component={EditExpenseScreen}
-                options={{ title: "Edit Expense" }}
-              />
+            <Stack.Screen
+              name="AddExpense"
+              component={AddExpenseScreen}
+              options={{ title: "Add new Expense" }}
+            />
+            <Stack.Screen
+              name="ExpenseDetails"
+              component={ExpenseDetailsScreen}
+              options={{ title: "Expense Details" }}
+            />
+            <Stack.Screen
+              name="EditExpense"
+              component={EditExpenseScreen}
+              options={{ title: "Edit Expense" }}
+            />
 
-              <Stack.Screen
-                name="AddSchedule"
-                component={ScheduleAddScreen}
-                options={{ title: "Add new Schedule" }}
-              />
-              <Stack.Screen
-                name="ScheduleDetails"
-                component={ScheduleDetailsScreen}
-                options={{ title: "Schedule Details" }}
-              />
-              <Stack.Screen
-                name="EditSchedule"
-                component={ScheduleEditScreen}
-                options={{ title: "Edit Schedule" }}
-              />
+            <Stack.Screen
+              name="AddSchedule"
+              component={ScheduleAddScreen}
+              options={{ title: "Add new Schedule" }}
+            />
+            <Stack.Screen
+              name="ScheduleDetails"
+              component={ScheduleDetailsScreen}
+              options={{ title: "Schedule Details" }}
+            />
+            <Stack.Screen
+              name="EditSchedule"
+              component={ScheduleEditScreen}
+              options={{ title: "Edit Schedule" }}
+            />
 
-              <Stack.Screen
-                name="AddDocument"
-                component={AddDocumentScreen}
-                options={{ title: "Add new Document" }}
-              />
-              <Stack.Screen
-                name="DocumentDetails"
-                component={DocumentDetailsScreen}
-                options={{ title: "Document Details" }}
-              />
-            </Stack.Group>
+            <Stack.Screen
+              name="DocumentList"
+              component={DocumentListScreen}
+              options={{ title: "Documents" }}
+            />
+            <Stack.Screen
+              name="AddDocument"
+              component={AddDocumentScreen}
+              options={{ title: "Add new Document" }}
+            />
+            <Stack.Screen
+              name="DocumentDetails"
+              component={DocumentDetailsScreen}
+              options={{ title: "Document Details" }}
+            />
           </>
         ) : (
           <>
-            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
             <Stack.Screen
               name="Register"
               component={RegisterScreen}
-              options={{ headerShown: true, title: "Create an account" }}
+              options={{ title: "Create an account" }}
             />
           </>
         )}

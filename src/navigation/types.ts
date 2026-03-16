@@ -5,9 +5,11 @@ import { ExpenseResponse } from "models/response/ExpenseResponse";
 import { ScheduleResponse } from "models/response/ScheduleResponse";
 
 export type RootStackParamList = {
-  MainTabs: undefined;
+  BottomTabs: undefined;
   Login: undefined;
+  Register: undefined;
 
+  PartList: undefined;
   PartDetails: { partId: string };
   EditPart: { part: PartResponse };
   AddPart: undefined;
@@ -24,21 +26,19 @@ export type RootStackParamList = {
   AddExpense: undefined;
   EditExpense: { expense: ExpenseResponse };
 
-  ScheduleDetails: { scheduleId: string};
+  ScheduleDetails: { scheduleId: string };
   AddSchedule: undefined;
   EditSchedule: { schedule: ScheduleResponse };
 
+  DocumentList: undefined;
   DocumentDetails: { documentId: string };
   AddDocument: undefined;
-
-  Register: undefined;
 };
 
 export type BottomTabParamList = {
   VehicleList: undefined;
   MaintenanceList: undefined;
-  PartList: undefined;
   ExpenseList: undefined;
-  DocumentList: undefined;
   ScheduleList: undefined;
+  MoreMenu: undefined;
 };
