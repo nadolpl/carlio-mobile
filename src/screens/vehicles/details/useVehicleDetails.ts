@@ -1,8 +1,8 @@
 import { useDeleteVehicle, useVehicle } from "api/hooks/vehicle";
-import { useConfirmationModal } from "hooks/useConfirmationModal";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/types";
+import { useConfirmationModal } from "contexts/ConfirmationModalContext";
 
 export const useVehicleDetails = () => {
   const navigation =
@@ -11,7 +11,7 @@ export const useVehicleDetails = () => {
 
   const { data: vehicle } = useVehicle(params.vehicleId);
   const { mutate: deleteVehicle } = useDeleteVehicle();
-  const { showConfirmation, props } = useConfirmationModal();
+  const { showConfirmation } = useConfirmationModal();
 
   const handleDeleteVehicle = () => {
     showConfirmation({
@@ -32,6 +32,5 @@ export const useVehicleDetails = () => {
     vehicle,
     handleDeleteVehicle,
     handleEditVehicle,
-    confirmationModalProps: props,
   };
 };

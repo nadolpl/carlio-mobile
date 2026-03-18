@@ -4,16 +4,16 @@ import {
   useSearchNotifications,
 } from "api/hooks/notification";
 import { NotificationResponse } from "models/response/NotificationResponse";
-import { useBottomMenuModal } from "hooks/useBottomMenuModal";
-import { useConfirmationModal } from "hooks/useConfirmationModal";
 import { ICONS } from "constants/icons";
+import { useConfirmationModal } from "contexts/ConfirmationModalContext";
+import { useActionSheet } from "contexts/ActionSheetContext";
 
 export const useNotificationList = () => {
   const query = useSearchNotifications();
   const { mutate: markAsRead } = useMarkNotificationAsRead();
   const { mutate: deleteNotification } = useDeleteNotification();
-  const { showMenu, props: bottomMenuProps } = useBottomMenuModal();
-  const { showConfirmation, props: confirmationModalProps } = useConfirmationModal();
+  const { showActionSheet } = useActionSheet();
+  const { showConfirmation } = useConfirmationModal();
 
   const handlePress = (notification: NotificationResponse) => {
     if (!notification.isRead) markAsRead(notification.id);
@@ -44,14 +44,12 @@ export const useNotificationList = () => {
       },
     });
 
-    showMenu(actions);
+    showActionSheet(actions);
   };
 
   return {
     query,
     handlePress,
     handleLongPress,
-    bottomMenuProps,
-    confirmationModalProps,
   };
 };

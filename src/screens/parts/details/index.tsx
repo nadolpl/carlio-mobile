@@ -11,7 +11,7 @@ import HeaderSection from "components/templates/DetailsScreenWrapper/components/
 import SectionCard from "components/templates/DetailsScreenWrapper/components/SectionCard";
 
 const PartDetailsScreen = () => {
-  const { part, handleDeletePart, handleEditPart, confirmationModalProps } = usePartDetails();
+  const { part, handleDeletePart, handleEditPart } = usePartDetails();
 
   useDetailsNavigation({
     onEdit: handleEditPart,
@@ -22,7 +22,7 @@ const PartDetailsScreen = () => {
   if (!part) return null;
 
   return (
-    <DetailsScreenWrapper confirmationModalProps={confirmationModalProps}>
+    <DetailsScreenWrapper>
       <HeaderSection title={part.name} subtitle={part?.manufacturer} />
 
       <SectionCard title="System Information">

@@ -4,21 +4,13 @@ import NotificationCard from "./components/NotificationCard";
 import { useNotificationList } from "screens/notifications/list/useNotificationList";
 
 const NotificationListScreen = () => {
-  const { query, handlePress, handleLongPress, bottomMenuProps, confirmationModalProps } =
-    useNotificationList();
+  const { query, handlePress, handleLongPress } = useNotificationList();
 
   const renderItem = ({ item }: { item: NotificationResponse }) => (
     <NotificationCard notification={item} onPress={handlePress} onLongPress={handleLongPress} />
   );
 
-  return (
-    <PageableList
-      renderItem={renderItem}
-      query={query}
-      bottomMenuProps={bottomMenuProps}
-      confirmationModalProps={confirmationModalProps}
-    />
-  );
+  return <PageableList renderItem={renderItem} query={query} />;
 };
 
 export default NotificationListScreen;

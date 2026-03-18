@@ -1,8 +1,8 @@
-import { useConfirmationModal } from "hooks/useConfirmationModal";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/types";
 import { useDeletePart, usePart } from "api/hooks/part";
+import { useConfirmationModal } from "contexts/ConfirmationModalContext";
 
 export const usePartDetails = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, "PartDetails">>();
@@ -10,7 +10,8 @@ export const usePartDetails = () => {
 
   const { data: part } = usePart(params.partId);
   const { mutate: deletePart } = useDeletePart();
-  const { showConfirmation, props } = useConfirmationModal();
+  const { showConfirmation } = useConfirmationModal();
+
   const handleDeletePart = () => {
     showConfirmation({
       title: "Delete Part",
@@ -29,6 +30,5 @@ export const usePartDetails = () => {
     part,
     handleDeletePart,
     handleEditPart,
-    confirmationModalProps: props,
   };
 };

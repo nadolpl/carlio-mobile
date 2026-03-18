@@ -1,4 +1,3 @@
-import { useConfirmationModal } from "hooks/useConfirmationModal";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/types";
@@ -8,8 +7,9 @@ import {
   useSchedule,
   useToggleActiveSchedule,
 } from "api/hooks/schedule";
-import { useBottomMenuModal } from "hooks/useBottomMenuModal";
 import { ICONS } from "constants/icons";
+import { useConfirmationModal } from "contexts/ConfirmationModalContext";
+import { useActionSheet } from "contexts/ActionSheetContext";
 
 export const useScheduleDetails = () => {
   const navigation =
@@ -19,8 +19,8 @@ export const useScheduleDetails = () => {
   const { mutate: deleteSchedule } = useDeleteSchedule();
   const { mutate: resetSchedule } = useResetSchedule();
   const { mutate: toggleActiveSchedule } = useToggleActiveSchedule();
-  const { showConfirmation, props: confirmationModalProps } = useConfirmationModal();
-  const { showMenu, props: moreMenuProps } = useBottomMenuModal();
+  const { showConfirmation } = useConfirmationModal();
+  const { showActionSheet } = useActionSheet();
 
   const handleDeleteSchedule = () => {
     showConfirmation({
@@ -57,8 +57,8 @@ export const useScheduleDetails = () => {
     });
   };
 
-  const handleOpenMoreMenu = () => {
-    showMenu([
+  const handleShowActionSheet = () => {
+    showActionSheet([
       {
         label: "Reset Schedule",
         icon: ICONS.RELOAD,
@@ -84,8 +84,6 @@ export const useScheduleDetails = () => {
     handleEditSchedule,
     handleResetSchedule,
     handleToggleActiveSchedule,
-    handleOpenMoreMenu,
-    moreMenuProps,
-    confirmationModalProps,
+    handleShowActionSheet,
   };
 };

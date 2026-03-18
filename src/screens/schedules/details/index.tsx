@@ -10,77 +10,65 @@ import { useDetailsNavigation } from "hooks/useDetailsNavigation";
 import { useScheduleDetails } from "screens/schedules/details/useScheduleDetails";
 import IconButton from "components/atoms/iconButton";
 import { ICONS } from "constants/icons";
-import { BottomMenuModal } from "components/molecules/moreMenuModal";
 
 const ScheduleDetailsScreen = () => {
-  const {
-    schedule,
-    handleEditSchedule,
-    confirmationModalProps,
-    handleOpenMoreMenu,
-    moreMenuProps,
-  } = useScheduleDetails();
+  const { schedule, handleEditSchedule, handleShowActionSheet } = useScheduleDetails();
 
   useDetailsNavigation({
     onEdit: handleEditSchedule,
-    extraActions: <IconButton onPress={handleOpenMoreMenu} icon={ICONS.MORE_VERTICAL} />,
+    extraActions: <IconButton onPress={handleShowActionSheet} icon={ICONS.MORE_VERTICAL} />,
   });
 
   if (!schedule) return null;
 
   return (
-    <>
-      <DetailsScreenWrapper confirmationModalProps={confirmationModalProps}>
-        <ScheduleCard schedule={schedule} />
+    <DetailsScreenWrapper>
+      <ScheduleCard schedule={schedule} />
 
-        <SectionCard title="Intervals">
-          <DetailRow
-            isFirst
-            label="Distance interval"
-            value={
-              schedule.intervalKilometers
-                ? `Every ${formatMileage(schedule.intervalKilometers)}`
-                : "None"
-            }
-          />
-          <DetailRow
-            isLast
-            label="Time interval"
-            value={schedule.intervalDays ? `Every ${schedule.intervalDays} days` : "None"}
-          />
-        </SectionCard>
+      <SectionCard title="Intervals">
+        <DetailRow
+          isFirst
+          label="Distance interval"
+          value={
+            schedule.intervalKilometers
+              ? `Every ${formatMileage(schedule.intervalKilometers)}`
+              : "None"
+          }
+        />
+        <DetailRow
+          isLast
+          label="Time interval"
+          value={schedule.intervalDays ? `Every ${schedule.intervalDays} days` : "None"}
+        />
+      </SectionCard>
 
-        <SectionCard title="History and future schedule">
-          <DetailRow
-            isFirst
-            label="Last performed date"
-            value={
-              schedule.lastPerformedDate ? formatDateArray(schedule.lastPerformedDate) : "No data"
-            }
-          />
-          <DetailRow
-            label="Last performed mileage"
-            value={
-              schedule.lastPerformedMileage
-                ? formatMileage(schedule.lastPerformedMileage)
-                : "No data"
-            }
-          />
-          <DetailRow
-            label="Next due date"
-            value={schedule.nextDueDate ? formatDateArray(schedule.nextDueDate) : "No data"}
-            valueStyle={schedule.isOverdue ? styles.textError : undefined}
-          />
-          <DetailRow
-            isLast
-            label="Next due mileage"
-            value={schedule.nextDueMileage ? formatMileage(schedule.nextDueMileage) : "No data"}
-            valueStyle={schedule.isOverdue ? styles.textError : undefined}
-          />
-        </SectionCard>
-      </DetailsScreenWrapper>
-      <BottomMenuModal {...moreMenuProps} />
-    </>
+      <SectionCard title="History and future schedule">
+        <DetailRow
+          isFirst
+          label="Last performed date"
+          value={
+            schedule.lastPerformedDate ? formatDateArray(schedule.lastPerformedDate) : "No data"
+          }
+        />
+        <DetailRow
+          label="Last performed mileage"
+          value={
+            schedule.lastPerformedMileage ? formatMileage(schedule.lastPerformedMileage) : "No data"
+          }
+        />
+        <DetailRow
+          label="Next due date"
+          value={schedule.nextDueDate ? formatDateArray(schedule.nextDueDate) : "No data"}
+          valueStyle={schedule.isOverdue ? styles.textError : undefined}
+        />
+        <DetailRow
+          isLast
+          label="Next due mileage"
+          value={schedule.nextDueMileage ? formatMileage(schedule.nextDueMileage) : "No data"}
+          valueStyle={schedule.isOverdue ? styles.textError : undefined}
+        />
+      </SectionCard>
+    </DetailsScreenWrapper>
   );
 };
 

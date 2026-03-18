@@ -3,8 +3,6 @@ import Loader from "components/atoms/loader";
 import { Pageable } from "models/Pageable";
 import { InfiniteData } from "@tanstack/react-query";
 import { useMemo } from "react";
-import { BottomMenuModal, BottomMenuModalProps } from "components/molecules/bottomMenuModal";
-import ConfirmationModal, { ConfirmationModalProps } from "components/molecules/confirmationModal";
 
 interface InfiniteQueryState<T> {
   data?: InfiniteData<Pageable<T>>;
@@ -19,16 +17,9 @@ interface InfiniteQueryState<T> {
 interface PageableListProps<T> {
   renderItem: FlatListProps<T>["renderItem"];
   query: InfiniteQueryState<T>;
-  bottomMenuProps?: BottomMenuModalProps;
-  confirmationModalProps?: ConfirmationModalProps;
 }
 
-const PageableList = <T extends { id: string }>({
-  renderItem,
-  query,
-  bottomMenuProps,
-  confirmationModalProps,
-}: PageableListProps<T>) => {
+const PageableList = <T extends { id: string }>({ renderItem, query }: PageableListProps<T>) => {
   const { fetchNextPage, hasNextPage, isFetchingNextPage, refetch, isRefetching, data, isLoading } =
     query;
 
@@ -42,25 +33,21 @@ const PageableList = <T extends { id: string }>({
     );
 
   return (
-    <>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.listContent}
-        data={content}
-        keyExtractor={(item) => item.id}
-        renderItem={renderItem}
-        onEndReached={() => {
-          if (hasNextPage && !isFetchingNextPage) {
-            fetchNextPage();
-          }
-        }}
-        onEndReachedThreshold={0.5}
-        ListFooterComponent={renderListFooter}
-        refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} />}
-      />
-      {bottomMenuProps && <BottomMenuModal {...bottomMenuProps} />}
-      {confirmationModalProps && <ConfirmationModal {...confirmationModalProps} />}
-    </>
+    <FlatList
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={styles.listContent}
+      data={content}
+      keyExtractor={(item) => item.id}
+      renderItem={renderItem}
+      onEndReached={() => {
+        if (hasNextPage && !isFetchingNextPage) {
+          fetchNextPage();
+        }
+      }}
+      onEndReachedThreshold={0.5}
+      ListFooterComponent={renderListFooter}
+      refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} />}
+    />
   );
 };
 

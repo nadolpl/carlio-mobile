@@ -11,8 +11,7 @@ import { formatMileage, formatPrice } from "utils/number";
 import AttachmentsSection from "components/organisms/attachmentsSection";
 
 const ExpenseDetailsScreen = () => {
-  const { expense, handleEditExpense, handleDeleteExpense, confirmationModalProps } =
-    useExpenseDetails();
+  const { expense, handleEditExpense, handleDeleteExpense } = useExpenseDetails();
 
   useDetailsNavigation({
     onEdit: handleEditExpense,
@@ -25,7 +24,7 @@ const ExpenseDetailsScreen = () => {
   const displayTitle = expense.description ? expense.description : fallbackTitle;
 
   return (
-    <DetailsScreenWrapper confirmationModalProps={confirmationModalProps}>
+    <DetailsScreenWrapper>
       <HeaderSection title={displayTitle} subtitle={formatDateArray(expense.performedDate)} />
 
       <SectionCard title="General Info">

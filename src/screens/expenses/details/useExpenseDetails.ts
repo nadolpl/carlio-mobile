@@ -1,8 +1,8 @@
-import { useConfirmationModal } from "hooks/useConfirmationModal";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/types";
 import { useDeleteExpense, useExpense } from "api/hooks/expense";
+import { useConfirmationModal } from "contexts/ConfirmationModalContext";
 
 export const useExpenseDetails = () => {
   const navigation =
@@ -11,7 +11,7 @@ export const useExpenseDetails = () => {
 
   const { data: expense } = useExpense(params.expenseId);
   const { mutate: deleteExpense } = useDeleteExpense();
-  const { showConfirmation, props } = useConfirmationModal();
+  const { showConfirmation } = useConfirmationModal();
 
   const handleDeleteExpense = () => {
     showConfirmation({
@@ -31,6 +31,5 @@ export const useExpenseDetails = () => {
     expense,
     handleDeleteExpense,
     handleEditExpense,
-    confirmationModalProps: props,
   };
 };

@@ -10,8 +10,7 @@ import HeaderSection from "components/templates/DetailsScreenWrapper/components/
 import SectionCard from "components/templates/DetailsScreenWrapper/components/SectionCard";
 
 const VehicleDetailsScreen = () => {
-  const { vehicle, handleEditVehicle, handleDeleteVehicle, confirmationModalProps } =
-    useVehicleDetails();
+  const { vehicle, handleEditVehicle, handleDeleteVehicle } = useVehicleDetails();
 
   useDetailsNavigation({
     onEdit: handleEditVehicle,
@@ -21,7 +20,7 @@ const VehicleDetailsScreen = () => {
   if (!vehicle) return null;
 
   return (
-    <DetailsScreenWrapper confirmationModalProps={confirmationModalProps}>
+    <DetailsScreenWrapper>
       <VehiclePhoto vehicle={vehicle} />
 
       <HeaderSection title={vehicle.name} subtitle={`${vehicle.brand} ${vehicle.model}`} />

@@ -13,7 +13,7 @@ import { useDownloadDocument } from "api/hooks/document";
 import { StyleSheet } from "react-native";
 
 const DocumentDetailsScreen = () => {
-  const { document, handleDeleteDocument, confirmationModalProps } = useDocumentDetails();
+  const { document, handleDeleteDocument} = useDocumentDetails();
   const { mutate: download, isPending } = useDownloadDocument();
 
   useDetailsNavigation({
@@ -27,7 +27,7 @@ const DocumentDetailsScreen = () => {
   };
 
   return (
-    <DetailsScreenWrapper confirmationModalProps={confirmationModalProps}>
+    <DetailsScreenWrapper>
       <HeaderSection
         title={document.fileName}
         subtitle={getEnumValueByKey(DocumentType, document.type)}

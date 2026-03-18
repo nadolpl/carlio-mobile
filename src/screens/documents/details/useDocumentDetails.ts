@@ -2,7 +2,7 @@ import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/types";
 import { useDeleteDocument, useDocument } from "api/hooks/document";
-import { useConfirmationModal } from "hooks/useConfirmationModal";
+import { useConfirmationModal } from "contexts/ConfirmationModalContext";
 
 export const useDocumentDetails = () => {
   const navigation =
@@ -11,7 +11,7 @@ export const useDocumentDetails = () => {
 
   const { data: document } = useDocument(params.documentId);
   const { mutate: deleteDocument } = useDeleteDocument();
-  const { showConfirmation, props } = useConfirmationModal();
+  const { showConfirmation } = useConfirmationModal();
 
   const handleDeleteDocument = () => {
     showConfirmation({
@@ -28,6 +28,5 @@ export const useDocumentDetails = () => {
   return {
     document,
     handleDeleteDocument,
-    confirmationModalProps: props,
   };
 };

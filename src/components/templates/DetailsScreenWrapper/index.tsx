@@ -1,16 +1,13 @@
 import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import { colors } from "constants/colors";
-import ConfirmationModal from "components/molecules/confirmationModal";
 import { PropsWithChildren } from "react";
 
 interface DetailsScreenWrapperProps {
-  confirmationModalProps?: any;
   contentContainerStyle?: ViewStyle;
 }
 
 export const DetailsScreenWrapper = ({
   children,
-  confirmationModalProps,
   contentContainerStyle,
 }: DetailsScreenWrapperProps & PropsWithChildren) => {
   return (
@@ -21,7 +18,6 @@ export const DetailsScreenWrapper = ({
       >
         {children}
       </ScrollView>
-      {confirmationModalProps && <ConfirmationModal {...confirmationModalProps} />}
     </View>
   );
 };

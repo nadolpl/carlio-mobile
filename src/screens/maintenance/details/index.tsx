@@ -21,8 +21,7 @@ import { ICONS } from "constants/icons";
 
 const MaintenanceDetailsScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const { maintenance, handleEditMaintenance, handleDeleteMaintenance, confirmationModalProps } =
-    useMaintenanceDetails();
+  const { maintenance, handleEditMaintenance, handleDeleteMaintenance } = useMaintenanceDetails();
 
   useDetailsNavigation({
     onEdit: handleEditMaintenance,
@@ -36,7 +35,7 @@ const MaintenanceDetailsScreen = () => {
   if (!maintenance) return null;
 
   return (
-    <DetailsScreenWrapper confirmationModalProps={confirmationModalProps}>
+    <DetailsScreenWrapper>
       <HeaderSection
         title={maintenance.title}
         subtitle={formatDateArray(maintenance.performedDate)}

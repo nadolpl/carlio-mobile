@@ -1,17 +1,17 @@
-import { useBottomMenuModal } from "hooks/useBottomMenuModal";
 import { useLogout } from "hooks/useLogout";
 import { ICONS } from "constants/icons";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/types";
+import { useActionSheet } from "contexts/ActionSheetContext";
 
-export const useMoreTabsMenu = () => {
-  const { showMenu, props: moreMenuProps } = useBottomMenuModal();
-  const { handleLogout, confirmationModalProps } = useLogout();
+export const useMoreMenu = () => {
+  const { showActionSheet } = useActionSheet();
+  const { handleLogout } = useLogout();
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
-  const handleOpenMoreMenu = () => {
-    showMenu([
+  const openMoreMenu = () => {
+    showActionSheet([
       {
         label: "Documents",
         onPress: () => navigation.navigate("DocumentList"),
@@ -32,8 +32,6 @@ export const useMoreTabsMenu = () => {
   };
 
   return {
-    handleOpenMoreMenu,
-    moreMenuProps,
-    confirmationModalProps,
+    openMoreMenu,
   };
 };

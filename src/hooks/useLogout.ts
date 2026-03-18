@@ -1,8 +1,8 @@
-import { useConfirmationModal } from "hooks/useConfirmationModal";
 import { useAuth } from "contexts/AuthContext";
+import { useConfirmationModal } from "contexts/ConfirmationModalContext";
 
 export const useLogout = () => {
-  const { showConfirmation, props } = useConfirmationModal();
+  const { showConfirmation } = useConfirmationModal();
   const { logout } = useAuth();
 
   const handleLogout = () => {
@@ -17,6 +17,5 @@ export const useLogout = () => {
 
   return {
     handleLogout,
-    confirmationModalProps: props,
   };
 };

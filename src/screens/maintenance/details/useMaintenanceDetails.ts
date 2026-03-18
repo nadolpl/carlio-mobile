@@ -1,8 +1,8 @@
-import { useConfirmationModal } from "hooks/useConfirmationModal";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/types";
 import { useDeleteMaintenance, useMaintenance } from "api/hooks/maintenance";
+import { useConfirmationModal } from "contexts/ConfirmationModalContext";
 
 export const useMaintenanceDetails = () => {
   const navigation =
@@ -11,7 +11,7 @@ export const useMaintenanceDetails = () => {
 
   const { data: maintenance } = useMaintenance(params.maintenanceId);
   const { mutate: deleteMaintenance } = useDeleteMaintenance();
-  const { showConfirmation, props } = useConfirmationModal();
+  const { showConfirmation} = useConfirmationModal();
 
   const handleDeleteMaintenance = () => {
     showConfirmation({
@@ -32,6 +32,5 @@ export const useMaintenanceDetails = () => {
     maintenance,
     handleDeleteMaintenance,
     handleEditMaintenance,
-    confirmationModalProps: props,
   };
 };
