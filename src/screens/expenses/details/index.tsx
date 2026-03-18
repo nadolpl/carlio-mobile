@@ -1,5 +1,4 @@
 import { useExpenseDetails } from "screens/expenses/details/useExpenseDetails";
-import { useDetailsNavigation } from "hooks/useDetailsNavigation";
 import { DetailsScreenWrapper } from "components/templates/DetailsScreenWrapper";
 import HeaderSection from "components/templates/DetailsScreenWrapper/components/HeaderSection";
 import { formatDateArray } from "utils/date";
@@ -11,12 +10,7 @@ import { formatMileage, formatPrice } from "utils/number";
 import AttachmentsSection from "components/organisms/attachmentsSection";
 
 const ExpenseDetailsScreen = () => {
-  const { expense, handleEditExpense, handleDeleteExpense } = useExpenseDetails();
-
-  useDetailsNavigation({
-    onEdit: handleEditExpense,
-    onDelete: handleDeleteExpense,
-  });
+  const { expense } = useExpenseDetails();
 
   if (!expense) return null;
 

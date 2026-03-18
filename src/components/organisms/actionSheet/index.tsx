@@ -3,6 +3,7 @@ import { colors } from "constants/colors";
 import { BottomSheet } from "components/molecules/bottomSheet";
 import Text from "components/atoms/text";
 import Icon, { IoniconsName } from "components/atoms/icon";
+import { commonStyles } from "utils/styles";
 
 export interface MenuAction {
   label: string;
@@ -11,13 +12,13 @@ export interface MenuAction {
   isDestructive?: boolean;
 }
 
-export interface ActionSheetProps {
+interface ActionSheetProps {
   visible: boolean;
   onClose: () => void;
   actions: MenuAction[];
 }
 
-export const ActionSheet = ({ visible, onClose, actions }: ActionSheetProps) => {
+const ActionSheet = ({ visible, onClose, actions }: ActionSheetProps) => {
   return (
     <BottomSheet visible={visible} onClose={onClose}>
       <View style={styles.actionsContainer}>
@@ -27,7 +28,11 @@ export const ActionSheet = ({ visible, onClose, actions }: ActionSheetProps) => 
           return (
             <Pressable
               key={action.label}
-              style={[styles.actionButton, !isLast && styles.actionButtonBorder]}
+              style={({ pressed }) => [
+                styles.actionButton,
+                !isLast && styles.actionButtonBorder,
+                pressed && commonStyles.pressed,
+              ]}
               onPress={() => {
                 onClose();
                 action.onPress();
@@ -69,3 +74,5 @@ const styles = StyleSheet.create({
     color: colors.error,
   },
 });
+
+export default ActionSheet;

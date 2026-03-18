@@ -5,6 +5,7 @@ import { ICONS } from "constants/icons";
 import { colors, withAlpha } from "constants/colors";
 import { NotificationResponse } from "models/response/NotificationResponse";
 import { formatDateArray } from "utils/date";
+import { commonStyles } from "utils/styles";
 
 interface NotificationCardProps {
   notification: NotificationResponse;
@@ -17,7 +18,11 @@ const NotificationCard = ({ notification, onPress, onLongPress }: NotificationCa
 
   return (
     <Pressable
-      style={[styles.container, !isRead && styles.unreadContainer]}
+      style={({ pressed }) => [
+        styles.container,
+        !isRead && styles.unreadContainer,
+        pressed && commonStyles.pressed,
+      ]}
       onPress={() => onPress(notification)}
       onLongPress={() => onLongPress(notification)}
     >
@@ -48,6 +53,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 16,
     backgroundColor: colors.background800,
+    borderRadius: 16,
   },
   unreadContainer: {
     backgroundColor: withAlpha(colors.primary, 0.1),

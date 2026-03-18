@@ -1,7 +1,6 @@
 import { StyleSheet } from "react-native";
 import { usePartDetails } from "screens/parts/details/usePartDetails";
 import { DetailsScreenWrapper } from "components/templates/DetailsScreenWrapper";
-import { useDetailsNavigation } from "hooks/useDetailsNavigation";
 import Text from "components/atoms/text";
 import DetailRow from "components/molecules/detailRow";
 import { getEnumValueByKey } from "utils/enum";
@@ -11,13 +10,7 @@ import HeaderSection from "components/templates/DetailsScreenWrapper/components/
 import SectionCard from "components/templates/DetailsScreenWrapper/components/SectionCard";
 
 const PartDetailsScreen = () => {
-  const { part, handleDeletePart, handleEditPart } = usePartDetails();
-
-  useDetailsNavigation({
-    onEdit: handleEditPart,
-    onDelete: handleDeletePart,
-    showActions: part?.source === "USER",
-  });
+  const { part } = usePartDetails();
 
   if (!part) return null;
 

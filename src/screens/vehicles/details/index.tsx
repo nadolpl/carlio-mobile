@@ -1,6 +1,5 @@
 import { useVehicleDetails } from "screens/vehicles/details/useVehicleDetails";
 import { DetailsScreenWrapper } from "components/templates/DetailsScreenWrapper";
-import { useDetailsNavigation } from "hooks/useDetailsNavigation";
 import DetailRow from "components/molecules/detailRow";
 import VehiclePhoto from "screens/vehicles/details/components/VehiclePhoto";
 import { getEnumValueByKey } from "utils/enum";
@@ -10,12 +9,7 @@ import HeaderSection from "components/templates/DetailsScreenWrapper/components/
 import SectionCard from "components/templates/DetailsScreenWrapper/components/SectionCard";
 
 const VehicleDetailsScreen = () => {
-  const { vehicle, handleEditVehicle, handleDeleteVehicle } = useVehicleDetails();
-
-  useDetailsNavigation({
-    onEdit: handleEditVehicle,
-    onDelete: handleDeleteVehicle,
-  });
+  const { vehicle } = useVehicleDetails();
 
   if (!vehicle) return null;
 

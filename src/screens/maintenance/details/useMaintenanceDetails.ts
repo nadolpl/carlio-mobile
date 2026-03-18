@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/types";
 import { useDeleteMaintenance, useMaintenance } from "api/hooks/maintenance";
 import { useConfirmationModal } from "contexts/ConfirmationModalContext";
+import { useDetailsNavigation } from "hooks/useDetailsNavigation";
 
 export const useMaintenanceDetails = () => {
   const navigation =
@@ -11,7 +12,7 @@ export const useMaintenanceDetails = () => {
 
   const { data: maintenance } = useMaintenance(params.maintenanceId);
   const { mutate: deleteMaintenance } = useDeleteMaintenance();
-  const { showConfirmation} = useConfirmationModal();
+  const { showConfirmation } = useConfirmationModal();
 
   const handleDeleteMaintenance = () => {
     showConfirmation({
@@ -28,9 +29,17 @@ export const useMaintenanceDetails = () => {
   const handleEditMaintenance = () =>
     maintenance && navigation.navigate("EditMaintenance", { maintenance });
 
+  const handlePressPart = (partId: string) => {
+    navigation.navigate("PartDetails", { partId });
+  };
+
+  useDetailsNavigation({
+    onEdit: handleEditMaintenance,
+    onDelete: handleDeleteMaintenance,
+  });
+
   return {
     maintenance,
-    handleDeleteMaintenance,
-    handleEditMaintenance,
+    handlePressPart,
   };
 };

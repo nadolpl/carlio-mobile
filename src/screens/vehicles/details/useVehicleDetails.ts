@@ -3,6 +3,7 @@ import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/types";
 import { useConfirmationModal } from "contexts/ConfirmationModalContext";
+import { useDetailsNavigation } from "hooks/useDetailsNavigation";
 
 export const useVehicleDetails = () => {
   const navigation =
@@ -28,9 +29,12 @@ export const useVehicleDetails = () => {
   const handleEditVehicle = () =>
     vehicle && navigation.navigate("EditVehicle", { vehicle: vehicle });
 
+  useDetailsNavigation({
+    onEdit: handleEditVehicle,
+    onDelete: handleDeleteVehicle,
+  });
+
   return {
     vehicle,
-    handleDeleteVehicle,
-    handleEditVehicle,
   };
 };

@@ -28,7 +28,7 @@ const AttachmentsSection = ({ sourceId, vehicleId }: AttachmentsSectionProps) =>
   };
 
   return (
-    <>
+    <View style={styles.container}>
       {attachments.length > 0 && (
         <>
           <Text style={styles.sectionTitle}>Attachments</Text>
@@ -49,12 +49,15 @@ const AttachmentsSection = ({ sourceId, vehicleId }: AttachmentsSectionProps) =>
         vehicleId={vehicleId}
         sourceId={sourceId}
       />
-      <Button onPress={open} title="Add attachment" variant="outlined" style={{ marginTop: 20 }} />
-    </>
+      <Button onPress={open} title="Add attachment" variant="outlined" style={{ marginTop: 12 }} />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: 16,
+  },
   attachments: {
     gap: 10,
   },

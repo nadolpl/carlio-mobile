@@ -13,12 +13,8 @@ import { useDownloadDocument } from "api/hooks/document";
 import { StyleSheet } from "react-native";
 
 const DocumentDetailsScreen = () => {
-  const { document, handleDeleteDocument} = useDocumentDetails();
+  const { document} = useDocumentDetails();
   const { mutate: download, isPending } = useDownloadDocument();
-
-  useDetailsNavigation({
-    onDelete: handleDeleteDocument,
-  });
 
   if (!document) return null;
 

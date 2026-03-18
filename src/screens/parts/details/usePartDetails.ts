@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/types";
 import { useDeletePart, usePart } from "api/hooks/part";
 import { useConfirmationModal } from "contexts/ConfirmationModalContext";
+import { useDetailsNavigation } from "hooks/useDetailsNavigation";
 
 export const usePartDetails = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, "PartDetails">>();
@@ -25,6 +26,12 @@ export const usePartDetails = () => {
   };
 
   const handleEditPart = () => part && navigation.navigate("EditPart", { part });
+
+  useDetailsNavigation({
+    onEdit: handleEditPart,
+    onDelete: handleDeletePart,
+    showActions: part?.source === "USER",
+  });
 
   return {
     part,

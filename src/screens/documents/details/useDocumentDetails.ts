@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "navigation/types";
 import { useDeleteDocument, useDocument } from "api/hooks/document";
 import { useConfirmationModal } from "contexts/ConfirmationModalContext";
+import { useDetailsNavigation } from "hooks/useDetailsNavigation";
 
 export const useDocumentDetails = () => {
   const navigation =
@@ -25,8 +26,11 @@ export const useDocumentDetails = () => {
     });
   };
 
+  useDetailsNavigation({
+    onDelete: handleDeleteDocument,
+  });
+
   return {
     document,
-    handleDeleteDocument,
   };
 };

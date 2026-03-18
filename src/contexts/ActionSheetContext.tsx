@@ -6,7 +6,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { ActionSheet, MenuAction } from "components/organisms/actionSheet";
+import ActionSheet, { MenuAction } from "components/organisms/actionSheet";
 import { useModal } from "hooks/useModal";
 
 interface ActionSheetContextType {
