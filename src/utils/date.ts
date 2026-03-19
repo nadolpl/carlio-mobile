@@ -16,3 +16,9 @@ export const formatDateArrayToISO = (dateArray: number[]) => {
   const [year, month, day] = dateArray;
   return dayjs(`${year}-${month}-${day}`).format("YYYY-MM-DDTHH:mm");
 };
+
+export const formatDateArrayToDate = (dateArray: number[] | null | undefined) => {
+  if (!dateArray || dateArray.length < 3) return null;
+  const [year, month, day, hours = 0, minutes = 0, seconds = 0] = dateArray;
+  return new Date(year, month - 1, day, hours, minutes, seconds);
+};

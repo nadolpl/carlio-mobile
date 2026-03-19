@@ -26,6 +26,7 @@ import ScheduleAddScreen from "screens/schedules/add";
 import DocumentListScreen from "screens/documents/list";
 import PartListScreen from "screens/parts/list";
 import NotificationListScreen from "screens/notifications/list";
+import { linking } from "navigation/linking";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -33,7 +34,7 @@ const Navigator = () => {
   const { isAuthenticated } = useAuth();
 
   return (
-    <NavigationContainer theme={AppTheme}>
+    <NavigationContainer theme={AppTheme} linking={linking}>
       <Stack.Navigator>
         {isAuthenticated ? (
           <>
