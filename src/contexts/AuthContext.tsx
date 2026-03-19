@@ -2,6 +2,7 @@ import { createContext, PropsWithChildren, useContext, useEffect, useState } fro
 import * as authStorage from "api/services/authStorage";
 import { initApiClient } from "api/config/client";
 import { AuthResponse } from "models/response/AuthResponse";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 
 interface AuthContext {
   isAuthenticated: boolean;
@@ -17,6 +18,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const logout = async () => {
+    if (GoogleSignin.hasPreviousSignIn()) await GoogleSignin.signOut();
     await authStorage.clearAuthTokens();
     setIsAuthenticated(false);
   };
@@ -39,7 +41,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       }
     };
 
-    checkAuth();
+    void checkAuth();
   }, []);
 
   return (

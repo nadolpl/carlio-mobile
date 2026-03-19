@@ -11,8 +11,8 @@ import { useState } from "react";
 import { useAuth } from "contexts/AuthContext";
 
 GoogleSignin.configure({
-  iosClientId: "676694630282-s9t776ju2da4l9bp9352srdhh2b9tb34.apps.googleusercontent.com",
-  webClientId: "676694630282-ong3qltr8blo3d91quvpi5555fr1tc8m.apps.googleusercontent.com",
+  iosClientId: process.env.EXPO_PUBLIC_IOS_GOOGLE_CLIENT_ID,
+  webClientId: process.env.EXPO_PUBLIC_WEB_GOOGLE_CLIENT_ID,
   scopes: ["profile", "email"],
 });
 
