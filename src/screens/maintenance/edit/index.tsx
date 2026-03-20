@@ -23,6 +23,7 @@ const EditMaintenanceScreen = () => {
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { isValid, isDirty, dirtyFields },
   } = useForm<MaintenanceFormInput, any, MaintenanceFormOutput>({
     resolver: zodResolver(maintenanceSchema),
@@ -35,14 +36,15 @@ const EditMaintenanceScreen = () => {
   });
 
   const onSubmit = (req: MaintenanceFormOutput) => {
-    const payload = getChangedData(dirtyFields, req) as Partial<MaintenanceRequest>;
-    update(payload, {
+    update(getChangedData(dirtyFields, req) as Partial<MaintenanceRequest>, {
       onSuccess: () => navigation.goBack(),
     });
   };
 
   return (
     <MaintenanceForm
+      disableAutoFillMileage
+      setValue={setValue}
       control={control}
       handleSubmit={handleSubmit(onSubmit)}
       submitLabel="Save Changes"

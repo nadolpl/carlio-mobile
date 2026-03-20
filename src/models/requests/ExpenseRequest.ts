@@ -7,4 +7,5 @@ export interface ExpenseRequest {
   performedDate: string;
   mileage: number;
   description: string | null;
+  scheduleId: string | null;
 }

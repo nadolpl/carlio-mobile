@@ -19,6 +19,7 @@ const EditExpenseScreen = () => {
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { isValid, isDirty, dirtyFields },
   } = useForm<ExpenseFormInput, any, ExpenseFormOutput>({
     resolver: zodResolver(expenseSchema),
@@ -37,6 +38,8 @@ const EditExpenseScreen = () => {
 
   return (
     <ExpenseForm
+      disableAutoFillMileage
+      setValue={setValue}
       control={control}
       handleSubmit={handleSubmit(onSubmit)}
       submitLabel="Save Changes"

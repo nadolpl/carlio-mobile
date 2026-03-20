@@ -28,6 +28,7 @@ export const maintenanceSchema = z.object({
     z.string().max(1000, "Description cannot be longer than 1000 characters").nullable(),
   ),
   parts: maintenancePartSchema.array(),
+  scheduleId: strOrNull.pipe(z.uuid().nullable()),
 });
 
 export type MaintenanceFormInput = z.input<typeof maintenanceSchema>;

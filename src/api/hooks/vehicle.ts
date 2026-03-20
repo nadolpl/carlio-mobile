@@ -1,6 +1,6 @@
 import { VehicleSearchParams } from "models/response/VehicleListedResponse";
 import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { VEHICLE_KEYS } from "api/hooks/keys";
+import { EXPENSE_KEYS, MAINTENANCE_KEYS, SCHEDULE_KEYS, VEHICLE_KEYS } from "api/hooks/keys";
 import {
   requestCreateVehicle,
   requestDeleteVehicle,
@@ -52,7 +52,13 @@ export const useDeleteVehicle = () => {
 
   return useMutation({
     mutationFn: (id: string) => requestDeleteVehicle(id),
-    onSuccess: () => query.invalidateQueries({ queryKey: VEHICLE_KEYS.all }),
+    onSuccess: () =>
+      Promise.all([
+        query.invalidateQueries({ queryKey: VEHICLE_KEYS.search() }),
+        query.invalidateQueries({ queryKey: SCHEDULE_KEYS.search() }),
+        query.invalidateQueries({ queryKey: EXPENSE_KEYS.search() }),
+        query.invalidateQueries({ queryKey: MAINTENANCE_KEYS.search() }),
+      ]),
   });
 };
 
@@ -61,6 +67,10 @@ export const useUpdateVehicle = (id: string) => {
 
   return useMutation({
     mutationFn: (req: Partial<VehicleRequest>) => requestUpdateVehicle(id, req),
-    onSuccess: () => query.invalidateQueries({ queryKey: VEHICLE_KEYS.all }),
+    onSuccess: () =>
+      Promise.all([
+        query.invalidateQueries({ queryKey: VEHICLE_KEYS.all }),
+        query.invalidateQueries({ queryKey: SCHEDULE_KEYS.all, refetchType: "all" }),
+      ]),
   });
 };

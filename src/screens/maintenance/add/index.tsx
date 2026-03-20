@@ -14,11 +14,12 @@ import { RootStackParamList } from "navigation/types";
 
 const AddMaintenanceScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const { mutate: create, isPending: isCreating } = useCreateMaintenance();
+  const { mutate: create, isPending } = useCreateMaintenance();
 
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { isValid, isDirty },
   } = useForm<MaintenanceFormInput, any, MaintenanceFormOutput>({
     resolver: zodResolver(maintenanceSchema),
@@ -36,10 +37,12 @@ const AddMaintenanceScreen = () => {
 
   return (
     <MaintenanceForm
+      setValue={setValue}
       control={control}
       handleSubmit={handleSubmit(onSubmit)}
       submitDisabled={!isValid || !isDirty}
-      loading={isCreating}
+      loading={isPending}
+      showScheduleResetSelect
     />
   );
 };

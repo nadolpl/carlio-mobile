@@ -28,7 +28,7 @@ export const scheduleSchema = z
     lastPerformedMileage: numOrNull.pipe(
       z
         .number({ error: "Mileage must be a number" })
-        .min(1, "Mileage must be a positive number")
+        .min(0, "Mileage must be a non-negative number")
         .max(9_999_999, "Mileage is too large")
         .nullable(),
     ),

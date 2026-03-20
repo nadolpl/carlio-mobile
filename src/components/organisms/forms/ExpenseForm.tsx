@@ -2,13 +2,15 @@ import { View } from "react-native";
 import FormInput from "components/atoms/formInput";
 import FormSelect from "components/atoms/formSelect";
 import { mapEnumToOptions } from "utils/enum";
-import { Control } from "react-hook-form";
+import { Control, UseFormSetValue } from "react-hook-form";
 import { ExpenseFormInput } from "validation/expenseSchema";
 import FormScreen from "components/organisms/formScreen";
 import { commonStyles } from "utils/styles";
 import { ExpenseType } from "models/enums/ExpenseType";
 import FormSelectVehicle from "components/molecules/formSelectVehicle";
 import FormDate from "components/atoms/formDate";
+import { useAutoFillVehicleMileage } from "hooks/useAutoFillVehicleMileage";
+import ScheduleResetSelect from "components/molecules/scheduleResetSelect";
 
 interface ExpenseFormProps {
   control: Control<ExpenseFormInput>;
@@ -16,6 +18,9 @@ interface ExpenseFormProps {
   submitLabel?: string;
   submitDisabled?: boolean;
   loading?: boolean;
+  setValue: UseFormSetValue<ExpenseFormInput>;
+  showScheduleResetSelect?: boolean;
+  disableAutoFillMileage?: boolean;
 }
 
 const ExpenseForm = ({
@@ -24,7 +29,12 @@ const ExpenseForm = ({
   submitLabel,
   submitDisabled,
   loading,
+  setValue,
+  showScheduleResetSelect,
+  disableAutoFillMileage,
 }: ExpenseFormProps) => {
+  useAutoFillVehicleMileage(control, setValue, disableAutoFillMileage);
+
   return (
     <FormScreen
       handleSubmit={handleSubmit}
@@ -68,6 +78,8 @@ const ExpenseForm = ({
       </View>
 
       <FormInput name="description" label="Description" control={control} />
+
+      {showScheduleResetSelect && <ScheduleResetSelect control={control} />}
     </FormScreen>
   );
 };

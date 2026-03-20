@@ -1,8 +1,8 @@
 import { View } from "react-native";
+import { Control, UseFormSetValue } from "react-hook-form";
 import FormInput from "components/atoms/formInput";
 import FormSelect from "components/atoms/formSelect";
 import { mapEnumToOptions } from "utils/enum";
-import { Control } from "react-hook-form";
 import { MaintenanceFormInput } from "validation/maintenanceSchema";
 import FormScreen from "components/organisms/formScreen";
 import { commonStyles } from "utils/styles";
@@ -10,6 +10,8 @@ import { MaintenanceType } from "models/enums/MaintenanceType";
 import FormSelectVehicle from "components/molecules/formSelectVehicle";
 import FormDate from "components/atoms/formDate";
 import MaintenancePartForm from "components/organisms/forms/MaintenancePartForm";
+import { useAutoFillVehicleMileage } from "hooks/useAutoFillVehicleMileage";
+import ScheduleResetSelect from "components/molecules/scheduleResetSelect";
 
 interface MaintenanceFormProps {
   control: Control<MaintenanceFormInput>;
@@ -17,15 +19,23 @@ interface MaintenanceFormProps {
   submitLabel?: string;
   submitDisabled?: boolean;
   loading?: boolean;
+  setValue: UseFormSetValue<MaintenanceFormInput>;
+  showScheduleResetSelect?: boolean;
+  disableAutoFillMileage?: boolean;
 }
 
 const MaintenanceForm = ({
   control,
+  setValue,
   handleSubmit,
   submitLabel,
   submitDisabled,
   loading,
+  showScheduleResetSelect,
+  disableAutoFillMileage,
 }: MaintenanceFormProps) => {
+  useAutoFillVehicleMileage(control, setValue, disableAutoFillMileage);
+
   return (
     <FormScreen
       handleSubmit={handleSubmit}
@@ -71,6 +81,8 @@ const MaintenanceForm = ({
       </View>
 
       <FormInput name="description" label="Description" control={control} />
+
+      {showScheduleResetSelect && <ScheduleResetSelect control={control} />}
 
       <MaintenancePartForm control={control} />
     </FormScreen>

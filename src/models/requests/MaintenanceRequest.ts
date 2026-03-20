@@ -10,4 +10,5 @@ export interface MaintenanceRequest {
   laborCost: number;
   type: MaintenanceTypeKey;
   parts: MaintenancePartRequest[];
+  scheduleId: string | null;
 }

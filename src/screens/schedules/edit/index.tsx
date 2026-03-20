@@ -11,11 +11,11 @@ import { getChangedData } from "utils/form";
 import { formatDateArrayToISO } from "utils/date";
 
 const ScheduleEditScreen = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation = useNavigation();
   const {
     params: { schedule },
   } = useRoute<RouteProp<RootStackParamList, "EditSchedule">>();
-  const { mutate: update, isPending: isCreating } = useUpdateSchedule(schedule.id);
+  const { mutate: update, isPending } = useUpdateSchedule(schedule.id);
 
   const {
     control,
@@ -33,8 +33,7 @@ const ScheduleEditScreen = () => {
   });
 
   const onSubmit = (req: ScheduleFormOutput) => {
-    const payload = getChangedData(dirtyFields, req) as Partial<ScheduleRequest>;
-    update(payload, {
+    update(getChangedData(dirtyFields, req) as Partial<ScheduleRequest>, {
       onSuccess: () => navigation.goBack(),
     });
   };
@@ -45,7 +44,7 @@ const ScheduleEditScreen = () => {
       handleSubmit={handleSubmit(onSubmit)}
       submitLabel="Save Changes"
       submitDisabled={!isValid || !isDirty}
-      loading={isCreating}
+      loading={isPending}
     />
   );
 };

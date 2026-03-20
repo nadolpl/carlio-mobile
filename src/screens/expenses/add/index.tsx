@@ -15,6 +15,7 @@ const AddExpenseScreen = () => {
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { isValid, isDirty },
   } = useForm<ExpenseFormInput, any, ExpenseFormOutput>({
     resolver: zodResolver(expenseSchema),
@@ -29,10 +30,12 @@ const AddExpenseScreen = () => {
 
   return (
     <ExpenseForm
+      setValue={setValue}
       control={control}
       handleSubmit={handleSubmit(onSubmit)}
       submitDisabled={!isValid || !isDirty}
       loading={isPending}
+      showScheduleResetSelect
     />
   );
 };

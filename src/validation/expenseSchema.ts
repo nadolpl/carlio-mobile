@@ -22,6 +22,7 @@ export const expenseSchema = z.object({
       .nonnegative("Cost cannot be negative")
       .max(9_999_999, "Cost is too large"),
   ),
+  scheduleId: strOrNull.pipe(z.uuid().nullable()),
 });
 
 export type ExpenseFormInput = z.input<typeof expenseSchema>;
