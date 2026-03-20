@@ -8,7 +8,9 @@ export const useExpenseList = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const query = useSearchExpenses();
 
-  useListNavigation({ onPressAdd: () => navigation.navigate("AddExpense") });
+  const handleAddPress = () => navigation.navigate("AddExpense");
+
+  useListNavigation({ onPressAdd: handleAddPress });
 
   const handleCardPress = (id: string) => {
     navigation.navigate("ExpenseDetails", { expenseId: id });
@@ -17,5 +19,6 @@ export const useExpenseList = () => {
   return {
     query,
     handleCardPress,
+    handleAddPress,
   };
 };

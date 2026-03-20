@@ -15,7 +15,9 @@ export const useScheduleList = () => {
     return query?.data?.pages.flatMap((page) => page.content) || [];
   }, [query?.data?.pages]);
 
-  useListNavigation({ onPressAdd: () => navigation.navigate("AddSchedule") });
+  const handleAddPress = () => navigation.navigate("AddSchedule");
+
+  useListNavigation({ onPressAdd: handleAddPress });
   useSyncScheduleNotifications(schedules);
 
   const handleCardPress = (schedule: ScheduleResponse) => {
@@ -25,5 +27,6 @@ export const useScheduleList = () => {
   return {
     query,
     handleCardPress,
+    handleAddPress
   };
 };

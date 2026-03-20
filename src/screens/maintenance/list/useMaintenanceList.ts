@@ -8,7 +8,9 @@ export const useMaintenanceList = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const query = useSearchMaintenances();
 
-  useListNavigation({ onPressAdd: () => navigation.navigate("AddMaintenance") });
+  const handleAddPress = () => navigation.navigate("AddMaintenance");
+
+  useListNavigation({ onPressAdd: handleAddPress });
 
   const handleCardPress = (id: string) => {
     navigation.navigate("MaintenanceDetails", { maintenanceId: id });
@@ -17,5 +19,6 @@ export const useMaintenanceList = () => {
   return {
     query,
     handleCardPress,
+    handleAddPress,
   };
 };

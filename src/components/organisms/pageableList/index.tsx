@@ -2,7 +2,7 @@ import { FlatList, FlatListProps, RefreshControl, StyleSheet, View } from "react
 import Loader from "components/atoms/loader";
 import { Pageable } from "models/Pageable";
 import { InfiniteData } from "@tanstack/react-query";
-import { useMemo } from "react";
+import { ReactElement, ReactNode, useMemo } from "react";
 
 interface InfiniteQueryState<T> {
   data?: InfiniteData<Pageable<T>>;
@@ -17,9 +17,14 @@ interface InfiniteQueryState<T> {
 interface PageableListProps<T> {
   renderItem: FlatListProps<T>["renderItem"];
   query: InfiniteQueryState<T>;
+  listEmptyContainer?: ReactElement;
 }
 
-const PageableList = <T extends { id: string }>({ renderItem, query }: PageableListProps<T>) => {
+const PageableList = <T extends { id: string }>({
+  renderItem,
+  query,
+  listEmptyContainer,
+}: PageableListProps<T>) => {
   const { fetchNextPage, hasNextPage, isFetchingNextPage, refetch, isRefetching, data, isLoading } =
     query;
 
@@ -35,7 +40,7 @@ const PageableList = <T extends { id: string }>({ renderItem, query }: PageableL
   return (
     <FlatList
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.listContent}
+      contentContainerStyle={[styles.listContent, content.length === 0 && { flexGrow: 1 }]}
       data={content}
       keyExtractor={(item) => item.id}
       renderItem={renderItem}
@@ -47,6 +52,7 @@ const PageableList = <T extends { id: string }>({ renderItem, query }: PageableL
       onEndReachedThreshold={0.5}
       ListFooterComponent={renderListFooter}
       refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} />}
+      ListEmptyComponent={query.isLoading ? null : listEmptyContainer}
     />
   );
 };

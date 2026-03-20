@@ -8,7 +8,7 @@ export const ICONS = {
   IMAGE: "image-outline",
   EDIT: "pencil",
   DELETE: "trash",
-  CASH: "cash-outline",
+  EXPENSE: "cash-outline",
   DOCUMENT: "document-text-outline",
   ARROW_RIGHT: "chevron-forward",
   ARROW_DOWN: "chevron-down",

@@ -8,14 +8,17 @@ export const useVehicleList = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const query = useSearchVehicles();
 
-  useListNavigation({ onPressAdd: () => navigation.navigate("AddVehicle") });
+  const handleAddPress = () => navigation.navigate("AddVehicle");
 
   const handleCardPress = (id: string) => {
     navigation.navigate("VehicleDetails", { vehicleId: id });
   };
 
+  useListNavigation({ onPressAdd: handleAddPress });
+
   return {
     query,
     handleCardPress,
+    handleAddPress
   };
 };

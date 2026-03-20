@@ -46,7 +46,7 @@ const BottomTabsNavigation = () => {
         component={ExpenseListScreen}
         options={{
           title: "Expenses",
-          tabBarIcon: ({ color, size }) => <Icon name={ICONS.CASH} color={color} size={size} />,
+          tabBarIcon: ({ color, size }) => <Icon name={ICONS.EXPENSE} color={color} size={size} />,
         }}
       />
       <Tab.Screen

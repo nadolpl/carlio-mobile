@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "components/atoms/button";
 import { StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Toast from "react-native-toast-message";
 
 const RegisterForm = () => {
   const { mutate: register, isPending } = useRegister();
@@ -25,6 +26,9 @@ const RegisterForm = () => {
     register(req, {
       onSuccess: () => {
         navigation.goBack();
+        Toast.show({
+          text1: "Activation link was send to your e-mail",
+        });
       },
     });
   };

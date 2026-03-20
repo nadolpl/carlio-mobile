@@ -8,7 +8,9 @@ export const useDocumentList = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const query = useSearchDocuments();
 
-  useListNavigation({ onPressAdd: () => navigation.navigate("AddDocument") });
+  const handleAddPress = () => navigation.navigate("AddDocument");
+
+  useListNavigation({ onPressAdd: handleAddPress });
 
   const handleCardPress = (id: string) => {
     navigation.navigate("DocumentDetails", { documentId: id });
@@ -17,5 +19,6 @@ export const useDocumentList = () => {
   return {
     query,
     handleCardPress,
+    handleAddPress
   };
 };
