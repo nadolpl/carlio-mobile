@@ -28,7 +28,7 @@ const FormSelectVehicle = <T extends FieldValues>({
     }));
   }, [data?.pages]);
 
-  return (
+  return options.length === 0 ? null : (
     <FormSelect
       name={name}
       control={control}

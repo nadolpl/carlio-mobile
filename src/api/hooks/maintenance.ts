@@ -1,6 +1,6 @@
 import { MaintenanceSearchParams } from "models/response/MaintenanceListedResponse";
 import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { MAINTENANCE_KEYS } from "api/hooks/keys";
+import { DOCUMENT_KEYS, MAINTENANCE_KEYS, SCHEDULE_KEYS, VEHICLE_KEYS } from "api/hooks/keys";
 import {
   requestCreateMaintenance,
   requestDeleteMaintenance,
@@ -36,7 +36,13 @@ export const useCreateMaintenance = () => {
 
   return useMutation({
     mutationFn: (req: MaintenanceRequest) => requestCreateMaintenance(req),
-    onSuccess: () => query.invalidateQueries({ queryKey: MAINTENANCE_KEYS.all }),
+    onSuccess: (_, req) =>
+      Promise.all([
+        query.invalidateQueries({ queryKey: MAINTENANCE_KEYS.all }),
+        query.invalidateQueries({ queryKey: SCHEDULE_KEYS.all }),
+        query.invalidateQueries({ queryKey: VEHICLE_KEYS.details(req.vehicleId) }),
+        query.invalidateQueries({ queryKey: DOCUMENT_KEYS.search() }),
+      ]),
   });
 };
 
@@ -45,7 +51,13 @@ export const useUpdateMaintenance = (id: string) => {
 
   return useMutation({
     mutationFn: (req: Partial<MaintenanceRequest>) => requestUpdateMaintenance(id, req),
-    onSuccess: () => query.invalidateQueries({ queryKey: MAINTENANCE_KEYS.all }),
+    onSuccess: () =>
+      Promise.all([
+        query.invalidateQueries({ queryKey: MAINTENANCE_KEYS.all }),
+        query.invalidateQueries({ queryKey: SCHEDULE_KEYS.all }),
+        query.invalidateQueries({ queryKey: VEHICLE_KEYS.all }),
+        query.invalidateQueries({ queryKey: DOCUMENT_KEYS.search() }),
+      ]),
   });
 };
 

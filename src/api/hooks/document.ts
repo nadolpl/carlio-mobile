@@ -1,6 +1,6 @@
 import { DocumentSearchParams } from "models/response/DocumentResponse";
 import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { DOCUMENT_KEYS } from "api/hooks/keys";
+import { DOCUMENT_KEYS, EXPENSE_KEYS, MAINTENANCE_KEYS } from "api/hooks/keys";
 import {
   requestDeleteDocument,
   requestDocument,
@@ -29,7 +29,12 @@ export const useDeleteDocument = () => {
 
   return useMutation({
     mutationFn: (id: string) => requestDeleteDocument(id),
-    onSuccess: () => query.invalidateQueries({ queryKey: DOCUMENT_KEYS.all }),
+    onSuccess: () =>
+      Promise.all([
+        query.invalidateQueries({ queryKey: DOCUMENT_KEYS.all }),
+        query.invalidateQueries({ queryKey: MAINTENANCE_KEYS.all }),
+        query.invalidateQueries({ queryKey: EXPENSE_KEYS.all }),
+      ]),
   });
 };
 
